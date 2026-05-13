@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="modules/omnivaltshipping" source-language="en" target-language="en" datatype="plaintext">
+    <body>
+      <trans-unit id="0c7b5040f05ce016c980797f78f6838b">
+        <source>Omniva Shipping</source>
+        <target>Omniva Shipping</target>
+      </trans-unit>
+      <trans-unit id="609d0649141bdfbe60335a8dfe05ea83">
+        <source>Shipping module for Omniva carrier</source>
+        <target>Shipping module for Omniva carrier</target>
+      </trans-unit>
+      <trans-unit id="876f23178c29dc2552c0b48bf23cd9bd">
+        <source>Are you sure you want to uninstall?</source>
+        <target>Are you sure you want to uninstall?</target>
+      </trans-unit>
+      <trans-unit id="a11bab71256bab70c82c11a2a48f493f">
+        <source>Please set up module</source>
+        <target>Please set up module</target>
+      </trans-unit>
+      <trans-unit id="96aad6b3886bdaa2c0c9ac52ea25a670">
+        <source>Failed to create tables.</source>
+        <target>Failed to create tables.</target>
+      </trans-unit>
+      <trans-unit id="158d2c19f27270cc67260cfccc722696">
+        <source>Print Omnivalt labels</source>
+        <target>Print Omnivalt labels</target>
+      </trans-unit>
+      <trans-unit id="6de94f12dc97dc95963906890bc1f5e9">
+        <source>Print Omnivalt manifests</source>
+        <target>Print Omnivalt manifests</target>
+      </trans-unit>
+      <trans-unit id="a48721091a600c187f14daf610e22a32">
+        <source>Successfully added.</source>
+        <target>Successfully added.</target>
+      </trans-unit>
+      <trans-unit id="92127bea93e62fefff7f14b50fc5e224">
+        <source>An invalid response was received</source>
+        <target>An invalid response was received</target>
+      </trans-unit>
+      <trans-unit id="aee9784c03b80d38d3271cde2b252b8d">
+        <source>Unknown error</source>
+        <target>Unknown error</target>
+      </trans-unit>
+      <trans-unit id="b9a211cc692fb325f005c6db97d0ec17">
+        <source>Successfully saved</source>
+        <target>Successfully saved</target>
+      </trans-unit>
+      <trans-unit id="8181876fc633f9b7903a75936b6255fb">
+        <source>Terminals updated</source>
+        <target>Terminals updated</target>
+      </trans-unit>
+      <trans-unit id="97cbf7fb787c8da0bda6fffe67f21240">
+        <source>Omniva Admin Ajax</source>
+        <target>Omniva Admin Ajax</target>
+      </trans-unit>
+      <trans-unit id="cbbc5f69812ac510458f40d5fed17958">
+        <source>Omniva Orders</source>
+        <target>Omniva Orders</target>
+      </trans-unit>
+      <trans-unit id="d2a92343f8ad1bea5feb6895183ed9a5">
+        <source>Failed to save. These fields are required: %s</source>
+        <target>Failed to save. These fields are required: %s</target>
+      </trans-unit>
+      <trans-unit id="c888438d14855d7d96a2724ee9c306bd">
+        <source>Settings updated</source>
+        <target>Settings updated</target>
+      </trans-unit>
+      <trans-unit id="7f821d9fccf099c85f7516ba1dcb920d">
+        <source>Carriers updated</source>
+        <target>Carriers updated</target>
+      </trans-unit>
+      <trans-unit id="d3d53a3fe81ff47e673df4c64e9a1b46">
+        <source>Display map</source>
+        <target>Display map</target>
+      </trans-unit>
+      <trans-unit id="d2b7f980332cd2d5077fc262c115a448">
+        <source>Send delivery email</source>
+        <target>Send delivery email</target>
+      </trans-unit>
+      <trans-unit id="8f34cac553a86d864bc1e4c58935d0d3">
+        <source>Api URL</source>
+        <target>Api URL</target>
+      </trans-unit>
+      <trans-unit id="d365f99f1a107d8b89bae688649685ae">
+        <source>API login user</source>
+        <target>API login user</target>
+      </trans-unit>
+      <trans-unit id="0a37a9d781792a76b18559ecf5931b0e">
+        <source>API login password</source>
+        <target>API login password</target>
+      </trans-unit>
+      <trans-unit id="aa79fd8f52a6496e844acb293754f34c">
+        <source>API login country</source>
+        <target>API login country</target>
+      </trans-unit>
+      <trans-unit id="72429f2644ba53015a72751875973a1d">
+        <source>Estonia Carrier Service</source>
+        <target>Estonia Carrier Service</target>
+      </trans-unit>
+      <trans-unit id="df3c72dec53afd1ab140c832ef461ab8">
+        <source>Finland Carrier Service</source>
+        <target>Finland Carrier Service</target>
+      </trans-unit>
+      <trans-unit id="436c250ab77a82a2d2db508f6158eb9b">
+        <source>Send off type</source>
+        <target>Send off type</target>
+      </trans-unit>
+      <trans-unit id="7ec35321dd6ed2f0c30fccee83d15a2a">
+        <source>Bank account</source>
+        <target>Bank account</target>
+      </trans-unit>
+      <trans-unit id="c281f92b77ba329f692077d23636f5c9">
+        <source>Company name</source>
+        <target>Company name</target>
+      </trans-unit>
+      <trans-unit id="f14c8df9347857ce8f50597fe0b00f8c">
+        <source>Company address</source>
+        <target>Company address</target>
+      </trans-unit>
+      <trans-unit id="a69ad7a2b3c69b6355050e4e51162362">
+        <source>Company city</source>
+        <target>Company city</target>
+      </trans-unit>
+      <trans-unit id="3128dbdc3a5b6e99a779ec3242260f8f">
+        <source>Company postcode</source>
+        <target>Company postcode</target>
+      </trans-unit>
+      <trans-unit id="0ef8fb6bb97274f7537214c3e81bc6ad">
+        <source>Company country code</source>
+        <target>Company country code</target>
+      </trans-unit>
+      <trans-unit id="3b74eee3e854c835ce7874e352d643ef">
+        <source>Company phone number</source>
+        <target>Company phone number</target>
+      </trans-unit>
+      <trans-unit id="6b4599c8b97a1b90ccc87da8243b5dcd">
+        <source>Pick up time start</source>
+        <target>Pick up time start</target>
+      </trans-unit>
+      <trans-unit id="29d284ecbc8948a12da4e0ccdda39ed3">
+        <source>Pick up time finish</source>
+        <target>Pick up time finish</target>
+      </trans-unit>
+      <trans-unit id="a2b5fb5b945071dd92f66d8012c40ad0">
+        <source>Labels print type</source>
+        <target>Labels print type</target>
+      </trans-unit>
+      <trans-unit id="1c8124146b283c497075a07e8fd601c8">
+        <source>Send return code</source>
+        <target>Send return code</target>
+      </trans-unit>
+      <trans-unit id="68aa5b6c866b4fb74ffb0e671ea6194d">
+        <source>Manifest language</source>
+        <target>Manifest language</target>
+      </trans-unit>
+      <trans-unit id="ab5e2debe0655a8bfd7dcef2fbec9c39">
+        <source>Label comment</source>
+        <target>Label comment</target>
+      </trans-unit>
+      <trans-unit id="fda97847c73434ca4a011fea5d27bca1">
+        <source>Autoselect terminal</source>
+        <target>Autoselect terminal</target>
+      </trans-unit>
+      <trans-unit id="b9cdf88912e59fb44ff9e677c8f09efe">
+        <source>Default country of delivery</source>
+        <target>Default country of delivery</target>
+      </trans-unit>
+      <trans-unit id="c9cc8cce247e49bae79f15173ce97354">
+        <source>Save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32">
+        <source>Enabled</source>
+        <target>Enabled</target>
+      </trans-unit>
+      <trans-unit id="b9f5c797ebbf55adccdd8539a65a0241">
+        <source>Disabled</source>
+        <target>Disabled</target>
+      </trans-unit>
+      <trans-unit id="f4f70727dc34561dfde1a3c529b6205c">
+        <source>Settings</source>
+        <target>Settings</target>
+      </trans-unit>
+      <trans-unit id="f202fd25f66eae6524f8175266be8383">
+        <source>Select the Omniva department country, from which you got the logins.</source>
+        <target>Select the Omniva department country, from which you got the logins.</target>
+      </trans-unit>
+      <trans-unit id="d9051e0b77f8bb5521389618e70e2ada">
+        <source>Lithuania</source>
+        <target>Lithuania</target>
+      </trans-unit>
+      <trans-unit id="a09f4b2ae67f0a63ab8912047a1a1b55">
+        <source>Latvia</source>
+        <target>Latvia</target>
+      </trans-unit>
+      <trans-unit id="7755415a9fe7022060b98a689236ccd2">
+        <source>Estonia</source>
+        <target>Estonia</target>
+      </trans-unit>
+      <trans-unit id="c7a347e04745b4d9ba5fde7593bec949">
+        <source>Activate this service, if your e-shop clients want to receive parcels in Estonia. Only available for Estonia API country.</source>
+        <target>Activate this service, if your e-shop clients want to receive parcels in Estonia. Only available for Estonia API country.</target>
+      </trans-unit>
+      <trans-unit id="94d5f3c6d3a79db42e4287a9751d4e13">
+        <source>Activate this service, if you want to send parcels to Finland. Only available for Estonia API country.</source>
+        <target>Activate this service, if you want to send parcels to Finland. Only available for Estonia API country.</target>
+      </trans-unit>
+      <trans-unit id="931df114cd35e909a7327afe5c4a6226">
+        <source>Please select send off from store type</source>
+        <target>Please select send off from store type</target>
+      </trans-unit>
+      <trans-unit id="af5a5195fe01aae1edf7c0770e86bc03">
+        <source>Parcel terminal</source>
+        <target>Parcel terminal</target>
+      </trans-unit>
+      <trans-unit id="5055d1a4444c630d6839f48ab48aef91">
+        <source>Courier</source>
+        <target>Courier</target>
+      </trans-unit>
+      <trans-unit id="9416b8fdb61378eb29ebe807b9bdbb44">
+        <source>Post Office</source>
+        <target>Post Office</target>
+      </trans-unit>
+      <trans-unit id="3787ab3b9c9460fba74dbcf1927c79c5">
+        <source>Logistics Center</source>
+        <target>Logistics Center</target>
+      </trans-unit>
+      <trans-unit id="63e8b926b8f2629cf3677a02d2d88f39">
+        <source>You can specify a default customer country that will be used until the delivery address is entered.</source>
+        <target>You can specify a default customer country that will be used until the delivery address is entered.</target>
+      </trans-unit>
+      <trans-unit id="dd3195ced9c1810388e28ca2b4eb921f">
+        <source>Not specified</source>
+        <target>Not specified</target>
+      </trans-unit>
+      <trans-unit id="08dfaa62aebd5e73c90ba710f930aefd">
+        <source>Please note that extra charges may apply.</source>
+        <target>Please note that extra charges may apply.</target>
+      </trans-unit>
+      <trans-unit id="f821a8d706572671ccc3bc91d05092f6">
+        <source>Original (single label)</source>
+        <target>Original (single label)</target>
+      </trans-unit>
+      <trans-unit id="c8850e93a8be32b260efd5c7b0d0637a">
+        <source>A4 (4 labels)</source>
+        <target>A4 (4 labels)</target>
+      </trans-unit>
+      <trans-unit id="84ed1c865d4156e47b203fdca60efd4f">
+        <source>No comment</source>
+        <target>No comment</target>
+      </trans-unit>
+      <trans-unit id="d79cf3f429596f77db95c65074663a54">
+        <source>Order ID</source>
+        <target>Order ID</target>
+      </trans-unit>
+      <trans-unit id="5d4710f9a8250b13164a82c94d5b00d1">
+        <source>Order reference</source>
+        <target>Order reference</target>
+      </trans-unit>
+      <trans-unit id="78463a384a5aa4fad5fa73e2f506ecfc">
+        <source>English</source>
+        <target>English</target>
+      </trans-unit>
+      <trans-unit id="28916fc3da67a5190b2b98a7f309857f">
+        <source>Estonian</source>
+        <target>Estonian</target>
+      </trans-unit>
+      <trans-unit id="76ad0358e45dd4087c0a26bbf4c160e3">
+        <source>Latvian</source>
+        <target>Latvian</target>
+      </trans-unit>
+      <trans-unit id="04f605836f660d879bf3fb2b3643d16b">
+        <source>Lithuanian</source>
+        <target>Lithuanian</target>
+      </trans-unit>
+      <trans-unit id="3d90ad8f9eef0e43af3a5a42dc8d0a42">
+        <source>Updated Terminals:</source>
+        <target>Updated Terminals:</target>
+      </trans-unit>
+      <trans-unit id="1d6af794b2599c1407a83029a09d1ecf">
+        <source>Carriers</source>
+        <target>Carriers</target>
+      </trans-unit>
+      <trans-unit id="f9a9a202b1b39ebc54ed8814aaa3be49">
+        <source>After activating the shipping method below, a new Carrier is created in the Prestashop shipping carriers list.</source>
+        <target>After activating the shipping method below, a new Carrier is created in the Prestashop shipping carriers list.</target>
+      </trans-unit>
+      <trans-unit id="f29ddbfb905eb2593fdcdfb243f9af85">
+        <source>Added</source>
+        <target>Added</target>
+      </trans-unit>
+      <trans-unit id="93f07b720ebf7d1246512569761a5804">
+        <source>Removed</source>
+        <target>Removed</target>
+      </trans-unit>
+      <trans-unit id="5549d34a89fe44e7b8feae5c90f00104">
+        <source>Module uninstall</source>
+        <target>Module uninstall</target>
+      </trans-unit>
+      <trans-unit id="3a05f53dccebe09a2cec5aa570a7cd33">
+        <source>The enabled actions in this section will be performed when uninstalling the module.</source>
+        <target>The enabled actions in this section will be performed when uninstalling the module.</target>
+      </trans-unit>
+      <trans-unit id="f3f3ed7884ca933080a0d6ca37f612aa">
+        <source>Delete database tables</source>
+        <target>Delete database tables</target>
+      </trans-unit>
+      <trans-unit id="383603d497afa64b719f43f7177c8d06">
+        <source>Delete tables created by the module from the database.</source>
+        <target>Delete tables created by the module from the database.</target>
+      </trans-unit>
+      <trans-unit id="02b46b1c3d3d71f67d1bde63982c086f">
+        <source>Completely delete carriers</source>
+        <target>Completely delete carriers</target>
+      </trans-unit>
+      <trans-unit id="cf32ed30236c4166e756314ade9bf834">
+        <source>Completely delete carriers created by this module from the database.</source>
+        <target>Completely delete carriers created by this module from the database.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

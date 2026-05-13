@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="modules/omnivaltshipping" source-language="en" target-language="lt" datatype="plaintext">
+    <body>
+      <trans-unit id="ab6818405d4e2ece132a8b65c28e9bb9">
+        <source>Select terminal</source>
+        <target>Pasirinkti paštomatą</target>
+      </trans-unit>
+      <trans-unit id="4f781a6b09af2f1ee0a1e0c44040f97d">
+        <source>Please select a parcel terminal</source>
+        <target>Prašome pasirinkti paštomatą</target>
+      </trans-unit>
+      <trans-unit id="0b110192097725bcb39ad4c49e319a42">
+        <source>Please select parcel terminal</source>
+        <target>Prašome pasirinkti paštomatą</target>
+      </trans-unit>
+      <trans-unit id="dd238d9d1c8619a2c999cdc7cb674264">
+        <source>Enter postcode</source>
+        <target>Įveskite pašto kodą</target>
+      </trans-unit>
+      <trans-unit id="b4744b0eb409e0e366b67e8222117fba">
+        <source>Enter an address, if you want to find terminals</source>
+        <target>Įveskite adresą, jeigu norite ieškoti paštomatų</target>
+      </trans-unit>
+      <trans-unit id="d26e7830f405fcd6887d766a0ae8787b">
+        <source>Place not found</source>
+        <target>Vieta nerasta</target>
+      </trans-unit>
+      <trans-unit id="271e53f729450d8c0e1c7c3bc00c43a7">
+        <source>Enter postcode/address</source>
+        <target>Įveskite pašto kodą/adresą</target>
+      </trans-unit>
+      <trans-unit id="1abeb90e19a533f38477e18ce142ccd5">
+        <source>Show in map</source>
+        <target>Rodyti žemėlapyje</target>
+      </trans-unit>
+      <trans-unit id="146ffe2fd9fa5bec3b63b52543793ec7">
+        <source>Show more</source>
+        <target>Rodyti daugiau</target>
+      </trans-unit>
+      <trans-unit id="ec9f1fac0b8a074f11b706dc26f426f4">
+        <source>Omniva parcel terminals</source>
+        <target>Omniva paštomatai</target>
+      </trans-unit>
+      <trans-unit id="09bb251f5ba4dbb9a47d49d2a0354b56">
+        <source>Matkahuolto parcel terminals</source>
+        <target>Matkahuolto paštomatai</target>
+      </trans-unit>
+      <trans-unit id="835c91830f300e9a401abdb709b3d572">
+        <source>Omniva parcel terminal</source>
+        <target>Omniva paštomatas</target>
+      </trans-unit>
+      <trans-unit id="f7a1c3e8b9d2e4f5a6b7c8d9e0f1a2b3">
+        <source>Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.</source>
+        <target>Paštomato pasirinkimas šiuo metu neveikia. Užsakymą vis dar galite sukurti su šiuo pristatymo būdu — užsakymo komentare nurodykite į kurį paštomatą siųsti prekes arba atskirai informuokite parduotuvės administratorių.</target>
+      </trans-unit>
+      <trans-unit id="a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6">
+        <source>Terminal selection is loading. Please wait...</source>
+        <target>Paštomato pasirinkimas kraunamas. Prašome palaukti...</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

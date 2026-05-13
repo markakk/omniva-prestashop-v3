@@ -1,0 +1,4 @@
+.DS_Store
+**/*.log
+/omnivaltshipping/locations.json
+/omnivaltshipping/config*.xml
