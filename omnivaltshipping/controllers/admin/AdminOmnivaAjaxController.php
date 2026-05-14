@@ -309,11 +309,14 @@ class AdminOmnivaAjaxController extends ModuleAdminController
             ? OmnivaCarrier::getCarrierMethodKey((int) $carrier->id, (int) $carrier->id_reference)
             : false;
 
+        // Delete the empty placeholder record (created at order time) so that a fresh
+        // record is always created — this ensures date_add reflects the actual label generation time.
         $omnivaOrderHistory = OmnivaOrderHistory::getLatestOrderHistory($omnivaOrder->id);
-        if (!$omnivaOrderHistory || $omnivaOrderHistory->tracking_numbers) {
-            $omnivaOrderHistory = new OmnivaOrderHistory();
+        if ($omnivaOrderHistory && !$omnivaOrderHistory->tracking_numbers) {
+            $omnivaOrderHistory->delete();
         }
 
+        $omnivaOrderHistory = new OmnivaOrderHistory();
         $omnivaOrderHistory->id_order = $omnivaOrder->id;
         $omnivaOrderHistory->tracking_numbers = json_encode($barcodes);
 

@@ -26,8 +26,12 @@
         <div class="tab-pane active" id="tab-general">
             {if $newOrders != null}
                 <h4 style="display: inline:block;vertical-align: baseline;">{l s='New orders' d='Modules.Omnivaltshipping.Admin'}</h4>
-                <a id="print-manifest" href="" class="btn btn-default btn-xs action-call float-right pull-right"
-                    target='_blank' title="{l s='Generate a manifest and move to Completed tab all orders that have a label' d='Modules.Omnivaltshipping.Admin'}">{l s='Generate manifest (all)' d='Modules.Omnivaltshipping.Admin'}</a>
+                <div class="omniva-bulk-actions" style="margin-bottom: 5px;">
+                    <a id="print-labels" href="" class="btn btn-default btn-xs action-call"
+                        target='_blank'>{l s='Labels' d='Modules.Omnivaltshipping.Admin'}</a>
+                    <a id="print-manifest-selected" href="" class="btn btn-default btn-xs action-call"
+                        target='_blank'>{l s='Generate manifest' d='Modules.Omnivaltshipping.Admin'}</a>
+                </div>
                 <table class="table order">
                     <thead>
                         {include file="./_partials/orders_table_header.tpl" select_all=true}
@@ -94,8 +98,6 @@
                     target='_blank'>{l s='Labels' d='Modules.Omnivaltshipping.Admin'}</a>
                 <a id="print-manifest-selected" href="" class="btn btn-default btn-xs action-call"
                     target='_blank'>{l s='Generate manifest' d='Modules.Omnivaltshipping.Admin'}</a>
-                <a id="print-manifest" href="" class="btn btn-default btn-xs action-call float-right pull-right"
-                    target='_blank' title="{l s='Generate a manifest and move to Completed tab all orders that have a label' d='Modules.Omnivaltshipping.Admin'}">{l s='Generate manifest (all)' d='Modules.Omnivaltshipping.Admin'}</a>
                 <hr />
                 <br />
             {else}

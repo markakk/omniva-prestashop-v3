@@ -1,4 +1,9 @@
-## [1.1.0]
+## [1.1.1] - Optimize Heuristic3D
+### Improved
+- added time display to actions debug
+- optimized Heuristic3D method for faster calculations and less memory usage
+
+## [1.1.0] - Calculation methods
 ### Improved
 - created the ability to use different methods for calculations
 - added Instance to the Debug class to allow adding records to the same object from different classes

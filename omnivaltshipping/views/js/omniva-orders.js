@@ -3,6 +3,14 @@ $(document).ready(() => {
     $('.pagination_next b').hide();
     $('.pagination_previous b').hide();
 
+    // Activate tab from URL hash (e.g. after manifest generation reload)
+    if (window.location.hash) {
+        var tabLink = $('.nav-tabs a[href="' + window.location.hash + '"]');
+        if (tabLink.length) {
+            tabLink.tab('show');
+        }
+    }
+
     // Tri-state select-all: unchecked → indeterminate (latest only) → checked (all) → unchecked
     $('.select-all').on('click', function () {
         var table = $(this).closest('table');
@@ -49,15 +57,6 @@ $(document).ready(() => {
             }
         }
 
-        // "Generate manifest (all)" should only move selected orders if any are selected
-        if (this.id == 'print-manifest') {
-            if (orderIds.length == 0 && historyIds.length == 0) {
-                if (!confirm(check_orders)) {
-                    return false;
-                }
-            }
-        }
-
         var link;
         if (this.id == 'print-labels') {
             link = bulkLabelsLink;
@@ -65,8 +64,6 @@ $(document).ready(() => {
             link = manifestLink;
         } else if (this.id == 'download-manifest') {
             link = downloadManifestLink;
-        } else {
-            link = manifestLink;
         }
 
         var params = [];
@@ -78,6 +75,15 @@ $(document).ready(() => {
         }
 
         $(this).attr('href', link + '&' + params.join('&'));
+
+        // Reload page after manifest generation so the order list updates
+        if (this.id == 'print-manifest-selected') {
+            setTimeout(function () {
+                var url = window.location.href.split('#')[0];
+                window.location.href = url + '#tab-sent-orders';
+                window.location.reload();
+            }, 1000);
+        }
     });
 
     /* Start courier call */

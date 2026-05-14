@@ -29,7 +29,7 @@ class Debug
     public function add( $add_line )
     {
         if ( $this->debug ) {
-            $this->debug_actions[] = $add_line;
+            $this->debug_actions[$this->getCurrentTimeString()] = $add_line;
         }
     }
 
@@ -49,5 +49,14 @@ class Debug
     public function getActions()
     {
         return $this->debug_actions;
+    }
+
+    private function getCurrentTimeString()
+    {
+        $time = microtime(true);
+        $date = date('Y-m-d H:i:s', (int)$time);
+        $micro = sprintf('%06d', ($time - floor($time)) * 1000000);
+
+        return $date . '.' . $micro;
     }
 }

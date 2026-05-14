@@ -1,9 +1,14 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "faa334c5efdf958f4fa77fa6ae03eac6",
     "packages": [
         {
             "name": "mijora/box-calculator",
             "version": "1.1.1",
-            "version_normalized": "1.1.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:mijora/box-calculator.git",
@@ -15,9 +20,7 @@
                 "reference": "1ff8adbd8feaaac973f2b84288b7f3d7db639fca",
                 "shasum": ""
             },
-            "time": "2026-03-18T09:33:37+00:00",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Mijora\\BoxCalculator\\": "src/"
@@ -44,12 +47,11 @@
                 "source": "https://github.com/mijora/box-calculator/tree/v1.1.1",
                 "issues": "https://github.com/mijora/box-calculator/issues"
             },
-            "install-path": "../mijora/box-calculator"
+            "time": "2026-03-18T09:33:37+00:00"
         },
         {
             "name": "mijora/omniva-api",
             "version": "1.3.7",
-            "version_normalized": "1.3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/omniva-baltic/omniva-api-lib.git",
@@ -66,9 +68,7 @@
                 "setasign/fpdi": "^2.3",
                 "tecnickcom/tcpdf": "^6.3"
             },
-            "time": "2026-03-23T12:23:31+00:00",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "overrides/tcpdf/tcpdf_config.php"
@@ -102,12 +102,11 @@
                 "issues": "https://github.com/omniva-baltic/omniva-api-lib/issues",
                 "source": "https://github.com/omniva-baltic/omniva-api-lib/tree/v1.3.7"
             },
-            "install-path": "../mijora/omniva-api"
+            "time": "2026-03-23T12:23:31+00:00"
         },
         {
             "name": "setasign/fpdf",
             "version": "1.8.6",
-            "version_normalized": "1.8.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Setasign/FPDF.git",
@@ -123,9 +122,7 @@
                 "ext-gd": "*",
                 "ext-zlib": "*"
             },
-            "time": "2023-06-26T14:44:25+00:00",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "classmap": [
                     "fpdf.php"
@@ -151,12 +148,11 @@
             "support": {
                 "source": "https://github.com/Setasign/FPDF/tree/1.8.6"
             },
-            "install-path": "../setasign/fpdf"
+            "time": "2023-06-26T14:44:25+00:00"
         },
         {
             "name": "setasign/fpdi",
             "version": "v2.6.7",
-            "version_normalized": "2.6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Setasign/FPDI.git",
@@ -185,9 +181,7 @@
             "suggest": {
                 "setasign/fpdf": "FPDI will extend this class but as it is also possible to use TCPDF or tFPDF as an alternative. There's no fixed dependency configured."
             },
-            "time": "2026-05-13T10:16:22+00:00",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "setasign\\Fpdi\\": "src/"
@@ -226,12 +220,11 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../setasign/fpdi"
+            "time": "2026-05-13T10:16:22+00:00"
         },
         {
             "name": "tecnickcom/tcpdf",
             "version": "6.11.3",
-            "version_normalized": "6.11.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
@@ -253,9 +246,7 @@
                 "ext-zlib": "Recommended for compressed streams and related features.",
                 "tecnickcom/tc-lib-pdf": "Modern replacement for TCPDF for new projects."
             },
-            "time": "2026-04-21T17:00:18+00:00",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "classmap": [
                     "config",
@@ -306,9 +297,18 @@
                     "type": "paypal"
                 }
             ],
-            "install-path": "../tecnickcom/tcpdf"
+            "time": "2026-04-21T17:00:18+00:00"
         }
     ],
-    "dev": false,
-    "dev-package-names": []
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
