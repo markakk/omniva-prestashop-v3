@@ -653,6 +653,170 @@ var omniva_addrese_change = false;
  
 }( $ ));
 
+/**
+ * COD restriction for international shipments.
+ * Prevents order placement when COD payment is selected with an Omniva carrier
+ * and the delivery country is not in the domestic countries list.
+ */
+var omnivaltCodRestriction = {
+    initialized: false,
+    errorElement: null,
+
+    init: function() {
+        if (this.initialized) return;
+        if (!omnivalt_params.cod_restriction) return;
+        this.initialized = true;
+
+        var self = this;
+        // Monitor payment confirmation - use capture phase to intercept before other handlers
+        document.addEventListener('click', function(e) {
+            var btn = e.target.closest('#payment-confirmation button, #payment-confirmation [type="submit"]');
+            if (btn && !self.validate()) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
+        }, true);
+
+        document.addEventListener('submit', function(e) {
+            var form = e.target.closest('#payment-confirmation form');
+            if (form && !self.validate()) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
+        }, true);
+
+        // Monitor payment option changes to show/hide warning
+        $(document).on('change', 'input[name="payment-option"]', function() {
+            self.checkAndWarn();
+        });
+
+        // Listen to prestashop events for delivery changes
+        if (typeof prestashop !== 'undefined') {
+            prestashop.on('updatedDeliveryForm', function() {
+                self.checkAndWarn();
+            });
+        }
+    },
+
+    getSelectedCarrierId: function() {
+        var checkedDelivery = $('input[name^="delivery_option"]:checked');
+        if (checkedDelivery.length) {
+            var val = checkedDelivery.val();
+            // Value format in PS8 is "{carrier_id},"
+            return parseInt(val);
+        }
+        return 0;
+    },
+
+    getSelectedPaymentModule: function() {
+        var checkedPayment = $('input[name="payment-option"]:checked');
+        if (checkedPayment.length) {
+            var paymentOptionId = checkedPayment.attr('id');
+            // In PS8, the module name is in data-module-name attribute or in the form action
+            var form = $('#' + paymentOptionId + '-additional-information').closest('.payment-option')
+                .find('form');
+            if (form.length) {
+                var action = form.attr('action') || '';
+                for (var i = 0; i < omnivalt_params.cod_restriction.cod_modules.length; i++) {
+                    if (action.indexOf(omnivalt_params.cod_restriction.cod_modules[i]) !== -1) {
+                        return omnivalt_params.cod_restriction.cod_modules[i];
+                    }
+                }
+            }
+            var container = checkedPayment.closest('.payment-option');
+            var moduleName = container.find('[data-module-name]').data('module-name') 
+                || checkedPayment.data('module-name')
+                || '';
+            if (moduleName) return moduleName;
+
+            // Fallback: check the payment confirmation form action
+            var confirmForm = $('#payment-confirmation form');
+            if (confirmForm.length) {
+                var confirmAction = confirmForm.attr('action') || '';
+                for (var i = 0; i < omnivalt_params.cod_restriction.cod_modules.length; i++) {
+                    if (confirmAction.indexOf(omnivalt_params.cod_restriction.cod_modules[i]) !== -1) {
+                        return omnivalt_params.cod_restriction.cod_modules[i];
+                    }
+                }
+            }
+        }
+        return '';
+    },
+
+    isCodPaymentSelected: function() {
+        var checkedPayment = $('input[name="payment-option"]:checked');
+        if (!checkedPayment.length) return false;
+
+        var codModules = omnivalt_params.cod_restriction.cod_modules;
+        var paymentModule = this.getSelectedPaymentModule();
+        if (paymentModule && codModules.indexOf(paymentModule) !== -1) {
+            return true;
+        }
+
+        // Additional detection: check payment option container for COD module names
+        var paymentOptionId = checkedPayment.attr('id');
+        var optionContainer = checkedPayment.closest('.payment-option');
+        var containerHtml = (optionContainer.html() || '').toLowerCase();
+        
+        for (var i = 0; i < codModules.length; i++) {
+            if (containerHtml.indexOf(codModules[i]) !== -1) {
+                return true;
+            }
+        }
+        return false;
+    },
+
+    isInternationalCarrierSelected: function() {
+        var carrierId = this.getSelectedCarrierId();
+        if (!carrierId) return false;
+        return omnivalt_params.cod_restriction.international_carrier_ids.indexOf(carrierId) !== -1;
+    },
+
+    validate: function() {
+        if (!omnivalt_params.cod_restriction) return true;
+        if (!this.isInternationalCarrierSelected()) return true;
+        if (!this.isCodPaymentSelected()) return true;
+
+        // International carrier + COD: block order
+        this.showError();
+        return false;
+    },
+
+    checkAndWarn: function() {
+        if (!omnivalt_params.cod_restriction) return;
+        if (this.isInternationalCarrierSelected() && this.isCodPaymentSelected()) {
+            this.showError();
+        } else {
+            this.hideError();
+        }
+    },
+
+    showError: function() {
+        if (!this.errorElement) {
+            this.errorElement = $('<div class="omniva-cod-error alert alert-danger mt-3 mb-0" role="alert">' +
+                omnivalt_text.cod_international_error + '</div>');
+        }
+        if (!$('.omniva-cod-error').length) {
+            var buttonsWrapper = $('#payment-confirmation').closest('.buttons-wrapper');
+            if (buttonsWrapper.length) {
+                buttonsWrapper.before(this.errorElement);
+            } else {
+                $('.payment-options__list').after(this.errorElement);
+            }
+        }
+        this.errorElement.show();
+    },
+
+    hideError: function() {
+        if (this.errorElement) {
+            this.errorElement.hide();
+        }
+        $('.omniva-cod-error').hide();
+    }
+};
+
 var omnivaltDelivery = {
     init : function() {
         console.groupCollapsed('OMNIVA: Initializing Omniva terminal carrier');
@@ -825,6 +989,7 @@ var omnivaCheckoutCompat = [
     if (!booted) {
         $(document).ready(function() {
             launch_omniva();
+            omnivaltCodRestriction.init();
         });
     }
 })();

@@ -22,6 +22,7 @@ function upgrade_module_3_0_0($module)
     // Register new hooks that may not have been registered before
     $newHooks = [
         'displayCarrierExtraContent',
+        'actionObjectOrderAddBefore',
         'actionObjectOrderUpdateAfter',
         'actionEmailSendBefore',
         'displayAdminOrderMain',
@@ -37,6 +38,9 @@ function upgrade_module_3_0_0($module)
 
     // Replace old hook with new one
     $module->unregisterHook('displayAdminOrder');
+
+    // Remove COD payment restrictions for international carriers
+    _omniva_upgrade_restrict_cod_international($module);
 
     // Fix non-numeric manifest values before altering column type
     Db::getInstance()->execute(
@@ -107,6 +111,40 @@ function _omniva_upgrade_cleanup_old_files($module)
         $fullPath = $modulePath . $file;
         if (file_exists($fullPath)) {
             @unlink($fullPath);
+        }
+    }
+}
+
+function _omniva_upgrade_restrict_cod_international($module)
+{
+    $cod_modules = OmnivaltShipping::$_codModules;
+    $cod_module_ids = [];
+    foreach ($cod_modules as $module_name) {
+        $module_id = (int) Module::getModuleIdByName($module_name);
+        if ($module_id) {
+            $cod_module_ids[] = $module_id;
+        }
+    }
+
+    if (empty($cod_module_ids)) {
+        return;
+    }
+
+    foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
+        if (!OmnivaApiInternational::isInternationalMethod($key)) {
+            continue;
+        }
+
+        $carrier_reference = OmnivaCarrier::getReference($key);
+        if (!$carrier_reference) {
+            continue;
+        }
+
+        foreach ($cod_module_ids as $module_id) {
+            Db::getInstance()->delete(
+                'module_carrier',
+                '`id_module` = ' . (int) $module_id . ' AND `id_reference` = ' . (int) $carrier_reference
+            );
         }
     }
 }

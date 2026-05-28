@@ -74,6 +74,7 @@ class OmnivaltShipping extends CarrierModule
         'displayAdminOrderMain',
         'actionAdminControllerSetMedia',
         'actionValidateOrder',
+        'actionObjectOrderAddBefore',
         'actionObjectOrderUpdateAfter',
         'displayOrderConfirmation',
         'displayOrderDetail',
@@ -179,6 +180,8 @@ class OmnivaltShipping extends CarrierModule
         Configuration::updateValue('omnivalt_manifest', 1);
         $this->getCustomOrderState();
         $this->getErrorOrderState();
+
+        $this->restrictCodForInternationalCarriers();
 
         return true;
     }
@@ -318,6 +321,16 @@ class OmnivaltShipping extends CarrierModule
             return;
         }
 
+        $international_carrier_ids = [];
+        foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
+            if (OmnivaApiInternational::isInternationalMethod($key)) {
+                $carrier_id = OmnivaCarrier::getId($key);
+                if ($carrier_id) {
+                    $international_carrier_ids[] = $carrier_id;
+                }
+            }
+        }
+
         Media::addJsDef([
             'omnivalt_params' => [
                 'url' => [
@@ -330,6 +343,10 @@ class OmnivaltShipping extends CarrierModule
                     'omniva_terminal' => OmnivaCarrier::getId('omnivalt_pt'),
                 ],
                 'show_map' => (bool) Configuration::get('omnivalt_map'),
+                'cod_restriction' => [
+                    'international_carrier_ids' => $international_carrier_ids,
+                    'cod_modules' => self::$_codModules,
+                ],
             ],
             'omnivalt_text' => [
                 'select_terminal' => $this->trans('Select terminal', [], 'Modules.Omnivaltshipping.Shop'),
@@ -341,6 +358,7 @@ class OmnivaltShipping extends CarrierModule
                 'enter_address' => $this->trans('Enter postcode/address', [], 'Modules.Omnivaltshipping.Shop'),
                 'show_in_map' => $this->trans('Show in map', [], 'Modules.Omnivaltshipping.Shop'),
                 'show_more' => $this->trans('Show more', [], 'Modules.Omnivaltshipping.Shop'),
+                'cod_international_error' => $this->trans('C.O.D. payment is not available for selected shipping method', [], 'Modules.Omnivaltshipping.Shop'),
                 'variables' => [
                     'omniva' => ['modal_title' => $this->trans('Omniva parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
                     'matkahuolto' => ['modal_title' => $this->trans('Matkahuolto parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
@@ -594,6 +612,30 @@ class OmnivaltShipping extends CarrierModule
             $params['templateVars']['{omniva_terminal_name}'] = $terminal_address;
             $params['templateVars']['{omniva_terminal_text}'] = '<span style="font-weight: bold;">'
                 . $this->trans('Omniva parcel terminal', [], 'Modules.Omnivaltshipping.Shop') . ':</span> ' . $terminal_address;
+        }
+    }
+
+    public function hookActionObjectOrderAddBefore(array $params): void
+    {
+        $order = $params['object'];
+        if (!($order instanceof Order)) {
+            return;
+        }
+
+        $carrier = new Carrier($order->id_carrier);
+        if ($carrier->external_module_name !== $this->name) {
+            return;
+        }
+
+        if (!in_array($order->module, self::$_codModules)) {
+            return;
+        }
+
+        $method_key = OmnivaCarrier::getCarrierMethodKey((int) $order->id_carrier, (int) $carrier->id_reference);
+        if ($method_key && OmnivaApiInternational::isInternationalMethod($method_key)) {
+            throw new \PrestaShopException(
+                $this->trans('C.O.D. payment is not available for selected shipping method', [], 'Modules.Omnivaltshipping.Shop')
+            );
         }
     }
 
@@ -963,6 +1005,43 @@ class OmnivaltShipping extends CarrierModule
         }
     }
 
+    /**
+     * Remove COD payment modules from Payment Preferences for international carriers.
+     * This ensures COD is never offered when an international shipping method is selected.
+     */
+    private function restrictCodForInternationalCarriers(): void
+    {
+        $cod_module_ids = [];
+        foreach (self::$_codModules as $module_name) {
+            $module_id = (int) Module::getModuleIdByName($module_name);
+            if ($module_id) {
+                $cod_module_ids[] = $module_id;
+            }
+        }
+
+        if (empty($cod_module_ids)) {
+            return;
+        }
+
+        foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
+            if (!OmnivaApiInternational::isInternationalMethod($key)) {
+                continue;
+            }
+
+            $carrier_reference = OmnivaCarrier::getReference($key);
+            if (!$carrier_reference) {
+                continue;
+            }
+
+            foreach ($cod_module_ids as $module_id) {
+                Db::getInstance()->delete(
+                    'module_carrier',
+                    '`id_module` = ' . (int) $module_id . ' AND `id_reference` = ' . (int) $carrier_reference
+                );
+            }
+        }
+    }
+
     private function getCartCountryCode(Cart $cart): string
     {
         $default = $this->context->country->iso_code ?? $this->context->language->iso_code;
@@ -1141,6 +1220,9 @@ class OmnivaltShipping extends CarrierModule
                 OmnivaCarrier::markAsDeleted($key);
             }
         }
+
+        $this->restrictCodForInternationalCarriers();
+
         return $this->displayConfirmation($this->trans('Carriers updated', [], 'Modules.Omnivaltshipping.Admin'));
     }
 
