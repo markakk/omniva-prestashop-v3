@@ -16,6 +16,13 @@ class OmnivaltshippingAjaxModuleFrontController extends ModuleFrontController
             }
             $this->saveParcelTerminal();
         }
+
+        if (Tools::getValue('action') === 'checkPhone') {
+            if (!$this->isTokenValid()) {
+                die(json_encode(['fail' => 'Invalid token']));
+            }
+            $this->checkPhone();
+        }
     }
 
     private function saveParcelTerminal(): void
@@ -43,5 +50,23 @@ class OmnivaltshippingAjaxModuleFrontController extends ModuleFrontController
             : ['fail' => 'Failed to save terminal'];
 
         die(json_encode($response));
+    }
+
+    private function checkPhone(): void
+    {
+        $cart = $this->context->cart;
+        $id_address_delivery = (int) $cart->id_address_delivery;
+
+        if (!$id_address_delivery) {
+            die(json_encode(['has_phone' => false]));
+        }
+
+        $address = new Address($id_address_delivery);
+        if (!Validate::isLoadedObject($address)) {
+            die(json_encode(['has_phone' => false]));
+        }
+
+        $phone = trim($address->phone) ?: trim($address->phone_mobile);
+        die(json_encode(['has_phone' => !empty($phone)]));
     }
 }

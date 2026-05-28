@@ -322,10 +322,12 @@ class OmnivaltShipping extends CarrierModule
         }
 
         $international_carrier_ids = [];
+        $all_carrier_ids = [];
         foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
-            if (OmnivaApiInternational::isInternationalMethod($key)) {
-                $carrier_id = OmnivaCarrier::getId($key);
-                if ($carrier_id) {
+            $carrier_id = OmnivaCarrier::getId($key);
+            if ($carrier_id) {
+                $all_carrier_ids[] = $carrier_id;
+                if (OmnivaApiInternational::isInternationalMethod($key)) {
                     $international_carrier_ids[] = $carrier_id;
                 }
             }
@@ -347,6 +349,10 @@ class OmnivaltShipping extends CarrierModule
                     'international_carrier_ids' => $international_carrier_ids,
                     'cod_modules' => self::$_codModules,
                 ],
+                'phone_check' => [
+                    'enabled' => (bool) Configuration::get('omnivalt_phone_check'),
+                    'all_carrier_ids' => $all_carrier_ids,
+                ],
             ],
             'omnivalt_text' => [
                 'select_terminal' => $this->trans('Select terminal', [], 'Modules.Omnivaltshipping.Shop'),
@@ -359,6 +365,7 @@ class OmnivaltShipping extends CarrierModule
                 'show_in_map' => $this->trans('Show in map', [], 'Modules.Omnivaltshipping.Shop'),
                 'show_more' => $this->trans('Show more', [], 'Modules.Omnivaltshipping.Shop'),
                 'cod_international_error' => $this->trans('C.O.D. payment is not available for selected shipping method', [], 'Modules.Omnivaltshipping.Shop'),
+                'phone_required_error' => $this->trans('Phone number is required for the selected shipping method', [], 'Modules.Omnivaltshipping.Shop'),
                 'variables' => [
                     'omniva' => ['modal_title' => $this->trans('Omniva parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
                     'matkahuolto' => ['modal_title' => $this->trans('Matkahuolto parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
@@ -1260,6 +1267,7 @@ class OmnivaltShipping extends CarrierModule
             'omnivalt_label_comment_type' => $this->trans('Label comment', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_autoselect' => $this->trans('Autoselect terminal', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_default_receiver_countrycode' => $this->trans('Default country of delivery', [], 'Modules.Omnivaltshipping.Admin'),
+            'omnivalt_phone_check' => $this->trans('Phone check', [], 'Modules.Omnivaltshipping.Admin'),
         ];
     }
 
@@ -1320,6 +1328,7 @@ class OmnivaltShipping extends CarrierModule
             'omnivalt_pick_up_time_start' => Configuration::get('omnivalt_pick_up_time_start') ?: '8:00',
             'omnivalt_pick_up_time_finish' => Configuration::get('omnivalt_pick_up_time_finish') ?: '17:00',
             'omnivalt_default_receiver_countrycode' => Configuration::get('omnivalt_default_receiver_countrycode'),
+            'omnivalt_phone_check' => Configuration::get('omnivalt_phone_check'),
             'omnivalt_map' => Configuration::get('omnivalt_map'),
             'omnivalt_autoselect' => Configuration::get('omnivalt_autoselect'),
             'send_delivery_email' => Configuration::get('send_delivery_email'),
@@ -1387,6 +1396,8 @@ class OmnivaltShipping extends CarrierModule
                 ['type' => 'select', 'label' => $settings_fields['omnivalt_default_receiver_countrycode'], 'name' => 'omnivalt_default_receiver_countrycode',
                     'desc' => $this->trans('You can specify a default customer country that will be used until the delivery address is entered.', [], 'Modules.Omnivaltshipping.Admin'),
                     'options' => ['query' => $this->buildCountriesFieldOptions($countries_list, $this->trans('Not specified', [], 'Modules.Omnivaltshipping.Admin')), 'id' => 'id_option', 'name' => 'name']],
+                ['type' => 'switch', 'label' => $settings_fields['omnivalt_phone_check'], 'name' => 'omnivalt_phone_check', 'is_bool' => true, 'values' => $switch_values,
+                    'desc' => $this->trans('Check if a phone number is entered on the checkout page', [], 'Modules.Omnivaltshipping.Admin')],
                 ['type' => 'switch', 'label' => $settings_fields['omnivalt_map'], 'name' => 'omnivalt_map', 'is_bool' => true, 'values' => $switch_values],
                 ['type' => 'switch', 'label' => $settings_fields['omnivalt_autoselect'], 'name' => 'omnivalt_autoselect', 'is_bool' => true, 'values' => $switch_values],
                 

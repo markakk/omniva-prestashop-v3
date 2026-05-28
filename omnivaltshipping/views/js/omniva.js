@@ -654,6 +654,163 @@ var omniva_addrese_change = false;
 }( $ ));
 
 /**
+ * Phone number check for Omniva carriers.
+ * Prevents moving to payment step or placing order when no phone number is entered
+ * and an Omniva carrier is selected.
+ */
+var omnivaltPhoneCheck = {
+    initialized: false,
+    errorElement: null,
+
+    init: function() {
+        if (this.initialized) return;
+        if (!omnivalt_params.phone_check || !omnivalt_params.phone_check.enabled) return;
+        this.initialized = true;
+        this.phoneValid = null; // null = not checked yet
+
+        var self = this;
+
+        // Pre-check phone on init
+        self.checkPhoneAjax();
+
+        // Intercept delivery form submission
+        $('form#js-delivery').on('submit.OmnivaPhone', function(e) {
+            if (!self.isOmnivaCarrierSelected()) return true;
+            if (self.phoneValid === true) {
+                self.hideError();
+                return true;
+            }
+            e.preventDefault();
+            self.checkPhoneAjax(function(hasPhone) {
+                if (hasPhone) {
+                    self.hideError();
+                    $('form#js-delivery').off('submit.OmnivaPhone').submit();
+                } else {
+                    self.showError();
+                }
+            });
+            return false;
+        });
+
+        // Monitor payment confirmation
+        document.addEventListener('click', function(e) {
+            var btn = e.target.closest('#payment-confirmation button, #payment-confirmation [type="submit"]');
+            if (btn) {
+                if (!self.isOmnivaCarrierSelected()) return true;
+                if (self.phoneValid === true) {
+                    self.hideError();
+                    return true;
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                self.checkPhoneAjax(function(hasPhone) {
+                    if (hasPhone) {
+                        self.hideError();
+                        $(btn).click();
+                    } else {
+                        self.showError();
+                    }
+                });
+                return false;
+            }
+        }, true);
+
+        document.addEventListener('submit', function(e) {
+            var form = e.target.closest('#payment-confirmation form');
+            if (form) {
+                if (!self.isOmnivaCarrierSelected()) return true;
+                if (self.phoneValid === true) {
+                    self.hideError();
+                    return true;
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                self.checkPhoneAjax(function(hasPhone) {
+                    if (hasPhone) {
+                        self.hideError();
+                        $(form).submit();
+                    } else {
+                        self.showError();
+                    }
+                });
+                return false;
+            }
+        }, true);
+
+        // Re-check phone when address step is updated
+        if (typeof prestashop !== 'undefined') {
+            prestashop.on('updatedDeliveryForm', function() {
+                self.phoneValid = null;
+                self.checkPhoneAjax();
+            });
+        }
+    },
+
+    checkPhoneAjax: function(callback) {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: omnivalt_params.url.controller_ajax,
+            dataType: 'json',
+            data: 'action=checkPhone&token=' + omnivalt_params.token,
+            success: function(response) {
+                self.phoneValid = response.has_phone;
+                if (callback) callback(response.has_phone);
+            },
+            error: function() {
+                self.phoneValid = null;
+                if (callback) callback(false);
+            }
+        });
+    },
+
+    isOmnivaCarrierSelected: function() {
+        var checkedDelivery = $('input[name^="delivery_option"]:checked');
+        if (!checkedDelivery.length) return false;
+        var carrierId = parseInt(checkedDelivery.val());
+        if (!carrierId) return false;
+        return omnivalt_params.phone_check.all_carrier_ids.indexOf(carrierId) !== -1;
+    },
+
+    showError: function() {
+        if (!this.errorElement) {
+            this.errorElement = $('<div class="omniva-phone-error alert alert-danger mt-3 mb-3" role="alert">' +
+                omnivalt_text.phone_required_error + '</div>');
+        }
+        if (!$('.omniva-phone-error').length) {
+            var inserted = false;
+            // Try before buttons wrapper in delivery step
+            var buttonsWrapper = $('form#js-delivery .buttons-wrapper');
+            if (buttonsWrapper.length) {
+                buttonsWrapper.first().before(this.errorElement);
+                inserted = true;
+            }
+            // Try payment step
+            if (!inserted) {
+                var paymentConfirm = $('#payment-confirmation');
+                if (paymentConfirm.length) {
+                    paymentConfirm.before(this.errorElement);
+                    inserted = true;
+                }
+            }
+            // Fallback - alert
+            if (!inserted) {
+                alert(omnivalt_text.phone_required_error);
+                return;
+            }
+        }
+        this.errorElement.show();
+    },
+
+    hideError: function() {
+        if (this.errorElement) {
+            this.errorElement.hide();
+        }
+        $('.omniva-phone-error').hide();
+    }
+};
+
+/**
  * COD restriction for international shipments.
  * Prevents order placement when COD payment is selected with an Omniva carrier
  * and the delivery country is not in the domestic countries list.
@@ -992,6 +1149,10 @@ var omnivaCheckoutCompat = [
             omnivaltCodRestriction.init();
         });
     }
+    // Phone check works on all checkout types
+    $(document).ready(function() {
+        omnivaltPhoneCheck.init();
+    });
 })();
 
 function launch_omniva(retry = 0) {
