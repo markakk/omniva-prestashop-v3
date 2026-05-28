@@ -654,6 +654,102 @@ var omniva_addrese_change = false;
 }( $ ));
 
 /**
+ * Universal notification utility for Omniva checkout validations.
+ * Shows error messages in the currently active/visible checkout step.
+ */
+var omnivaltNotification = {
+    /**
+     * Show an error element in the current active checkout step.
+     * @param {jQuery} element - The error element to show
+     * @param {string} selector - CSS class selector to check if already in DOM (e.g. '.omniva-phone-error')
+     * @param {string} message - Fallback message for alert()
+     */
+    show: function(element, selector, message) {
+        if (!element || !element.length) return;
+
+        // If already visible in DOM, just show it
+        if ($(selector).length && $.contains(document, $(selector)[0])) {
+            $(selector).show();
+            return;
+        }
+
+        // Remove from DOM if detached
+        element.detach();
+
+        // Find the current active step and insert error there
+        var container = this.findActiveStepContainer();
+        if (container && container.length) {
+            var point = this.findInsertionPoint(container);
+            if (point.method === 'before') {
+                point.target.before(element);
+            } else {
+                point.target.prepend(element);
+            }
+            element.show();
+        } else {
+            alert(message);
+        }
+    },
+
+    hide: function(element, selector) {
+        if (element) element.hide();
+        $(selector).hide();
+    },
+
+    /**
+     * Find the container of the currently active checkout step.
+     * Uses multiple strategies to be theme-agnostic.
+     */
+    findActiveStepContainer: function() {
+        // Strategy 1: PrestaShop 8 default - step with -current class
+        var currentStep = $('.checkout-step.-current .step-content, .checkout-step.-current .content');
+        if (currentStep.length && currentStep.is(':visible')) return currentStep.first();
+
+        // Strategy 2: js-current-step marker
+        var jsCurrentStep = $('.js-current-step .step-content, .js-current-step .content');
+        if (jsCurrentStep.length && jsCurrentStep.is(':visible')) return jsCurrentStep.first();
+
+        // Strategy 3: Find visible step content (payment or delivery)
+        var visibleContent = $('#checkout-payment-step .content:visible, #checkout-delivery-step .content:visible');
+        if (visibleContent.length) return visibleContent.last();
+
+        // Strategy 4: Look for visible payment confirmation area
+        var paymentArea = $('#payment-confirmation:visible').closest('.content, .step-content, section');
+        if (paymentArea.length) return paymentArea.first();
+
+        // Strategy 5: Delivery form itself
+        var deliveryForm = $('form#js-delivery:visible');
+        if (deliveryForm.length) return deliveryForm;
+
+        // Strategy 6: Find any visible checkout section with a form
+        var visibleForm = $('#checkout form:visible').last().parent();
+        if (visibleForm.length) return visibleForm;
+
+        return null;
+    },
+
+    /**
+     * Find the best insertion point within a container - above buttons or at top of form.
+     */
+    findInsertionPoint: function(container) {
+        // Try to find buttons wrapper and insert before it
+        var buttons = container.find('.buttons-wrapper, .form-footer, [id*="payment-confirmation"]').filter(':visible');
+        if (buttons.length) return { target: buttons.first(), method: 'before' };
+
+        // Try to find submit/action buttons
+        var submitBtn = container.find('button[type="submit"], .btn-primary').filter(':visible');
+        if (submitBtn.length) {
+            var btnParent = submitBtn.first().parent();
+            return { target: btnParent, method: 'before' };
+        }
+
+        // Fallback - prepend to container (top of the step)
+        return { target: container, method: 'prepend' };
+    },
+
+};
+
+/**
  * Phone number check for Omniva carriers.
  * Prevents moving to payment step or placing order when no phone number is entered
  * and an Omniva carrier is selected.
@@ -777,36 +873,11 @@ var omnivaltPhoneCheck = {
             this.errorElement = $('<div class="omniva-phone-error alert alert-danger mt-3 mb-3" role="alert">' +
                 omnivalt_text.phone_required_error + '</div>');
         }
-        if (!$('.omniva-phone-error').length) {
-            var inserted = false;
-            // Try before buttons wrapper in delivery step
-            var buttonsWrapper = $('form#js-delivery .buttons-wrapper');
-            if (buttonsWrapper.length) {
-                buttonsWrapper.first().before(this.errorElement);
-                inserted = true;
-            }
-            // Try payment step
-            if (!inserted) {
-                var paymentConfirm = $('#payment-confirmation');
-                if (paymentConfirm.length) {
-                    paymentConfirm.before(this.errorElement);
-                    inserted = true;
-                }
-            }
-            // Fallback - alert
-            if (!inserted) {
-                alert(omnivalt_text.phone_required_error);
-                return;
-            }
-        }
-        this.errorElement.show();
+        omnivaltNotification.show(this.errorElement, '.omniva-phone-error', omnivalt_text.phone_required_error);
     },
 
     hideError: function() {
-        if (this.errorElement) {
-            this.errorElement.hide();
-        }
-        $('.omniva-phone-error').hide();
+        omnivaltNotification.hide(this.errorElement, '.omniva-phone-error');
     }
 };
 
@@ -975,18 +1046,117 @@ var omnivaltCodRestriction = {
 };
 
 var omnivaltDelivery = {
+    terminalValidationInitialized: false,
+    terminalErrorElement: null,
+    terminalValid: null, // null = not checked, true/false = result
+
     init : function() {
         console.groupCollapsed('OMNIVA: Initializing Omniva terminal carrier');
         var self = this;
         
         console.log('Updating events...');
+
+        // Intercept delivery form submit
         $('form#js-delivery').off('submit.Omniva').on('submit.Omniva', function(e){
-            if (!self.validate()) {
+            if (!self.isTerminalCarrierSelected()) return true;
+            if (!self.validateTerminalClient()) {
                 e.preventDefault();
                 return false;
             }
+            return true;
         });
+
+        // Intercept delivery confirm button click (PS8 may use button click, not form submit)
+        $('form#js-delivery button[name="confirmDeliveryOption"], form#js-delivery button[type="submit"]')
+            .off('click.OmnivaTerminal')
+            .on('click.OmnivaTerminal', function(e) {
+                if (!self.isTerminalCarrierSelected()) return true;
+                if (!self.validateTerminalClient()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                return true;
+            });
+
+        // Capture phase listener for delivery step (catches all click/submit regardless of binding order)
+        if (!self.terminalValidationInitialized) {
+            self.terminalValidationInitialized = true;
+
+            document.addEventListener('click', function(e) {
+                // Delivery step button
+                var deliveryBtn = e.target.closest('form#js-delivery button[name="confirmDeliveryOption"], form#js-delivery button[type="submit"]');
+                if (deliveryBtn && self.isTerminalCarrierSelected() && !self.validateTerminalClient()) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+
+                // Payment confirmation button
+                var paymentBtn = e.target.closest('#payment-confirmation button, #payment-confirmation [type="submit"]');
+                if (paymentBtn) {
+                    if (!self.isTerminalCarrierSelectedServer()) return;
+                    if (self.terminalValid === true) {
+                        self.hideTerminalError();
+                        return;
+                    }
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    self.checkTerminalAjax(function(hasTerminal) {
+                        if (hasTerminal) {
+                            self.hideTerminalError();
+                            self.terminalValid = true;
+                            $(paymentBtn).click();
+                        } else {
+                            self.showTerminalError();
+                        }
+                    });
+                    return false;
+                }
+            }, true);
+
+            document.addEventListener('submit', function(e) {
+                // Delivery form submit
+                var deliveryForm = e.target.closest('form#js-delivery');
+                if (deliveryForm && self.isTerminalCarrierSelected() && !self.validateTerminalClient()) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+
+                // Payment form submit
+                var paymentForm = e.target.closest('#payment-confirmation form');
+                if (paymentForm) {
+                    if (!self.isTerminalCarrierSelectedServer()) return;
+                    if (self.terminalValid === true) {
+                        self.hideTerminalError();
+                        return;
+                    }
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    self.checkTerminalAjax(function(hasTerminal) {
+                        if (hasTerminal) {
+                            self.hideTerminalError();
+                            self.terminalValid = true;
+                            $(paymentForm).submit();
+                        } else {
+                            self.showTerminalError();
+                        }
+                    });
+                    return false;
+                }
+            }, true);
+        }
+
         $('select[name="omnivalt_parcel_terminal"]').off('change.Omniva').on('change.Omniva', function(e) {
+            // Mark as valid and hide error when terminal is selected
+            if ($(this).val()) {
+                self.terminalValid = true;
+                self.hideTerminalError();
+            } else {
+                self.terminalValid = false;
+            }
+
             console.groupCollapsed('OMNIVA: Saving selected terminal');
             var terminal = $(this).val();
             if(terminal)
@@ -1039,36 +1209,101 @@ var omnivaltDelivery = {
         });
         console.groupEnd();
     },
-    validate : function() {
-        console.groupCollapsed('OMNIVA: Validating selected terminal');
-        let carrier_input = '.delivery-options .delivery-option input[type="radio"]:checked';
-        if ($(carrier_input).val() == omnivalt_params.methods.omniva_terminal + ',' && $('select[name="omnivalt_parcel_terminal"]').val() == "")
-        {
-            if (!!$.prototype.fancybox) {
-                $.fancybox.open([
-                {
-                    type: 'inline',
-                    autoScale: true,
-                    minHeight: 30,
-                    content: '<p class="fancybox-error">' + omnivalt_text.select_terminal_error + '</p>'
-                }],
-                {
-                    padding: 0
-                });
+    isTerminalCarrierSelected : function() {
+        // Check if terminal carrier radio is currently checked in the DOM
+        var carrierInputs = $('input[name^="delivery_option"]:checked, .delivery-options .delivery-option input[type="radio"]:checked');
+        var terminalId = omnivalt_params.methods.omniva_terminal;
+        var selected = false;
+        carrierInputs.each(function() {
+            var val = $(this).val();
+            if (val == terminalId + ',' || val == terminalId) {
+                selected = true;
+                return false;
             }
-            else {
-                alert(omnivalt_text.select_terminal_error);
-            }
+        });
+        return selected;
+    },
+    isTerminalCarrierSelectedServer : function() {
+        // For payment step - we can't reliably check DOM, use last known AJAX result
+        // or return true to trigger AJAX check
+        return this.terminalValid !== true;
+    },
+    validateTerminalClient : function() {
+        // Client-side validation: check if terminal select exists and has a value
+        var terminalSelect = $('select[name="omnivalt_parcel_terminal"]');
+        if (terminalSelect.length && terminalSelect.val() === '') {
+            this.terminalValid = false;
+            this.showTerminalError();
+            return false;
         }
-        else {
-            console.log('Confirmed successfully');
-            //paymentModuleConfirm(); //if opc
-            console.groupEnd();
+        // If select is not in DOM (shouldn't happen in delivery step), allow and let server check
+        if (!terminalSelect.length) {
             return true;
         }
-        console.log('Validation failed');
-        console.groupEnd();
-        return false;
+        this.terminalValid = true;
+        this.hideTerminalError();
+        return true;
+    },
+    checkTerminalAjax : function(callback) {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: omnivalt_params.url.controller_ajax,
+            dataType: 'json',
+            data: 'action=checkTerminal&token=' + omnivalt_params.token,
+            success: function(response) {
+                if (!response.terminal_required) {
+                    self.terminalValid = true;
+                    if (callback) callback(true);
+                } else {
+                    self.terminalValid = response.has_terminal;
+                    if (callback) callback(response.has_terminal);
+                }
+            },
+            error: function() {
+                self.terminalValid = null;
+                if (callback) callback(false);
+            }
+        });
+    },
+    showTerminalError : function() {
+        if (!this.terminalErrorElement) {
+            this.terminalErrorElement = $('<div class="omniva-terminal-validation-error alert alert-danger mt-3 mb-3" role="alert">' +
+                omnivalt_text.select_terminal_error + '</div>');
+        }
+
+        // If already in DOM and visible, just ensure it's shown
+        var existing = $('.omniva-terminal-validation-error');
+        if (existing.length && existing.closest(':visible').length) {
+            existing.show();
+            return;
+        }
+
+        // Remove from DOM to re-insert in correct location
+        this.terminalErrorElement.detach();
+
+        // Try to insert near the visible terminal selection area (delivery step)
+        var terminalContainer = $('#omnivalt_parcel_terminal_carrier_details, .omniva-terminals-list').filter(':visible').first();
+        if (terminalContainer.length) {
+            terminalContainer.after(this.terminalErrorElement);
+            this.terminalErrorElement.show();
+            return;
+        }
+
+        // Try the selected delivery option (visible delivery step)
+        var selectedDeliveryOption = $('.delivery-options .delivery-option input[type="radio"]:checked')
+            .closest('.delivery-option').filter(':visible');
+        if (selectedDeliveryOption.length) {
+            selectedDeliveryOption.after(this.terminalErrorElement);
+            this.terminalErrorElement.show();
+            return;
+        }
+
+        // Fallback to universal notification (payment step, OPC, etc.)
+        omnivaltNotification.show(this.terminalErrorElement, '.omniva-terminal-validation-error', omnivalt_text.select_terminal_error);
+    },
+    hideTerminalError : function() {
+        omnivaltNotification.hide(this.terminalErrorElement, '.omniva-terminal-validation-error');
     },
     change_modal_theme : function() {
         this.remove_all_classes_with_prefix($('#omnivaLtModal')[0], 'theme-');

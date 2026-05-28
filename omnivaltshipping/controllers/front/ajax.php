@@ -23,6 +23,13 @@ class OmnivaltshippingAjaxModuleFrontController extends ModuleFrontController
             }
             $this->checkPhone();
         }
+
+        if (Tools::getValue('action') === 'checkTerminal') {
+            if (!$this->isTokenValid()) {
+                die(json_encode(['fail' => 'Invalid token']));
+            }
+            $this->checkTerminal();
+        }
     }
 
     private function saveParcelTerminal(): void
@@ -68,5 +75,24 @@ class OmnivaltshippingAjaxModuleFrontController extends ModuleFrontController
 
         $phone = trim($address->phone) ?: trim($address->phone_mobile);
         die(json_encode(['has_phone' => !empty($phone)]));
+    }
+
+    private function checkTerminal(): void
+    {
+        $cart = $this->context->cart;
+        $id_cart = (int) $cart->id;
+
+        // Check if current carrier is the terminal carrier
+        $terminal_carrier_id = OmnivaCarrier::getId('omnivalt_pt');
+        $cart_carrier_id = (int) $cart->id_carrier;
+
+        if (!$terminal_carrier_id || $cart_carrier_id !== $terminal_carrier_id) {
+            die(json_encode(['terminal_required' => false, 'has_terminal' => true]));
+        }
+
+        $cartTerminal = new OmnivaCartTerminal($id_cart);
+        $has_terminal = Validate::isLoadedObject($cartTerminal) && !empty($cartTerminal->id_terminal);
+
+        die(json_encode(['terminal_required' => true, 'has_terminal' => $has_terminal]));
     }
 }
