@@ -119,8 +119,8 @@ class AdminOmnivaAjaxController extends ModuleAdminController
 
         $this->ajaxDie(json_encode(
             $result
-                ? $this->module->l('Order info successfully saved.')
-                : ['error' => $this->module->l('Order info could not be saved.')]
+                ? $this->module->translate('Order info successfully saved.', [], 'Modules.Omnivaltshipping.Admin')
+                : ['error' => $this->module->translate('Order info could not be saved.', [], 'Modules.Omnivaltshipping.Admin')]
         ));
     }
 
@@ -129,7 +129,7 @@ class AdminOmnivaAjaxController extends ModuleAdminController
         if (!$id_order) {
             $id_order = (int) Tools::getValue('id_order');
             if (!$id_order) {
-                $error = $this->module->l('No order ID provided.');
+                $error = $this->module->translate('No order ID provided.', [], 'Modules.Omnivaltshipping.Admin');
                 return $return_on_die ? ['error' => $error] : $this->ajaxDieError($error);
             }
         }
@@ -137,7 +137,7 @@ class AdminOmnivaAjaxController extends ModuleAdminController
         $order = new Order($id_order);
         $omnivaOrder = new OmnivaOrder($id_order);
         if (!Validate::isLoadedObject($omnivaOrder)) {
-            $error = $this->module->l('Order info not saved. Please save before generating labels');
+            $error = $this->module->translate('Order info not saved. Please save before generating labels', [], 'Modules.Omnivaltshipping.Admin');
             return $return_on_die ? ['error' => $error] : $this->ajaxDieError($error);
         }
 
@@ -159,7 +159,7 @@ class AdminOmnivaAjaxController extends ModuleAdminController
                 Tools::redirectAdmin(Context::getContext()->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_ORDERS));
             }
 
-            $msg = $this->module->l('Label successfully generated');
+            $msg = $this->module->translate('Label successfully generated', [], 'Modules.Omnivaltshipping.Admin');
             return $return_on_die ? ['success' => $msg] : $this->ajaxDie(json_encode(['success' => $msg]));
         }
 
@@ -205,7 +205,7 @@ class AdminOmnivaAjaxController extends ModuleAdminController
         $history_ids = $history_ids_raw ? array_map('intval', explode(',', $history_ids_raw)) : [];
 
         if (empty($order_ids) && empty($history_ids)) {
-            $this->ajaxDie(json_encode(['error' => $this->module->l("No order ID's provided.")]));
+            $this->ajaxDie(json_encode(['error' => $this->module->translate("No order ID's provided.", [], 'Modules.Omnivaltshipping.Admin')]));
         }
 
         $registered_ids = [];
@@ -226,7 +226,7 @@ class AdminOmnivaAjaxController extends ModuleAdminController
         }
 
         if (empty($registered_ids) && empty($history_ids)) {
-            $this->ajaxDie(json_encode(['error' => $this->module->l('Could not get label information for some orders.')]));
+            $this->ajaxDie(json_encode(['error' => $this->module->translate('Could not get label information for some orders.', [], 'Modules.Omnivaltshipping.Admin')]));
         }
 
         $this->module->api->getBulkLabels($registered_ids, $history_ids);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file original="modules/omnivaltshipping" source-language="en" target-language="en" datatype="plaintext">
+  <file original="Modules.Omnivaltshipping.Shop" source-language="en-US" target-language="en-US" datatype="plaintext">
     <body>
       <trans-unit id="ab6818405d4e2ece132a8b65c28e9bb9">
         <source>Select terminal</source>
@@ -61,6 +61,54 @@
       <trans-unit id="e9af05a2f886e1e0fa84b7dbcfd6a1cb">
         <source>Show parcel terminals map</source>
         <target>Show parcel terminals map</target>
+      </trans-unit>
+      <trans-unit id="1498ff9c57f5642998e46905b61858ce">
+        <source>C.O.D. payment is not available for selected shipping method.</source>
+        <target>C.O.D. payment is not available for selected shipping method.</target>
+      </trans-unit>
+      <trans-unit id="33a44995135c7fc580045392f6f962a1">
+        <source>Phone number is required for the selected shipping method</source>
+        <target>Phone number is required for the selected shipping method</target>
+      </trans-unit>
+      <trans-unit id="0756a2789de625f3e481a8695fdb8015">
+        <source>C.O.D. payment is not available for selected shipping method</source>
+        <target>C.O.D. payment is not available for selected shipping method</target>
+      </trans-unit>
+      <trans-unit id="1be7f4094822039b4634c93c23dd7efb">
+        <source>Event ID</source>
+        <target>Event ID</target>
+      </trans-unit>
+      <trans-unit id="a4ecfc70574394990cf17bd83df499f7">
+        <source>Event</source>
+        <target>Event</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="e6a620c6641e864b8c9775fe86a9ea89">
+        <source>Your order will be delivered to the parcel terminal</source>
+        <target>Your order will be delivered to the parcel terminal</target>
+      </trans-unit>
+      <trans-unit id="73e0c6ff256e6be1b9ac2236bdbd697a">
+        <source>Tracking information</source>
+        <target>Tracking information</target>
+      </trans-unit>
+      <trans-unit id="60ebcdfdc20a2b561cf657528e817d41">
+        <source>Your order will be delivered to Omniva parcel terminal</source>
+        <target>Your order will be delivered to Omniva parcel terminal</target>
+      </trans-unit>
+      <trans-unit id="bbd99246558810170f2bbba7b75f517c">
+        <source>Parcel terminals addresses</source>
+        <target>Parcel terminals addresses</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="bdbe7b8df388fa4d9aebb12e24868551">
+        <source>Select parcel terminal</source>
+        <target>Select parcel terminal</target>
       </trans-unit>
     </body>
   </file>

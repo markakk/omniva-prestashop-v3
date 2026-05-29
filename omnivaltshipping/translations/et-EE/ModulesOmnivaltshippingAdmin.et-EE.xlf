@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="Modules.Omnivaltshipping.Admin" source-language="en-US" target-language="et-EE" datatype="plaintext">
+    <body>
+      <trans-unit id="0c7b5040f05ce016c980797f78f6838b">
+        <source>Omniva Shipping</source>
+        <target>Omniva Laevandus</target>
+      </trans-unit>
+      <trans-unit id="609d0649141bdfbe60335a8dfe05ea83">
+        <source>Shipping module for Omniva carrier</source>
+        <target>Omniva vedaja jaoks mõeldud transpordimoodul</target>
+      </trans-unit>
+      <trans-unit id="876f23178c29dc2552c0b48bf23cd9bd">
+        <source>Are you sure you want to uninstall?</source>
+        <target>Kas soovite kindlasti desinstallida?</target>
+      </trans-unit>
+      <trans-unit id="a11bab71256bab70c82c11a2a48f493f">
+        <source>Please set up module</source>
+        <target>Palun seadke moodul sisse</target>
+      </trans-unit>
+      <trans-unit id="96aad6b3886bdaa2c0c9ac52ea25a670">
+        <source>Failed to create tables.</source>
+        <target>Tabelite loomine ebaõnnestus.</target>
+      </trans-unit>
+      <trans-unit id="158d2c19f27270cc67260cfccc722696">
+        <source>Print Omnivalt labels</source>
+        <target>Prindi Omnivalt sildid</target>
+      </trans-unit>
+      <trans-unit id="6de94f12dc97dc95963906890bc1f5e9">
+        <source>Print Omnivalt manifests</source>
+        <target>Prindi Omnivalt manifestid</target>
+      </trans-unit>
+      <trans-unit id="a48721091a600c187f14daf610e22a32">
+        <source>Successfully added.</source>
+        <target>Edukalt lisatud.</target>
+      </trans-unit>
+      <trans-unit id="92127bea93e62fefff7f14b50fc5e224">
+        <source>An invalid response was received</source>
+        <target>Vastus on vales vormis</target>
+      </trans-unit>
+      <trans-unit id="aee9784c03b80d38d3271cde2b252b8d">
+        <source>Unknown error</source>
+        <target>Tundmatu viga</target>
+      </trans-unit>
+      <trans-unit id="b9a211cc692fb325f005c6db97d0ec17">
+        <source>Successfully saved</source>
+        <target>Edukalt salvestatud</target>
+      </trans-unit>
+      <trans-unit id="8181876fc633f9b7903a75936b6255fb">
+        <source>Terminals updated</source>
+        <target>Terminalid värskendatud</target>
+      </trans-unit>
+      <trans-unit id="97cbf7fb787c8da0bda6fffe67f21240">
+        <source>Omniva Admin Ajax</source>
+        <target>Omniva Admin Ajax</target>
+      </trans-unit>
+      <trans-unit id="cbbc5f69812ac510458f40d5fed17958">
+        <source>Omniva Orders</source>
+        <target>Omniva tellimused</target>
+      </trans-unit>
+      <trans-unit id="d2a92343f8ad1bea5feb6895183ed9a5">
+        <source>Failed to save. These fields are required: %s</source>
+        <target>Salvestamine ebaõnnestus. Need väljad on kohustuslikud: %s</target>
+      </trans-unit>
+      <trans-unit id="c888438d14855d7d96a2724ee9c306bd">
+        <source>Settings updated</source>
+        <target>Seaded on värskendatud</target>
+      </trans-unit>
+      <trans-unit id="7f821d9fccf099c85f7516ba1dcb920d">
+        <source>Carriers updated</source>
+        <target>Vedajad värskendatud</target>
+      </trans-unit>
+      <trans-unit id="d3d53a3fe81ff47e673df4c64e9a1b46">
+        <source>Display map</source>
+        <target>Näita kaarti</target>
+      </trans-unit>
+      <trans-unit id="d2b7f980332cd2d5077fc262c115a448">
+        <source>Send delivery email</source>
+        <target>Saada kohaletoimetamise e-kiri</target>
+      </trans-unit>
+      <trans-unit id="8f34cac553a86d864bc1e4c58935d0d3">
+        <source>Api URL</source>
+        <target>Api URL</target>
+      </trans-unit>
+      <trans-unit id="d365f99f1a107d8b89bae688649685ae">
+        <source>API login user</source>
+        <target>Api sisselogimise kasutaja</target>
+      </trans-unit>
+      <trans-unit id="0a37a9d781792a76b18559ecf5931b0e">
+        <source>API login password</source>
+        <target>Api sisselogimise parool</target>
+      </trans-unit>
+      <trans-unit id="aa79fd8f52a6496e844acb293754f34c">
+        <source>API login country</source>
+        <target>API sisselogimise riik</target>
+      </trans-unit>
+      <trans-unit id="72429f2644ba53015a72751875973a1d">
+        <source>Estonia Carrier Service</source>
+        <target>Eesti vedaja teenus</target>
+      </trans-unit>
+      <trans-unit id="df3c72dec53afd1ab140c832ef461ab8">
+        <source>Finland Carrier Service</source>
+        <target>Soome vedaja teenus</target>
+      </trans-unit>
+      <trans-unit id="436c250ab77a82a2d2db508f6158eb9b">
+        <source>Send off type</source>
+        <target>Saatke tüübist välja</target>
+      </trans-unit>
+      <trans-unit id="7ec35321dd6ed2f0c30fccee83d15a2a">
+        <source>Bank account</source>
+        <target>Pangakonto</target>
+      </trans-unit>
+      <trans-unit id="c281f92b77ba329f692077d23636f5c9">
+        <source>Company name</source>
+        <target>Firma nimi</target>
+      </trans-unit>
+      <trans-unit id="f14c8df9347857ce8f50597fe0b00f8c">
+        <source>Company address</source>
+        <target>Ettevõtte aadress</target>
+      </trans-unit>
+      <trans-unit id="a69ad7a2b3c69b6355050e4e51162362">
+        <source>Company city</source>
+        <target>Ettevõtte linn</target>
+      </trans-unit>
+      <trans-unit id="3128dbdc3a5b6e99a779ec3242260f8f">
+        <source>Company postcode</source>
+        <target>Ettevõtte sihtnumber</target>
+      </trans-unit>
+      <trans-unit id="0ef8fb6bb97274f7537214c3e81bc6ad">
+        <source>Company country code</source>
+        <target>Ettevõtte riigi kood</target>
+      </trans-unit>
+      <trans-unit id="3b74eee3e854c835ce7874e352d643ef">
+        <source>Company phone number</source>
+        <target>Ettevõtte telefoninumber</target>
+      </trans-unit>
+      <trans-unit id="6b4599c8b97a1b90ccc87da8243b5dcd">
+        <source>Pick up time start</source>
+        <target>Võta aeg alguseni</target>
+      </trans-unit>
+      <trans-unit id="29d284ecbc8948a12da4e0ccdda39ed3">
+        <source>Pick up time finish</source>
+        <target>Võta aega lõpuni</target>
+      </trans-unit>
+      <trans-unit id="a2b5fb5b945071dd92f66d8012c40ad0">
+        <source>Labels print type</source>
+        <target>Siltide printimise tüüp</target>
+      </trans-unit>
+      <trans-unit id="1c8124146b283c497075a07e8fd601c8">
+        <source>Send return code</source>
+        <target>Saada tagastuskood</target>
+      </trans-unit>
+      <trans-unit id="68aa5b6c866b4fb74ffb0e671ea6194d">
+        <source>Manifest language</source>
+        <target>Manifesti keel</target>
+      </trans-unit>
+      <trans-unit id="ab5e2debe0655a8bfd7dcef2fbec9c39">
+        <source>Label comment</source>
+        <target>Sildi kommentaar</target>
+      </trans-unit>
+      <trans-unit id="fda97847c73434ca4a011fea5d27bca1">
+        <source>Autoselect terminal</source>
+        <target>Automaatne terminali valik</target>
+      </trans-unit>
+      <trans-unit id="b9cdf88912e59fb44ff9e677c8f09efe">
+        <source>Default country of delivery</source>
+        <target>Vaikimisi tarnemaa</target>
+      </trans-unit>
+      <trans-unit id="c9cc8cce247e49bae79f15173ce97354">
+        <source>Save</source>
+        <target>Salvestage</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Tagasi loendisse</target>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32">
+        <source>Enabled</source>
+        <target>Lubatud</target>
+      </trans-unit>
+      <trans-unit id="b9f5c797ebbf55adccdd8539a65a0241">
+        <source>Disabled</source>
+        <target>Keelatud</target>
+      </trans-unit>
+      <trans-unit id="f4f70727dc34561dfde1a3c529b6205c">
+        <source>Settings</source>
+        <target>Seaded</target>
+      </trans-unit>
+      <trans-unit id="f202fd25f66eae6524f8175266be8383">
+        <source>Select the Omniva department country, from which you got the logins.</source>
+        <target>Valige Omniva osakonna riik, kust saite sisselogimisandmed.</target>
+      </trans-unit>
+      <trans-unit id="d9051e0b77f8bb5521389618e70e2ada">
+        <source>Lithuania</source>
+        <target>Leedu</target>
+      </trans-unit>
+      <trans-unit id="a09f4b2ae67f0a63ab8912047a1a1b55">
+        <source>Latvia</source>
+        <target>Läti</target>
+      </trans-unit>
+      <trans-unit id="7755415a9fe7022060b98a689236ccd2">
+        <source>Estonia</source>
+        <target>Eesti</target>
+      </trans-unit>
+      <trans-unit id="c7a347e04745b4d9ba5fde7593bec949">
+        <source>Activate this service, if your e-shop clients want to receive parcels in Estonia. Only available for Estonia API country.</source>
+        <target>Aktiveerige see teenus, kui teie e-poe kliendid soovivad pakke saada Eestis. Saadaval ainult Eesti API riigi jaoks.</target>
+      </trans-unit>
+      <trans-unit id="94d5f3c6d3a79db42e4287a9751d4e13">
+        <source>Activate this service, if you want to send parcels to Finland. Only available for Estonia API country.</source>
+        <target>Aktiveerige see teenus, kui soovite pakke saata Soome. Saadaval ainult Eesti API riigi jaoks.</target>
+      </trans-unit>
+      <trans-unit id="931df114cd35e909a7327afe5c4a6226">
+        <source>Please select send off from store type</source>
+        <target>Palun valige post-tüüpi saatmine välja</target>
+      </trans-unit>
+      <trans-unit id="af5a5195fe01aae1edf7c0770e86bc03">
+        <source>Parcel terminal</source>
+        <target>Pakiterminal</target>
+      </trans-unit>
+      <trans-unit id="5055d1a4444c630d6839f48ab48aef91">
+        <source>Courier</source>
+        <target>Kuller</target>
+      </trans-unit>
+      <trans-unit id="9416b8fdb61378eb29ebe807b9bdbb44">
+        <source>Post Office</source>
+        <target>Postkontor</target>
+      </trans-unit>
+      <trans-unit id="3787ab3b9c9460fba74dbcf1927c79c5">
+        <source>Logistics Center</source>
+        <target>Logistikakeskus</target>
+      </trans-unit>
+      <trans-unit id="63e8b926b8f2629cf3677a02d2d88f39">
+        <source>You can specify a default customer country that will be used until the delivery address is entered.</source>
+        <target>Saate määrata vaikimisi kliendi riigi, mida kasutatakse kuni tarneaadressi sisestamiseni.</target>
+      </trans-unit>
+      <trans-unit id="dd3195ced9c1810388e28ca2b4eb921f">
+        <source>Not specified</source>
+        <target>Pole määratud</target>
+      </trans-unit>
+      <trans-unit id="08dfaa62aebd5e73c90ba710f930aefd">
+        <source>Please note that extra charges may apply.</source>
+        <target>Pange tähele, et võidakse kohaldada lisatasusid.</target>
+      </trans-unit>
+      <trans-unit id="f821a8d706572671ccc3bc91d05092f6">
+        <source>Original (single label)</source>
+        <target>Originaal (üks silt)</target>
+      </trans-unit>
+      <trans-unit id="c8850e93a8be32b260efd5c7b0d0637a">
+        <source>A4 (4 labels)</source>
+        <target>A4 (4 silti)</target>
+      </trans-unit>
+      <trans-unit id="84ed1c865d4156e47b203fdca60efd4f">
+        <source>No comment</source>
+        <target>Kommentaari pole</target>
+      </trans-unit>
+      <trans-unit id="d79cf3f429596f77db95c65074663a54">
+        <source>Order ID</source>
+        <target>Tellimuse ID</target>
+      </trans-unit>
+      <trans-unit id="5d4710f9a8250b13164a82c94d5b00d1">
+        <source>Order reference</source>
+        <target>Tellimuse viide</target>
+      </trans-unit>
+      <trans-unit id="78463a384a5aa4fad5fa73e2f506ecfc">
+        <source>English</source>
+        <target>Inglise</target>
+      </trans-unit>
+      <trans-unit id="28916fc3da67a5190b2b98a7f309857f">
+        <source>Estonian</source>
+        <target>Eesti</target>
+      </trans-unit>
+      <trans-unit id="76ad0358e45dd4087c0a26bbf4c160e3">
+        <source>Latvian</source>
+        <target>Läti</target>
+      </trans-unit>
+      <trans-unit id="04f605836f660d879bf3fb2b3643d16b">
+        <source>Lithuanian</source>
+        <target>Leedu</target>
+      </trans-unit>
+      <trans-unit id="3d90ad8f9eef0e43af3a5a42dc8d0a42">
+        <source>Updated Terminals:</source>
+        <target>Värskendatud terminalid:</target>
+      </trans-unit>
+      <trans-unit id="1d6af794b2599c1407a83029a09d1ecf">
+        <source>Carriers</source>
+        <target>Vedajad</target>
+      </trans-unit>
+      <trans-unit id="f9a9a202b1b39ebc54ed8814aaa3be49">
+        <source>After activating the shipping method below, a new Carrier is created in the Prestashop shipping carriers list.</source>
+        <target>Pärast alloleva saatmismeetodi aktiveerimist luuakse Prestashopi vedajate nimekirjas uus vedaja.</target>
+      </trans-unit>
+      <trans-unit id="f29ddbfb905eb2593fdcdfb243f9af85">
+        <source>Added</source>
+        <target>Lisatud</target>
+      </trans-unit>
+      <trans-unit id="93f07b720ebf7d1246512569761a5804">
+        <source>Removed</source>
+        <target>Eemaldatud</target>
+      </trans-unit>
+      <trans-unit id="5549d34a89fe44e7b8feae5c90f00104">
+        <source>Module uninstall</source>
+        <target>Mooduli desinstallimine</target>
+      </trans-unit>
+      <trans-unit id="3a05f53dccebe09a2cec5aa570a7cd33">
+        <source>The enabled actions in this section will be performed when uninstalling the module.</source>
+        <target>Selles jaotises lubatud toimingud tehakse mooduli desinstallimisel.</target>
+      </trans-unit>
+      <trans-unit id="f3f3ed7884ca933080a0d6ca37f612aa">
+        <source>Delete database tables</source>
+        <target>Kustuta andmebaasi tabelid</target>
+      </trans-unit>
+      <trans-unit id="383603d497afa64b719f43f7177c8d06">
+        <source>Delete tables created by the module from the database.</source>
+        <target>Kustuta mooduli loodud tabelid andmebaasist.</target>
+      </trans-unit>
+      <trans-unit id="02b46b1c3d3d71f67d1bde63982c086f">
+        <source>Completely delete carriers</source>
+        <target>Kustuta vedajad täielikult</target>
+      </trans-unit>
+      <trans-unit id="cf32ed30236c4166e756314ade9bf834">
+        <source>Completely delete carriers created by this module from the database.</source>
+        <target>Kustuta selle mooduli loodud vedajad täielikult andmebaasist.</target>
+      </trans-unit>
+      <trans-unit id="b1534363537e99e5e89c6d29726e4188">
+        <source>Phone check</source>
+        <target>Telefoni kontroll</target>
+      </trans-unit>
+      <trans-unit id="b88532c3a7ca3d7da3b4320c7218acd2">
+        <source>Check if a phone number is entered on the checkout page</source>
+        <target>Kontrolli, kas telefoninumber on tellimislehel sisestatud</target>
+      </trans-unit>
+      <trans-unit id="c86689ba4f7a23040f52256df689ff12">
+        <source>Please select orders</source>
+        <target>Palun valige tellimused</target>
+      </trans-unit>
+      <trans-unit id="90b82af420c78dbaddd916dabc53a88f">
+        <source>Finished.</source>
+        <target>Lõpetatud.</target>
+      </trans-unit>
+      <trans-unit id="56e711e85bd8a397abcc6f500e7e9688">
+        <source>Message successfully sent.</source>
+        <target>Sõnum edukalt saadetud.</target>
+      </trans-unit>
+      <trans-unit id="911eb50636c735e6a95df350b028a816">
+        <source>Registered courier call</source>
+        <target>Registreeritud kulleri kutse</target>
+      </trans-unit>
+      <trans-unit id="2d43a3963ece6b003934edd05fe1f9fe">
+        <source>The courier will arrive between</source>
+        <target>Kuller saabub vahemikus</target>
+      </trans-unit>
+      <trans-unit id="09d8aeb8bd9e63165e47b70e54424118">
+        <source>Incorrect response.</source>
+        <target>Vale vastus.</target>
+      </trans-unit>
+      <trans-unit id="3ad6cb6100190c8f81e99fd52debf7ef">
+        <source>Labels</source>
+        <target>Sildid</target>
+      </trans-unit>
+      <trans-unit id="9076cbba1d9ef79280b4f39e2aa0d115">
+        <source>Nothing found</source>
+        <target>Midagi ei leitud</target>
+      </trans-unit>
+      <trans-unit id="14e4f8849ea680184ae3a759247cf824">
+        <source>Order info successfully saved.</source>
+        <target>Tellimuse info edukalt salvestatud.</target>
+      </trans-unit>
+      <trans-unit id="9797b035a2c45530db13c1e895559636">
+        <source>Order info could not be saved.</source>
+        <target>Tellimuse infot ei saanud salvestada.</target>
+      </trans-unit>
+      <trans-unit id="fbd971d70423f06c25c4b1fa90be209b">
+        <source>No order ID provided.</source>
+        <target>Tellimuse ID puudub.</target>
+      </trans-unit>
+      <trans-unit id="d9dfda0b6b0767366b110a68e40692ef">
+        <source>Order info not saved. Please save before generating labels</source>
+        <target>Tellimuse info pole salvestatud. Palun salvestage enne siltide genereerimist</target>
+      </trans-unit>
+      <trans-unit id="7b1344e678bc224a55723d5a233b9e85">
+        <source>Label successfully generated</source>
+        <target>Silt edukalt genereeritud</target>
+      </trans-unit>
+      <trans-unit id="04bb75c42a8277dd7d28335de64d9423">
+        <source>No order ID's provided.</source>
+        <target>Tellimuse ID-d puuduvad.</target>
+      </trans-unit>
+      <trans-unit id="9b1b62ae6a686acc7638bf5d6c456aea">
+        <source>Could not get label information for some orders.</source>
+        <target>Mõnede tellimuste siltide infot ei saanud kätte.</target>
+      </trans-unit>
+      <trans-unit id="22d2c7f90dc862df71ac7aff95183fb2">
+        <source>Cash on delivery</source>
+        <target>Sularaha kohaletoimetamisel</target>
+      </trans-unit>
+      <trans-unit id="fac11f8d711df181c9a3690bcbd0c598">
+        <source>Issue to persons at the age of 18+</source>
+        <target>Väljastada isikutele alates 18. eluaastast</target>
+      </trans-unit>
+      <trans-unit id="157a188d615779077cc8af510d0c1628">
+        <source>Personal delivery</source>
+        <target>Isiklik kohaletoimetamine</target>
+      </trans-unit>
+      <trans-unit id="17a53d1a012580ef609b70ef6a25d1f1">
+        <source>Letter</source>
+        <target>Kiri</target>
+      </trans-unit>
+      <trans-unit id="3d1a5229f3907cfe6134c5782fc753dd">
+        <source>Document return</source>
+        <target>Dokumendi tagastamine</target>
+      </trans-unit>
+      <trans-unit id="e9cbb553eccce46a0c7d26a1591cf64b">
+        <source>Fragile</source>
+        <target>Habras</target>
+      </trans-unit>
+      <trans-unit id="eaff1bdf24fcffe0e14e29a1bff51a12">
+        <source>Insurance</source>
+        <target>Kindlustus</target>
+      </trans-unit>
+      <trans-unit id="e6c40f073737882cbe4fb51641cbe08a">
+        <source>Standard Advice Of Delivery</source>
+        <target>Standardne kohaletoimetamise teade</target>
+      </trans-unit>
+      <trans-unit id="22526e9b5175b56fffdad7cada6f69cc">
+        <source>Registered Advice Of Delivery</source>
+        <target>Registreeritud kohaletoimetamise teade</target>
+      </trans-unit>
+      <trans-unit id="368dcec25e7e437f02a61e2640182ddd">
+        <source>Same day delivery</source>
+        <target>Samal päeval kohaletoimetamine</target>
+      </trans-unit>
+      <trans-unit id="e0096201b2609e288118980f0da03baa">
+        <source>Second delivery attempt on Saturday</source>
+        <target>Teine kohaletoimetamise katse laupäeval</target>
+      </trans-unit>
+      <trans-unit id="25da0edb38215c79d696cf5fddb6082b">
+        <source>Required if you intend to use COD payment method.</source>
+        <target>Nõutav, kui kavatsete kasutada järelmaksu makseviisi.</target>
+      </trans-unit>
+      <trans-unit id="448e1ef6bb709d4d46578d2ebf5ae64f">
+        <source>Failed to register tabs.</source>
+        <target>Vahekaartide registreerimine ebaõnnestus.</target>
+      </trans-unit>
+      <trans-unit id="c59461e5ebabed4c2ad5d36f5bea9813">
+        <source>Failed to update terminals</source>
+        <target>Terminalide uuendamine ebaõnnestus</target>
+      </trans-unit>
+      <trans-unit id="974c8c339131a9c94b41e0d40ffce8d8">
+        <source>Omniva: Print labels</source>
+        <target>Omniva: Prindi sildid</target>
+      </trans-unit>
+      <trans-unit id="af29eb5ed11f00067067026b28c9af74">
+        <source>Omniva: Print manifests</source>
+        <target>Omniva: Prindi manifestid</target>
+      </trans-unit>
+      <trans-unit id="4fd711524d944b4dbe8027acb8ad081b">
+        <source>The shipment was successfully registered. Labels are downloading...</source>
+        <target>Saadetis registreeriti edukalt. Sildid laetakse alla...</target>
+      </trans-unit>
+      <trans-unit id="b2f062385cd680e6de20a414d61c0d67">
+        <source>Packets</source>
+        <target>Paketid</target>
+      </trans-unit>
+      <trans-unit id="8c489d0946f66d17d73f26366a4bf620">
+        <source>Weight</source>
+        <target>Kaal</target>
+      </trans-unit>
+      <trans-unit id="b4d1403c4db49bf1b222179cca5b794f">
+        <source>C.O.D.</source>
+        <target>C.O.D.</target>
+      </trans-unit>
+      <trans-unit id="bafd7322c6e97d25b6299b5d6fe8920b">
+        <source>No</source>
+        <target>Ei</target>
+      </trans-unit>
+      <trans-unit id="93cba07454f06a4a960172bbd6e2a435">
+        <source>Yes</source>
+        <target>Jah</target>
+      </trans-unit>
+      <trans-unit id="167b083f093912ea36223cf253893669">
+        <source>C.O.D. amount</source>
+        <target>C.O.D. summa</target>
+      </trans-unit>
+      <trans-unit id="914419aa32f04011357d3b604a86d7eb">
+        <source>Carrier</source>
+        <target>Vedaja</target>
+      </trans-unit>
+      <trans-unit id="1bc345748c2191d49fbefeb2365d82ac">
+        <source>Active shipment additional services</source>
+        <target>Active shipment additional services</target>
+      </trans-unit>
+      <trans-unit id="d9f68527a3927030f8ae2080484342ba">
+        <source>Omniva Labels History</source>
+        <target>Omniva Labels History</target>
+      </trans-unit>
+      <trans-unit id="c8a289757a2d2a05e89bdf781be50060">
+        <source>Tracking numbers</source>
+        <target>Tracking numbers</target>
+      </trans-unit>
+      <trans-unit id="473b9b7e8964ab5f193d282f8b4b527c">
+        <source>Service Code</source>
+        <target>Service Code</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41">
+        <source>Date</source>
+        <target>Kuupäev</target>
+      </trans-unit>
+      <trans-unit id="36e5769d3d33717f601e1f1dc3409d11">
+        <source>Label printing</source>
+        <target>Label printing</target>
+      </trans-unit>
+      <trans-unit id="c879cb3351593188d1178647eb2032fe">
+        <source>Print labels</source>
+        <target>Print labels</target>
+      </trans-unit>
+      <trans-unit id="5050224de02ab60008e2fe590f0b7bea">
+        <source>Generate label</source>
+        <target>Loo silt</target>
+      </trans-unit>
+      <trans-unit id="f1d56bb89f0d1e9a9b8638062fe95706">
+        <source>A newer version of the plugin has been released:</source>
+        <target>A newer version of the plugin has been released:</target>
+      </trans-unit>
+      <trans-unit id="04442078d00a022e2c96df3a95339fa2">
+        <source>You can download it by pressing </source>
+        <target>You can download it by pressing </target>
+      </trans-unit>
+      <trans-unit id="6c92285fa6d3e827b198d120ea3ac674">
+        <source>here</source>
+        <target>here</target>
+      </trans-unit>
+      <trans-unit id="388b5a3637672ff21f693dc524b571ef">
+        <source>Next manifest</source>
+        <target>Järgmine manifest</target>
+      </trans-unit>
+      <trans-unit id="2ae6e7e2d861bd03250e246f505c309b">
+        <source>Courier call</source>
+        <target>Courier call</target>
+      </trans-unit>
+      <trans-unit id="39f955a983e02682aeecdf0c94854c9b">
+        <source>New orders</source>
+        <target>Uued tellimused</target>
+      </trans-unit>
+      <trans-unit id="c7bece6685d4556fcb8dfdcd72d720f5">
+        <source>Awaiting</source>
+        <target>Laukiantys</target>
+      </trans-unit>
+      <trans-unit id="07ca5050e697392c9ed47e6453f1453f">
+        <source>Completed</source>
+        <target>Baigti</target>
+      </trans-unit>
+      <trans-unit id="13348442cc6a27032d2b4aa28b75a5d3">
+        <source>Search</source>
+        <target>Paieška</target>
+      </trans-unit>
+      <trans-unit id="374abb26a5e0fb0d3860b4e268d93a33">
+        <source>Generate manifest</source>
+        <target>Loo manifest</target>
+      </trans-unit>
+      <trans-unit id="48e3b12098c64041d5db30d70983dc56">
+        <source>Generate Labels</source>
+        <target>Generate Labels</target>
+      </trans-unit>
+      <trans-unit id="72ef2b9b6965d078e3c7f95487a82d1c">
+        <source>Skip</source>
+        <target>Vahele jätma</target>
+      </trans-unit>
+      <trans-unit id="c5bb9f36bc3c50417e6c199108e7a5d0">
+        <source>There are no orders</source>
+        <target>There are no orders</target>
+      </trans-unit>
+      <trans-unit id="24bd33868897ef9499366f5e25bc68f6">
+        <source>Skipped orders</source>
+        <target>Praleisti užsakymai</target>
+      </trans-unit>
+      <trans-unit id="1ab18b9b297f1e4f479c4a9384b526c6">
+        <source>Return to New orders</source>
+        <target>Tagasi uutele tellimustele</target>
+      </trans-unit>
+      <trans-unit id="5c5f06440fcb85cd5c8cfafe32e34b78">
+        <source>Generated</source>
+        <target>Genereeritud</target>
+      </trans-unit>
+      <trans-unit id="76c3e002d3c052bd6a909366a8dc3845">
+        <source>Manifest</source>
+        <target>Manifest</target>
+      </trans-unit>
+      <trans-unit id="2f6a7a47545ebe90c394b756e5f60fbe">
+        <source>Get manifest</source>
+        <target>Hangi manifest</target>
+      </trans-unit>
+      <trans-unit id="7ca9d631f9125c9abad8471e9dd25984">
+        <source>Final shipment - courier call.</source>
+        <target>Final shipment - courier call.</target>
+      </trans-unit>
+      <trans-unit id="0d5057fe45574a8ef724edc24783b2dc">
+        <source>Important!</source>
+        <target>Important!</target>
+      </trans-unit>
+      <trans-unit id="a1b92201721462d0b827a3d1b4f189a5">
+        <source>Latest time on which courier call can be made is 3 p.m. If you call courier later, we do not guarantee that shipment will be picked up.</source>
+        <target>Latest time on which courier call can be made is 3 p.m. If you call courier later, we do not guarantee that shipment will be picked up.</target>
+      </trans-unit>
+      <trans-unit id="2548870ae79b06e81adaa5e99654de69">
+        <source>Address and contact data</source>
+        <target>Address and contact data</target>
+      </trans-unit>
+      <trans-unit id="a90182accf9ee01fc200127dda8634e8">
+        <source>can be changed in Omniva module settings.</source>
+        <target>saab muuta Omniva mooduli seadetes.</target>
+      </trans-unit>
+      <trans-unit id="8666ca24c05893e392be2b6e91130511">
+        <source>Data to be sent</source>
+        <target>Data to be sent</target>
+      </trans-unit>
+      <trans-unit id="c66d035abc5a2df1dded3f17486ed89c">
+        <source>Sender:</source>
+        <target>Sender:</target>
+      </trans-unit>
+      <trans-unit id="673ae02fffb72f0fe68a66f096a01347">
+        <source>Phone:</source>
+        <target>Phone:</target>
+      </trans-unit>
+      <trans-unit id="9564ae3a46208be4545c6aa04472566c">
+        <source>Zipcode:</source>
+        <target>Zipcode:</target>
+      </trans-unit>
+      <trans-unit id="2bf1d5fae1c321d594fdedf05058f709">
+        <source>Address:</source>
+        <target>Address:</target>
+      </trans-unit>
+      <trans-unit id="339a858d5f7bf5de909580a62e074152">
+        <source>Requested pickup time:</source>
+        <target>Soovitud kättesaamise aeg:</target>
+      </trans-unit>
+      <trans-unit id="808858d69407557f1687cc67b3908e22">
+        <source>Scheduled courier arrivals:</source>
+        <target>Scheduled courier arrivals:</target>
+      </trans-unit>
+      <trans-unit id="f97f02debd8ef5fe5aa84d0c8889e300">
+        <source>Cancel this courier call</source>
+        <target>Cancel this courier call</target>
+      </trans-unit>
+      <trans-unit id="94966d90747b97d1f0f206c98a8b1ac3">
+        <source>Send</source>
+        <target>Send</target>
+      </trans-unit>
+      <trans-unit id="ea4788705e6873b424c65e91c2846b19">
+        <source>Cancel</source>
+        <target>Cancel</target>
+      </trans-unit>
+      <trans-unit id="d3d2e617335f08df83599665eef8a418">
+        <source>Close</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="b718adec73e04ce3ec720dd11a06a308">
+        <source>ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="ce26601dac0dea138b7295f02b7620a7">
+        <source>Customer</source>
+        <target>Klient</target>
+      </trans-unit>
+      <trans-unit id="559e7ca805230fc80e3644f87bb3994d">
+        <source>Order date</source>
+        <target>Tellimuse kuupäev</target>
+      </trans-unit>
+      <trans-unit id="2205dc082ba550b67ad71e3e2241d9a6">
+        <source>Tracking</source>
+        <target>Jälgimine</target>
+      </trans-unit>
+      <trans-unit id="d170bc4bb463d74006e55fa3e6db4e43">
+        <source>Labels registered</source>
+        <target>Sildid registreeritud</target>
+      </trans-unit>
+      <trans-unit id="96b0141273eabab320119c467cdcaf17">
+        <source>Total</source>
+        <target>Kokku</target>
+      </trans-unit>
+      <trans-unit id="fe27d82839cfd89dcd85fec0345c66e2">
+        <source>Product additional attributes</source>
+        <target>Product additional attributes</target>
+      </trans-unit>
+      <trans-unit id="6710229a45c6f5fe1768a6eb251cc375">
+        <source>For adult only (18+)</source>
+        <target>For adult only (18+)</target>
+      </trans-unit>
+      <trans-unit id="395e7e59dc4ae5782668db20ab7e856c">
+        <source>When delivering a shipment with this product, need request a document</source>
+        <target>When delivering a shipment with this product, need request a document</target>
+      </trans-unit>
+      <trans-unit id="d691c7ad749afedf8bd437455fdff3c5">
+        <source>This version of the module requires PrestaShop 8.0.0 or later. Your current version is %ps_version%.</source>
+        <target>This version of the module requires PrestaShop 8.0.0 or later. Your current version is %ps_version%.</target>
+      </trans-unit>
+      <trans-unit id="08d8f2394d17064e1c505e3d6ef7ef12">
+        <source>Showing %1$d - %2$d of %3$d items</source>
+        <target>Kuvatakse %1$d - %2$d / %3$d kirjest</target>
+      </trans-unit>
+      <trans-unit id="89762ea29386643afc3fc50e7e50b53c">
+        <source>Showing %1$d - %2$d of 1 item</source>
+        <target>Kuvatakse %1$d - %2$d / 1 kirjest</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

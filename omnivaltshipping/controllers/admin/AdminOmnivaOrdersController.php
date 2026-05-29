@@ -17,22 +17,22 @@ class AdminOmnivaOrdersController extends ModuleAdminController
         $this->addCSS($this->_path . 'views/css/omniva-admin.css');
         $this->addJS($this->_path . 'views/js/omniva-orders.js');
         Media::addJsDef([
-            'check_orders' => $this->module->l('Please select orders'),
+            'check_orders' => $this->module->translate('Please select orders', [], 'Modules.Omnivaltshipping.Admin'),
             'carrier_cal_url' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_ORDERS) . '&callCourier=1',
             'cancel_courier_call' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_ORDERS) . '&cancelCourier=',
-            'finished_trans' => $this->module->l('Finished.'),
-            'message_sent_trans' => $this->module->l('Message successfully sent.'),
-            'courier_call_success' => $this->module->l('Registered courier call'),
-            'courier_arrival_between' => $this->module->l('The courier will arrive between'),
-            'incorrect_response_trans' => $this->module->l('Incorrect response.'),
+            'finished_trans' => $this->module->translate('Finished.', [], 'Modules.Omnivaltshipping.Admin'),
+            'message_sent_trans' => $this->module->translate('Message successfully sent.', [], 'Modules.Omnivaltshipping.Admin'),
+            'courier_call_success' => $this->module->translate('Registered courier call', [], 'Modules.Omnivaltshipping.Admin'),
+            'courier_arrival_between' => $this->module->translate('The courier will arrive between', [], 'Modules.Omnivaltshipping.Admin'),
+            'incorrect_response_trans' => $this->module->translate('Incorrect response.', [], 'Modules.Omnivaltshipping.Admin'),
             'ajaxCall' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_ORDERS) . '&ajax=1',
             'orderLink' => $this->context->link->getAdminLink('AdminOrders', true, ['route' => 'admin_orders_view', 'orderId' => 0]),
             'manifestLink' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_AJAX) . '&action=printManifest',
             'downloadManifestLink' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_AJAX) . '&action=downloadManifest',
             'labelsLink' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_AJAX) . '&action=printLabels',
             'bulkLabelsLink' => $this->context->link->getAdminLink(OmnivaltShipping::CONTROLLER_OMNIVA_AJAX) . '&action=bulkPrintLabels',
-            'labels_trans' => $this->module->l('Labels'),
-            'not_found_trans' => $this->module->l('Nothing found'),
+            'labels_trans' => $this->module->translate('Labels', [], 'Modules.Omnivaltshipping.Admin'),
+            'not_found_trans' => $this->module->translate('Nothing found', [], 'Modules.Omnivaltshipping.Admin'),
         ]);
     }
 

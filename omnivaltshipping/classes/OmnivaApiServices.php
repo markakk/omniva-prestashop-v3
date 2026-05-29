@@ -64,57 +64,57 @@ class OmnivaApiServices
 
         return [
             'cod' => [
-                'title' => $module->l('Cash on delivery'),
+                'title' => $module->translate('Cash on delivery', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new CodService())->getServiceCode(),
                 'class' => CodService::class,
             ],
             'persons_over_18' => [
-                'title' => $module->l('Issue to persons at the age of 18+'),
+                'title' => $module->translate('Issue to persons at the age of 18+', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new DeliveryToAnAdultService())->getServiceCode(),
                 'class' => DeliveryToAnAdultService::class,
             ],
             'personal_delivery' => [
-                'title' => $module->l('Personal delivery'),
+                'title' => $module->translate('Personal delivery', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new DeliveryToSpecificPersonService())->getServiceCode(),
                 'class' => DeliveryToSpecificPersonService::class,
             ],
             'personal_delivery_letter' => [
-                'title' => $module->l('Personal delivery') . ' (' . $module->l('Letter') . ')',
+                'title' => $module->translate('Personal delivery', [], 'Modules.Omnivaltshipping.Admin') . ' (' . $module->translate('Letter', [], 'Modules.Omnivaltshipping.Admin') . ')',
                 'code' => (new LetterDeliveryToASpecificPersonService())->getServiceCode(),
                 'class' => LetterDeliveryToASpecificPersonService::class,
             ],
             'doc_return' => [
-                'title' => $module->l('Document return'),
+                'title' => $module->translate('Document return', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new DocumentReturnService())->getServiceCode(),
                 'class' => DocumentReturnService::class,
             ],
             'fragile' => [
-                'title' => $module->l('Fragile'),
+                'title' => $module->translate('Fragile', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new FragileService())->getServiceCode(),
                 'class' => FragileService::class,
             ],
             'insurance' => [
-                'title' => $module->l('Insurance'),
+                'title' => $module->translate('Insurance', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new InsuranceService())->getServiceCode(),
                 'class' => InsuranceService::class,
             ],
             'standard_advice_delivery' => [
-                'title' => $module->l('Standard Advice Of Delivery'),
+                'title' => $module->translate('Standard Advice Of Delivery', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new StandardAdviceOfDeliveryService())->getServiceCode(),
                 'class' => StandardAdviceOfDeliveryService::class,
             ],
             'registered_advice_delivery' => [
-                'title' => $module->l('Registered Advice Of Delivery'),
+                'title' => $module->translate('Registered Advice Of Delivery', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new RegisteredAdviceOfDeliveryService())->getServiceCode(),
                 'class' => RegisteredAdviceOfDeliveryService::class,
             ],
             'same_day_delivery' => [
-                'title' => $module->l('Same day delivery'),
+                'title' => $module->translate('Same day delivery', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new SameDayDeliveryService())->getServiceCode(),
                 'class' => SameDayDeliveryService::class,
             ],
             'second_delivery_saturday' => [
-                'title' => $module->l('Second delivery attempt on Saturday'),
+                'title' => $module->translate('Second delivery attempt on Saturday', [], 'Modules.Omnivaltshipping.Admin'),
                 'code' => (new SecondDeliveryAttemptOnSaturdayService())->getServiceCode(),
                 'class' => SecondDeliveryAttemptOnSaturdayService::class,
             ],

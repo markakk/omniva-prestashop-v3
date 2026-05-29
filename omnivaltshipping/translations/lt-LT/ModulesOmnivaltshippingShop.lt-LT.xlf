@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file original="modules/omnivaltshipping" source-language="en" target-language="lt" datatype="plaintext">
+  <file original="Modules.Omnivaltshipping.Shop" source-language="en-US" target-language="lt-LT" datatype="plaintext">
     <body>
       <trans-unit id="ab6818405d4e2ece132a8b65c28e9bb9">
         <source>Select terminal</source>
@@ -57,6 +57,58 @@
       <trans-unit id="a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6">
         <source>Terminal selection is loading. Please wait...</source>
         <target>Paštomato pasirinkimas kraunamas. Prašome palaukti...</target>
+      </trans-unit>
+      <trans-unit id="1498ff9c57f5642998e46905b61858ce">
+        <source>C.O.D. payment is not available for selected shipping method.</source>
+        <target>C.O.D. apmokėjimas negalimas su pasirinktu pristatymo būdu.</target>
+      </trans-unit>
+      <trans-unit id="33a44995135c7fc580045392f6f962a1">
+        <source>Phone number is required for the selected shipping method</source>
+        <target>Telefono numeris yra privalomas pasirinktam pristatymo būdui</target>
+      </trans-unit>
+      <trans-unit id="0756a2789de625f3e481a8695fdb8015">
+        <source>C.O.D. payment is not available for selected shipping method</source>
+        <target>C.O.D. apmokėjimas negalimas su pasirinktu pristatymo būdu</target>
+      </trans-unit>
+      <trans-unit id="1be7f4094822039b4634c93c23dd7efb">
+        <source>Event ID</source>
+        <target>Įvykio ID</target>
+      </trans-unit>
+      <trans-unit id="a4ecfc70574394990cf17bd83df499f7">
+        <source>Event</source>
+        <target>Įvykis</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41">
+        <source>Date</source>
+        <target>Data</target>
+      </trans-unit>
+      <trans-unit id="e6a620c6641e864b8c9775fe86a9ea89">
+        <source>Your order will be delivered to the parcel terminal</source>
+        <target>Jūsų užsakymas bus pristatytas į paštomatą</target>
+      </trans-unit>
+      <trans-unit id="73e0c6ff256e6be1b9ac2236bdbd697a">
+        <source>Tracking information</source>
+        <target>Siuntos sekimo informacija</target>
+      </trans-unit>
+      <trans-unit id="60ebcdfdc20a2b561cf657528e817d41">
+        <source>Your order will be delivered to Omniva parcel terminal</source>
+        <target>Jūsų užsakymas bus pristatytas į Omniva paštomatą</target>
+      </trans-unit>
+      <trans-unit id="ba7db2627418d3f2e83488ddca125cd2">
+        <source>Show parcel terminals map</source>
+        <target>Rodyti paštomatų žemėlapį</target>
+      </trans-unit>
+      <trans-unit id="bbd99246558810170f2bbba7b75f517c">
+        <source>Parcel terminals addresses</source>
+        <target>Paštomatų adresai</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Atgal į sąrašą</target>
+      </trans-unit>
+      <trans-unit id="bdbe7b8df388fa4d9aebb12e24868551">
+        <source>Select parcel terminal</source>
+        <target>Pasirinkti paštomatą</target>
       </trans-unit>
     </body>
   </file>

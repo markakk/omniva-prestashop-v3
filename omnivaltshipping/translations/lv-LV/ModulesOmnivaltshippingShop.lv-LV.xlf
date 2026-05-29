@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="Modules.Omnivaltshipping.Shop" source-language="en-US" target-language="lv-LV" datatype="plaintext">
+    <body>
+      <trans-unit id="ab6818405d4e2ece132a8b65c28e9bb9">
+        <source>Select terminal</source>
+        <target>Izvēlieties pakomātu</target>
+      </trans-unit>
+      <trans-unit id="4f781a6b09af2f1ee0a1e0c44040f97d">
+        <source>Please select a parcel terminal</source>
+        <target>Lūdzu, izvēlieties pakomātu</target>
+      </trans-unit>
+      <trans-unit id="0b110192097725bcb39ad4c49e319a42">
+        <source>Please select parcel terminal</source>
+        <target>Lūdzu, izvēlieties pakomātu</target>
+      </trans-unit>
+      <trans-unit id="dd238d9d1c8619a2c999cdc7cb674264">
+        <source>Enter postcode</source>
+        <target>Ievadiet pasta indeksu</target>
+      </trans-unit>
+      <trans-unit id="b4744b0eb409e0e366b67e8222117fba">
+        <source>Enter an address, if you want to find terminals</source>
+        <target>Ievadiet adresi, ja vēlaties atrast pakomātus</target>
+      </trans-unit>
+      <trans-unit id="d26e7830f405fcd6887d766a0ae8787b">
+        <source>Place not found</source>
+        <target>Vieta nav atrasta</target>
+      </trans-unit>
+      <trans-unit id="271e53f729450d8c0e1c7c3bc00c43a7">
+        <source>Enter postcode/address</source>
+        <target>Ievadiet pasta indeksu/adresi</target>
+      </trans-unit>
+      <trans-unit id="1abeb90e19a533f38477e18ce142ccd5">
+        <source>Show in map</source>
+        <target>Parādīt kartē</target>
+      </trans-unit>
+      <trans-unit id="146ffe2fd9fa5bec3b63b52543793ec7">
+        <source>Show more</source>
+        <target>Parādīt vairāk</target>
+      </trans-unit>
+      <trans-unit id="ec9f1fac0b8a074f11b706dc26f426f4">
+        <source>Omniva parcel terminals</source>
+        <target>Omniva pakomāti</target>
+      </trans-unit>
+      <trans-unit id="09bb251f5ba4dbb9a47d49d2a0354b56">
+        <source>Matkahuolto parcel terminals</source>
+        <target>Matkahuolto pakomāti</target>
+      </trans-unit>
+      <trans-unit id="835c91830f300e9a401abdb709b3d572">
+        <source>Omniva parcel terminal</source>
+        <target>Omniva pakomāts</target>
+      </trans-unit>
+      <trans-unit id="1498ff9c57f5642998e46905b61858ce">
+        <source>C.O.D. payment is not available for selected shipping method.</source>
+        <target>C.O.D. maksājums nav pieejams ar izvēlēto piegādes veidu.</target>
+      </trans-unit>
+      <trans-unit id="33a44995135c7fc580045392f6f962a1">
+        <source>Phone number is required for the selected shipping method</source>
+        <target>Tālruņa numurs ir nepieciešams izvēlētajam piegādes veidam</target>
+      </trans-unit>
+      <trans-unit id="0756a2789de625f3e481a8695fdb8015">
+        <source>C.O.D. payment is not available for selected shipping method</source>
+        <target>C.O.D. maksājums nav pieejams izvēlētajai piegādes metodei</target>
+      </trans-unit>
+      <trans-unit id="dbbac667dcfd0baf2b1548761129c45b">
+        <source>Terminal selection is loading. Please wait...</source>
+        <target>Terminal selection is loading. Please wait...</target>
+      </trans-unit>
+      <trans-unit id="40b84bd85d3ae2d9db67a50feb611799">
+        <source>Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.</source>
+        <target>Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.</target>
+      </trans-unit>
+      <trans-unit id="1be7f4094822039b4634c93c23dd7efb">
+        <source>Event ID</source>
+        <target>Event ID</target>
+      </trans-unit>
+      <trans-unit id="a4ecfc70574394990cf17bd83df499f7">
+        <source>Event</source>
+        <target>Pasākums</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41">
+        <source>Date</source>
+        <target>Datums</target>
+      </trans-unit>
+      <trans-unit id="e6a620c6641e864b8c9775fe86a9ea89">
+        <source>Your order will be delivered to the parcel terminal</source>
+        <target>Your order will be delivered to the parcel terminal</target>
+      </trans-unit>
+      <trans-unit id="73e0c6ff256e6be1b9ac2236bdbd697a">
+        <source>Tracking information</source>
+        <target>Izsekošanas informācija</target>
+      </trans-unit>
+      <trans-unit id="60ebcdfdc20a2b561cf657528e817d41">
+        <source>Your order will be delivered to Omniva parcel terminal</source>
+        <target>Your order will be delivered to Omniva parcel terminal</target>
+      </trans-unit>
+      <trans-unit id="ba7db2627418d3f2e83488ddca125cd2">
+        <source>Show parcel terminals map</source>
+        <target>Apskatīt novietojumu</target>
+      </trans-unit>
+      <trans-unit id="bbd99246558810170f2bbba7b75f517c">
+        <source>Parcel terminals addresses</source>
+        <target>Pakomātu adreses</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Atpakaļ pie saraksta</target>
+      </trans-unit>
+      <trans-unit id="bdbe7b8df388fa4d9aebb12e24868551">
+        <source>Select parcel terminal</source>
+        <target>Izvēlieties pakomāts</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

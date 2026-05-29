@@ -99,6 +99,8 @@ class OmnivaltShipping extends CarrierModule
 
         parent::__construct();
 
+        $this->ensureTranslationsLoaded();
+
         $this->displayName = $this->trans('Omniva Shipping', [], 'Modules.Omnivaltshipping.Admin');
         $this->description = $this->trans('Shipping module for Omniva carrier', [], 'Modules.Omnivaltshipping.Admin');
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Omnivaltshipping.Admin');
@@ -138,6 +140,110 @@ class OmnivaltShipping extends CarrierModule
     public function isUsingNewTranslationSystem(): bool
     {
         return true;
+    }
+
+    /**
+     * Public wrapper for the protected trans() method.
+     * Allows controllers and external classes to use the new translation system.
+     */
+    public function translate(string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
+    {
+        return $this->trans($id, $parameters, $domain, $locale);
+    }
+
+    /**
+     * Ensure this module's XLF translations are loaded into the active translator.
+     *
+     * PrestaShop 9 legacy front (and several admin) flows fetch the Symfony
+     * framework translator service whose catalogue is built without scanning
+     * module translation folders. As a result, $this->trans() falls back to
+     * the source string instead of returning the localized XLF entry.
+     *
+     * This helper detects that situation and explicitly invokes
+     * TranslatorLanguageLoader, which scans modules/*\/translations/<locale>
+     * directories and registers the XLF resources on the translator.
+     *
+     * Safe to call multiple times: it short-circuits once our domain is present.
+     */
+    private function ensureTranslationsLoaded(): void
+    {
+        static $loadedLocales = [];
+
+        try {
+            $context = Context::getContext();
+            if (!$context || !$context->language) {
+                return;
+            }
+            $locale = $context->language->locale ?? null;
+            if (!$locale) {
+                return;
+            }
+            if (isset($loadedLocales[$locale])) {
+                return;
+            }
+
+            if (!class_exists('PrestaShop\\PrestaShop\\Adapter\\SymfonyContainer')) {
+                return;
+            }
+            $sfContainer = \PrestaShop\PrestaShop\Adapter\SymfonyContainer::getInstance();
+            if (!$sfContainer) {
+                return;
+            }
+
+            $translator = $context->getTranslator();
+            if (!$translator) {
+                return;
+            }
+
+            // Probe whether our domain is already present in the catalogue.
+            $alreadyLoaded = false;
+            if (method_exists($translator, 'getCatalogue')) {
+                try {
+                    $catalogue = $translator->getCatalogue($locale);
+                    if ($catalogue) {
+                        $domains = $catalogue->getDomains();
+                        if (in_array('Modules.Omnivaltshipping.Shop', $domains, true)
+                            || in_array('Modules.Omnivaltshipping.Admin', $domains, true)) {
+                            $alreadyLoaded = true;
+                        }
+                    }
+                } catch (\Throwable $e) {
+                    // Ignore — fall through to attempt reload.
+                }
+            }
+
+            if ($alreadyLoaded) {
+                $loadedLocales[$locale] = true;
+                return;
+            }
+
+            if (!$sfContainer->has('prestashop.translation.translator_language_loader')) {
+                return;
+            }
+
+            $loader = $sfContainer->get('prestashop.translation.translator_language_loader');
+            if (!$loader) {
+                return;
+            }
+
+            // The catalogue must be cleared so that resources added by
+            // loadLanguage() actually get parsed (Symfony's translator only
+            // loads resources on first getCatalogue() call per locale).
+            if (method_exists($translator, 'clearLanguage')) {
+                $translator->clearLanguage($locale);
+            }
+
+            $loader->loadLanguage($translator, $locale);
+            $loadedLocales[$locale] = true;
+        } catch (\Throwable $e) {
+            // Never break the storefront/admin if translation loading fails.
+            if (class_exists('PrestaShopLogger')) {
+                PrestaShopLogger::addLog(
+                    'Omnivalt: ensureTranslationsLoaded failed: ' . $e->getMessage(),
+                    2
+                );
+            }
+        }
     }
 
     /*======================== Install / Uninstall ========================*/
@@ -314,6 +420,7 @@ class OmnivaltShipping extends CarrierModule
 
     public function hookDisplayHeader(array $params): void
     {
+        $this->ensureTranslationsLoaded();
         $this->runDeferredUpdates();
 
         $allowed_pages = ['order-opc', 'order'];
@@ -389,6 +496,7 @@ class OmnivaltShipping extends CarrierModule
 
     public function hookActionAdminControllerSetMedia(): void
     {
+        $this->ensureTranslationsLoaded();
         $this->runDeferredUpdates();
 
         $controller = $this->context->controller;
@@ -411,6 +519,7 @@ class OmnivaltShipping extends CarrierModule
 
     public function hookDisplayCarrierExtraContent(array $params): string
     {
+        $this->ensureTranslationsLoaded();
         $carrier_id = $this->getCarrierIdFromParams($params);
         if (!$carrier_id) {
             return '';
@@ -463,6 +572,7 @@ class OmnivaltShipping extends CarrierModule
 
     public function hookDisplayAdminOrderMain(array $params): string
     {
+        $this->ensureTranslationsLoaded();
         $order = new Order((int) $params['id_order']);
         $carrier = OmnivaCarrier::getCarrierById((int) $order->id_carrier);
 
