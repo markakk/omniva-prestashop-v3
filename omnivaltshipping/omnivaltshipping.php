@@ -388,11 +388,15 @@ class OmnivaltShipping extends CarrierModule
     public function hookActionCarrierUpdate(array $params): void
     {
         $id_carrier_old = (int) $params['id_carrier'];
-        $id_carrier_new = (int) $params['carrier']->id;
+        $newCarrier = $params['carrier'];
+        $id_carrier_new = (int) $newCarrier->id;
+        $id_reference = (int) ($newCarrier->id_reference ?? 0);
 
         foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
-            if ($id_carrier_old == OmnivaCarrier::getId($key)) {
-                OmnivaCarrier::updateMappingValues($key, $id_carrier_new);
+            $matches_id = $id_carrier_old && $id_carrier_old === OmnivaCarrier::getId($key);
+            $matches_ref = $id_reference && $id_reference === OmnivaCarrier::getReference($key);
+            if ($matches_id || $matches_ref) {
+                OmnivaCarrier::updateMappingValues($key, $id_carrier_new, $id_reference ?: false);
             }
         }
     }
@@ -431,7 +435,7 @@ class OmnivaltShipping extends CarrierModule
         $international_carrier_ids = [];
         $all_carrier_ids = [];
         foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
-            $carrier_id = OmnivaCarrier::getId($key);
+            $carrier_id = OmnivaCarrier::resolveActiveId($key);
             if ($carrier_id) {
                 $all_carrier_ids[] = $carrier_id;
                 if (OmnivaApiInternational::isInternationalMethod($key)) {
@@ -450,7 +454,7 @@ class OmnivaltShipping extends CarrierModule
                 ],
                 'token' => Tools::getToken(false),
                 'methods' => [
-                    'omniva_terminal' => OmnivaCarrier::getId('omnivalt_pt'),
+                    'omniva_terminal' => OmnivaCarrier::resolveActiveId('omnivalt_pt'),
                 ],
                 'show_map' => (bool) Configuration::get('omnivalt_map'),
                 'cod_restriction' => [
@@ -806,12 +810,32 @@ class OmnivaltShipping extends CarrierModule
             return;
         }
 
-        if (!in_array($order->module, self::$_codModules)) {
-            return;
+        $method_key = OmnivaCarrier::getCarrierMethodKey((int) $order->id_carrier, (int) $carrier->id_reference);
+
+        if (Configuration::get('omnivalt_phone_check')) {
+            $address = new Address((int) $order->id_address_delivery);
+            $phone = Validate::isLoadedObject($address)
+                ? trim((string) $address->phone) ?: trim((string) $address->phone_mobile)
+                : '';
+            if ($phone === '') {
+                throw new \PrestaShopException(
+                    $this->trans('Phone number is required for the selected shipping method', [], 'Modules.Omnivaltshipping.Shop')
+                );
+            }
         }
 
-        $method_key = OmnivaCarrier::getCarrierMethodKey((int) $order->id_carrier, (int) $carrier->id_reference);
-        if ($method_key && OmnivaApiInternational::isInternationalMethod($method_key)) {
+        if ($method_key === 'omnivalt_pt') {
+            $cartTerminal = new OmnivaCartTerminal((int) $order->id_cart);
+            if (!Validate::isLoadedObject($cartTerminal) || empty($cartTerminal->id_terminal)) {
+                throw new \PrestaShopException(
+                    $this->trans('Please select parcel machine', [], 'Modules.Omnivaltshipping.Shop')
+                );
+            }
+        }
+
+        if (in_array($order->module, self::$_codModules)
+            && $method_key && OmnivaApiInternational::isInternationalMethod($method_key)
+        ) {
             throw new \PrestaShopException(
                 $this->trans('C.O.D. payment is not available for selected shipping method', [], 'Modules.Omnivaltshipping.Shop')
             );
@@ -1539,8 +1563,8 @@ class OmnivaltShipping extends CarrierModule
         ];
 
         foreach (OmnivaCarrier::getAllMethods() as $key => $title) {
-            $carrier = OmnivaCarrier::getCarrier($key);
-            $values[$key] = ($carrier && !$carrier->deleted) ? 1 : 0;
+            $live_id = OmnivaCarrier::resolveActiveId($key);
+            $values[$key] = $live_id ? 1 : 0;
         }
 
         return $values;

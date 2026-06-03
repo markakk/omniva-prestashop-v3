@@ -48,6 +48,41 @@ class OmnivaCarrier
         return (int) Configuration::get(self::getReferenceKey($method_key));
     }
 
+    /**
+     * Resolve the currently live carrier_id for a method, self-healing the
+     * config mapping if it points to a deleted/edited carrier. PrestaShop
+     * carrier edits are soft-delete + insert (same id_reference, new id_carrier),
+     * and `actionCarrierUpdate` may not always fire reliably, so other modules
+     * must not rely on the cached *_id alone.
+     */
+    public static function resolveActiveId(string $method_key): int
+    {
+        $configured_id = self::getId($method_key);
+        if ($configured_id) {
+            $carrier = new Carrier($configured_id);
+            if (!empty($carrier->id) && !$carrier->deleted) {
+                return $configured_id;
+            }
+        }
+
+        $reference = self::getReference($method_key);
+        if (!$reference) {
+            return 0;
+        }
+
+        $live_id = (int) Db::getInstance()->getValue(
+            'SELECT `id_carrier` FROM `' . _DB_PREFIX_ . 'carrier`
+            WHERE `id_reference` = ' . $reference . ' AND `deleted` = 0
+            ORDER BY `id_carrier` DESC'
+        );
+
+        if ($live_id && $live_id !== $configured_id) {
+            self::updateMappingValues($method_key, $live_id);
+        }
+
+        return $live_id;
+    }
+
     public static function getAllMethodsData(): array
     {
         $methods_data = [];

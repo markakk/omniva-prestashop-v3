@@ -197,8 +197,18 @@ var omnivaltPhoneCheck = {
             prestashop.on('updatedDeliveryForm', function() {
                 self.phoneValid = null;
                 self.checkPhoneAjax();
+                if (!self.isOmnivaCarrierSelected()) {
+                    self.hideError();
+                }
             });
         }
+
+        // Hide error immediately when buyer switches to a non-Omniva carrier
+        $(document).on('change', 'input[name^="delivery_option"]', function() {
+            if (!self.isOmnivaCarrierSelected()) {
+                self.hideError();
+            }
+        });
     },
 
     checkPhoneAjax: function(callback) {
@@ -436,6 +446,14 @@ var omnivaltDelivery = {
                     return false;
                 }
                 return true;
+            });
+
+        // Hide validation error if buyer switches away from terminal carrier
+        $(document).off('change.OmnivaTerminalSwitch')
+            .on('change.OmnivaTerminalSwitch', 'input[name^="delivery_option"]', function() {
+                if (!self.isTerminalCarrierSelected()) {
+                    self.hideTerminalError();
+                }
             });
 
         // Capture phase listener for delivery step (catches all click/submit regardless of binding order)
