@@ -110,6 +110,74 @@
         <source>Select parcel terminal</source>
         <target>Select parcel terminal</target>
       </trans-unit>
+      <trans-unit id="83c00adbcdd46399d1b15030cfa3bfa3">
+        <source>Parcel machine map</source>
+        <target>Parcel machine map</target>
+      </trans-unit>
+      <trans-unit id="66b165e6f6b26b78fb99858eb4efefbf">
+        <source>Parcel machine list</source>
+        <target>Parcel machine list</target>
+      </trans-unit>
+      <trans-unit id="f17aab19dc9bb48b9ac61e3ba5ab528a">
+        <source>Search around</source>
+        <target>Search around</target>
+      </trans-unit>
+      <trans-unit id="4cfa6c981549e990fe2344e4c805405e">
+        <source>Find</source>
+        <target>Find</target>
+      </trans-unit>
+      <trans-unit id="b043e318abf0bc44ecdfac795ffbb938">
+        <source>Select parcel machine</source>
+        <target>Select parcel machine</target>
+      </trans-unit>
+      <trans-unit id="6be4601f66e68f4cb834bcff67b124ad">
+        <source>Use my location</source>
+        <target>Use my location</target>
+      </trans-unit>
+      <trans-unit id="10cb8739906c5c0aae303a900627f82e">
+        <source>Distance calculated from this point</source>
+        <target>Distance calculated from this point</target>
+      </trans-unit>
+      <trans-unit id="9076cbba1d9ef79280b4f39e2aa0d115">
+        <source>Nothing found</source>
+        <target>Nothing found</target>
+      </trans-unit>
+      <trans-unit id="42595a922022ac78deecff8fbb1f4f1b">
+        <source>No cities found for your search term</source>
+        <target>No cities found for your search term</target>
+      </trans-unit>
+      <trans-unit id="915a0d35150eeef678cc76c3441f9b31">
+        <source>Geolocation is not supported</source>
+        <target>Geolocation is not supported</target>
+      </trans-unit>
+      <trans-unit id="e7eda58475f823b67bf3402f093959c7">
+        <source>Select a parcel machine</source>
+        <target>Select a parcel machine</target>
+      </trans-unit>
+      <trans-unit id="f0a8eb78b114bf7d9d0fc269d25d32ae">
+        <source>Choose a parcel machine...</source>
+        <target>Choose a parcel machine...</target>
+      </trans-unit>
+      <trans-unit id="28b3caa818ade3860c525ee12802a150">
+        <source>Type to filter or search address by pressing Enter</source>
+        <target>Type to filter or search address by pressing Enter</target>
+      </trans-unit>
+      <trans-unit id="051ff614a2c41859c17760d1bc23e126">
+        <source>Find nearest</source>
+        <target>Find nearest</target>
+      </trans-unit>
+      <trans-unit id="1ac600ed7448213d5622ef6fcb9ad659">
+        <source>No parcel machines match your filter</source>
+        <target>No parcel machines match your filter</target>
+      </trans-unit>
+      <trans-unit id="e0626222614bdee31951d84c64e5e9ff">
+        <source>Select</source>
+        <target>Select</target>
+      </trans-unit>
+      <trans-unit id="c2b103ac0515b397c44b60e232d9a1fc">
+        <source>Enter address or postcode</source>
+        <target>Enter address or postcode</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

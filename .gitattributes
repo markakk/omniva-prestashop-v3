@@ -1,2 +1,10 @@
 # fix line endings
 * text=auto eol=lf
+
+# Images and binary formats
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.pdf binary
+*.zip binary

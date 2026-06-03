@@ -193,20 +193,6 @@
     color: white;
 }
 
-.modal-omnivalt #map-search-button {
-    background-image: url("../img/search-w.png");
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    background-position: center center;
-    border-radius: 0 3px 3px 0;
-    height: 36px;
-    width: 36px;
-    display: block;
-    float: left;
-    background-color: var(--omniva-main-color);
-    border: 1px solid var(--omniva-main-color);
-}
-
 .modal-omnivalt .pac-container {
     z-index: 10511 !important;
 }
@@ -703,18 +689,6 @@
     font-size: 14px;
     position: relative;
     padding-left: 18px;
-}
-
-.modal-omnivalt .omniva-back-to-list:before {
-    content: "";
-    display: block;
-    width: 14px;
-    height: 14px;
-    top: 6px;
-    left: 0px;
-    background-image: url("../img/back.png");
-    background-size: contain;
-    position: absolute;
 }
 
 /*** START theme: Omniva ***/

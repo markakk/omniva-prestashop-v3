@@ -445,6 +445,7 @@ class OmnivaltShipping extends CarrierModule
                 'url' => [
                     'plugin' => Tools::getHttpHost(true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/',
                     'images' => Tools::getHttpHost(true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/views/img/',
+                    'parcel_machine_images' => Tools::getHttpHost(true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/views/img/map/',
                     'controller_ajax' => $this->context->link->getModuleLink('omnivaltshipping', 'ajax'),
                 ],
                 'token' => Tools::getToken(false),
@@ -462,11 +463,11 @@ class OmnivaltShipping extends CarrierModule
                 ],
             ],
             'omnivalt_text' => [
-                'select_terminal' => $this->trans('Select terminal', [], 'Modules.Omnivaltshipping.Shop'),
-                'select_terminal_desc' => $this->trans('Please select a parcel terminal', [], 'Modules.Omnivaltshipping.Shop'),
-                'select_terminal_error' => $this->trans('Please select parcel terminal', [], 'Modules.Omnivaltshipping.Shop'),
+                'select_terminal' => $this->trans('Select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                'select_terminal_desc' => $this->trans('Please select a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                'select_terminal_error' => $this->trans('Please select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
                 'search_placeholder' => $this->trans('Enter postcode', [], 'Modules.Omnivaltshipping.Shop'),
-                'search_desc' => $this->trans('Enter an address, if you want to find terminals', [], 'Modules.Omnivaltshipping.Shop'),
+                'search_desc' => $this->trans('Enter an address, if you want to find parcel machines', [], 'Modules.Omnivaltshipping.Shop'),
                 'not_found' => $this->trans('Place not found', [], 'Modules.Omnivaltshipping.Shop'),
                 'enter_address' => $this->trans('Enter postcode/address', [], 'Modules.Omnivaltshipping.Shop'),
                 'show_in_map' => $this->trans('Show in map', [], 'Modules.Omnivaltshipping.Shop'),
@@ -474,24 +475,80 @@ class OmnivaltShipping extends CarrierModule
                 'cod_international_error' => $this->trans('C.O.D. payment is not available for selected shipping method', [], 'Modules.Omnivaltshipping.Shop'),
                 'phone_required_error' => $this->trans('Phone number is required for the selected shipping method', [], 'Modules.Omnivaltshipping.Shop'),
                 'variables' => [
-                    'omniva' => ['modal_title' => $this->trans('Omniva parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
-                    'matkahuolto' => ['modal_title' => $this->trans('Matkahuolto parcel terminals', [], 'Modules.Omnivaltshipping.Shop')],
+                    'omniva' => ['modal_title' => $this->trans('Omniva parcel machines', [], 'Modules.Omnivaltshipping.Shop')],
+                    'matkahuolto' => ['modal_title' => $this->trans('Matkahuolto parcel machines', [], 'Modules.Omnivaltshipping.Shop')],
+                ],
+                // Strings consumed by the Terminal Mapping JS library
+                // (views/lib/terminal-mapping/). Always use "parcel machine"
+                // here – that's Omniva's official wording.
+                'tmjs' => [
+                    'modal_header' => $this->trans('Parcel machine map', [], 'Modules.Omnivaltshipping.Shop'),
+                    'terminal_list_header' => $this->trans('Parcel machine list', [], 'Modules.Omnivaltshipping.Shop'),
+                    'seach_header' => $this->trans('Search around', [], 'Modules.Omnivaltshipping.Shop'),
+                    'search_btn' => $this->trans('Find', [], 'Modules.Omnivaltshipping.Shop'),
+                    'modal_open_btn' => $this->trans('Select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                    'geolocation_btn' => $this->trans('Use my location', [], 'Modules.Omnivaltshipping.Shop'),
+                    'your_position' => $this->trans('Distance calculated from this point', [], 'Modules.Omnivaltshipping.Shop'),
+                    'nothing_found' => $this->trans('Nothing found', [], 'Modules.Omnivaltshipping.Shop'),
+                    'no_cities_found' => $this->trans('No cities found for your search term', [], 'Modules.Omnivaltshipping.Shop'),
+                    'geolocation_not_supported' => $this->trans('Geolocation is not supported', [], 'Modules.Omnivaltshipping.Shop'),
+                    'select_pickup_point' => $this->trans('Select a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                    'dropdown_placeholder' => $this->trans('Choose a parcel machine...', [], 'Modules.Omnivaltshipping.Shop'),
+                    'dropdown_search_placeholder' => $this->trans('Type to filter or search address by pressing Enter', [], 'Modules.Omnivaltshipping.Shop'),
+                    'find_nearest_btn' => $this->trans('Find nearest', [], 'Modules.Omnivaltshipping.Shop'),
+                    'no_terminals_match' => $this->trans('No parcel machines match your filter', [], 'Modules.Omnivaltshipping.Shop'),
+                    'select_btn' => $this->trans('Select', [], 'Modules.Omnivaltshipping.Shop'),
                 ],
             ],
         ]);
 
+        // Leaflet + Leaflet.markercluster are bundled locally so the
+        // Terminal Mapping JS library never has to fetch them from a CDN.
+        // TMJS skips its built-in CDN loader when window.L and
+        // L.markerClusterGroup already exist.
         $this->context->controller->registerJavascript(
-            'leaflet',
-            'modules/' . $this->name . '/views/js/leaflet.js',
+            'omnivalt-leaflet',
+            'modules/' . $this->name . '/views/lib/leaflet/leaflet.js',
+            ['priority' => 180]
+        );
+        $this->context->controller->registerJavascript(
+            'omnivalt-leaflet-markercluster',
+            'modules/' . $this->name . '/views/lib/leaflet/leaflet.markercluster.js',
+            ['priority' => 185]
+        );
+        $this->context->controller->addCSS(
+            $this->_path . 'views/lib/leaflet/leaflet.css'
+        );
+        $this->context->controller->addCSS(
+            $this->_path . 'views/lib/leaflet/MarkerCluster.css'
+        );
+        $this->context->controller->addCSS(
+            $this->_path . 'views/lib/leaflet/MarkerCluster.Default.css'
+        );
+
+        // Terminal Mapping JS library.
+        $this->context->controller->registerJavascript(
+            'omnivalt-tmjs',
+            'modules/' . $this->name . '/views/lib/terminal-mapping/terminal-mapping.js',
             ['priority' => 190]
+        );
+        $this->context->controller->addCSS(
+            $this->_path . 'views/lib/terminal-mapping/terminal-mapping.css'
+        );
+
+        // Glue layer between the library and the module's checkout flow.
+        $this->context->controller->registerJavascript(
+            'omnivalt-front-map',
+            'modules/' . $this->name . '/views/js/omniva-front-map.js',
+            ['priority' => 195]
         );
         $this->context->controller->registerJavascript(
             'omnivalt',
             'modules/' . $this->name . '/views/js/omniva.js',
             ['priority' => 200]
         );
-        $this->context->controller->addCSS($this->_path . 'views/css/leaflet.css');
         $this->context->controller->addCSS($this->_path . 'views/css/omniva.css');
+        $this->context->controller->addCSS($this->_path . 'views/css/omniva-front-map.css');
     }
 
     public function hookActionAdminControllerSetMedia(): void
@@ -548,15 +605,20 @@ class OmnivaltShipping extends CarrierModule
         $showMap = Configuration::get('omnivalt_map');
 
         $postcode = '';
+        $city = '';
+        $street = '';
         if (!empty($params['cart']->id_address_delivery)) {
             $address = new Address($params['cart']->id_address_delivery);
             if (Validate::isLoadedObject($address)) {
-                $postcode = $address->postcode;
+                $postcode = (string) $address->postcode;
+                $city = (string) $address->city;
+                $street = trim(((string) $address->address1) . ' ' . ((string) $address->address2));
             }
         }
 
         $this->context->smarty->assign([
             'module_url' => $this->_path,
+            'carrier_id' => $carrier_id,
             'parcel_terminals' => $this->getTerminalsOptions($terminals, $selected),
             'terminals_list' => $this->getTerminalForMap($terminals, $iso_code),
             'marker_img' => $marker_img,
@@ -564,6 +626,8 @@ class OmnivaltShipping extends CarrierModule
             'omniva_map' => $showMap,
             'omniva_current_country' => $iso_code,
             'omniva_postcode' => $postcode,
+            'omniva_city' => $city,
+            'omniva_address' => $street,
             'omniva_autoselect' => (int) Configuration::get('omnivalt_autoselect'),
         ]);
 
@@ -1238,15 +1302,41 @@ class OmnivaltShipping extends CarrierModule
         $comment_keys = ['LT' => 'comment_lit', 'LV' => 'comment_lav', 'EE' => 'comment_est'];
         $comment_key = $comment_keys[strtoupper($country)] ?? 'comment_lit';
 
-        return array_map(fn($terminal) => [
-            $terminal['NAME'],
-            $terminal['Y_COORDINATE'],
-            $terminal['X_COORDINATE'],
-            $terminal['ZIP'],
-            $terminal['A1_NAME'],
-            $terminal['A2_NAME'],
-            $terminal[$comment_key] ?? '',
-        ], $terminals_list);
+        $clean = static function ($value) {
+            $value = (string) $value;
+            return ($value === '' || $value === 'NULL') ? '' : $value;
+        };
+
+        return array_map(function ($terminal) use ($comment_key, $clean) {
+            $a1 = $clean($terminal['A1_NAME'] ?? ''); // region (Kauno apskr.)
+            $a2 = $clean($terminal['A2_NAME'] ?? ''); // municipality (Kauno m. sav.)
+            $a3 = $clean($terminal['A3_NAME'] ?? ''); // city / town (Kauno m.)
+            $a5 = $clean($terminal['A5_NAME'] ?? ''); // street name
+            $a7 = $clean($terminal['A7_NAME'] ?? ''); // house number
+
+            // Street (A5_NAME + house number A7_NAME) is what we want
+            // displayed as the parcel-machine address. The "city" passed
+            // to TMJS is the full administrative hierarchy from the most
+            // specific to the most general level so the dropdown trigger
+            // shows e.g. "Pramonės pr. 29, Kauno m., Kauno m. sav., Kauno apskr.".
+            // The same string is also used by TMJS as the list group
+            // header (it deduplicates identical values), which matches the
+            // grouping used in the in-house dropdown_remote_url.html example.
+            $street = trim($a5 . ' ' . $a7);
+            $city = implode(', ', array_filter([$a3, $a2, $a1], static function ($v) {
+                return $v !== '';
+            }));
+
+            return [
+                $terminal['NAME'],
+                $terminal['Y_COORDINATE'],
+                $terminal['X_COORDINATE'],
+                $terminal['ZIP'],
+                $city,
+                $street,
+                $terminal[$comment_key] ?? '',
+            ];
+        }, $terminals_list);
     }
 
     private function getCarriersOptions(int $selected = 0): string

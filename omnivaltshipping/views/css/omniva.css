@@ -1,6 +1,8 @@
 :root {
     --omniva-main-color: #ff6600;
+    --omniva-second-color: #000000;
     --matkahuolto-main-color: #001e60;
+    --matkahuolto-second-color: #c89c88;
 }
 
 /*** START animations ***/
@@ -181,20 +183,6 @@
 .modal-omnivalt .btn-address-gps:hover {
     background-color: #555555;
     color: white;
-}
-
-.modal-omnivalt #map-search-button {
-    background-image: url("../img/search-w.png");
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    background-position: center center;
-    border-radius: 0 3px 3px 0;
-    height: 36px;
-    width: 36px;
-    display: block;
-    float: left;
-    background-color: var(--omniva-main-color);
-    border: 1px solid var(--omniva-main-color);
 }
 
 .modal-omnivalt .pac-container {
@@ -691,32 +679,10 @@
     padding-left: 18px;
 }
 
-.modal-omnivalt .omniva-back-to-list:before {
-    content: "";
-    display: block;
-    width: 14px;
-    height: 14px;
-    top: 6px;
-    left: 0px;
-    background-image: url("../img/back.png");
-    background-size: contain;
-    position: absolute;
-}
-
 /*** START theme: Omniva ***/
-.modal-omnivalt.theme-omniva #map-search-button:hover {
-    border-color: #fff;
-}
 /*** END theme: Omniva ***/
 
 /*** START theme: Matkahuolto ***/
-.modal-omnivalt.theme-matkahuolto #map-search-button {
-    background-color: var(--matkahuolto-main-color);
-    border-color: var(--matkahuolto-main-color);
-}
-.modal-omnivalt.theme-matkahuolto #map-search-button:hover {
-    border-color: #fff;
-}
 .select-omnivalt.theme-matkahuolto .omniva-terminals-list .search-input:focus,
 .select-omnivalt.theme-matkahuolto .omniva-terminals-list .search-input {
     background-color: var(--matkahuolto-main-color) !important;

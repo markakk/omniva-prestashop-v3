@@ -110,6 +110,74 @@
         <source>Select parcel terminal</source>
         <target>Valige paki terminal</target>
       </trans-unit>
+      <trans-unit id="83c00adbcdd46399d1b15030cfa3bfa3">
+        <source>Parcel machine map</source>
+        <target>Pakiautomaatide kaart</target>
+      </trans-unit>
+      <trans-unit id="66b165e6f6b26b78fb99858eb4efefbf">
+        <source>Parcel machine list</source>
+        <target>Pakiautomaatide nimekiri</target>
+      </trans-unit>
+      <trans-unit id="f17aab19dc9bb48b9ac61e3ba5ab528a">
+        <source>Search around</source>
+        <target>Otsi ümbrusest</target>
+      </trans-unit>
+      <trans-unit id="4cfa6c981549e990fe2344e4c805405e">
+        <source>Find</source>
+        <target>Otsi</target>
+      </trans-unit>
+      <trans-unit id="b043e318abf0bc44ecdfac795ffbb938">
+        <source>Select parcel machine</source>
+        <target>Vali pakiautomaat</target>
+      </trans-unit>
+      <trans-unit id="6be4601f66e68f4cb834bcff67b124ad">
+        <source>Use my location</source>
+        <target>Kasuta minu asukohta</target>
+      </trans-unit>
+      <trans-unit id="10cb8739906c5c0aae303a900627f82e">
+        <source>Distance calculated from this point</source>
+        <target>Vahemaa arvutatakse sellest punktist</target>
+      </trans-unit>
+      <trans-unit id="9076cbba1d9ef79280b4f39e2aa0d115">
+        <source>Nothing found</source>
+        <target>Midagi ei leitud</target>
+      </trans-unit>
+      <trans-unit id="42595a922022ac78deecff8fbb1f4f1b">
+        <source>No cities found for your search term</source>
+        <target>Otsingusõnale vastavaid linnu ei leitud</target>
+      </trans-unit>
+      <trans-unit id="915a0d35150eeef678cc76c3441f9b31">
+        <source>Geolocation is not supported</source>
+        <target>Geolokatsioon ei ole toetatud</target>
+      </trans-unit>
+      <trans-unit id="e7eda58475f823b67bf3402f093959c7">
+        <source>Select a parcel machine</source>
+        <target>Vali pakiautomaat</target>
+      </trans-unit>
+      <trans-unit id="f0a8eb78b114bf7d9d0fc269d25d32ae">
+        <source>Choose a parcel machine...</source>
+        <target>Vali pakiautomaat...</target>
+      </trans-unit>
+      <trans-unit id="28b3caa818ade3860c525ee12802a150">
+        <source>Type to filter or search address by pressing Enter</source>
+        <target>Sisesta filtreerimiseks tekst või otsi aadressi, vajutades Enter</target>
+      </trans-unit>
+      <trans-unit id="051ff614a2c41859c17760d1bc23e126">
+        <source>Find nearest</source>
+        <target>Leia lähim</target>
+      </trans-unit>
+      <trans-unit id="1ac600ed7448213d5622ef6fcb9ad659">
+        <source>No parcel machines match your filter</source>
+        <target>Ühtegi filtrile vastavat pakiautomaati ei leitud</target>
+      </trans-unit>
+      <trans-unit id="e0626222614bdee31951d84c64e5e9ff">
+        <source>Select</source>
+        <target>Vali</target>
+      </trans-unit>
+      <trans-unit id="c2b103ac0515b397c44b60e232d9a1fc">
+        <source>Enter address or postcode</source>
+        <target>Sisestage aadress või sihtnumber</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

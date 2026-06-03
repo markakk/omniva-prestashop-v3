@@ -1,0 +1,213 @@
+/*
+ * Styles for the Terminal Mapping JS (TMJS) parcel-machine UI used on
+ * the storefront checkout.
+ */
+
+/* TMJS theme variables */
+.omnivalt-theme-omniva {
+    --highlight-color: var(--omniva-main-color);
+    --muted-highlight-color: var(--omniva-second-color);
+    --white-color: #fff;
+    --selected-background: var(--highlight-color);
+    --open-modal-btn-background: var(--highlight-color);
+    --open-modal-btn-text-color: var(--white-color);
+    --overlay-background: rgba(0, 0, 0, 0.7);
+    --overlay-text-color: var(--white-color);
+    --geolocation-text-color: var(--highlight-color);
+    --search-input-background: var(--white-color);
+    --search-btn-background: var(--highlight-color);
+    --active-background: var(--highlight-color);
+    --active-text-color: var(--white-color);
+    --terminal-comment-text-color: var(--muted-highlight-color);
+    --modal-close-color: var(--highlight-color);
+    --tmjs-info-icon-color: var(--white-color);
+}
+.omnivalt-theme-matkahuolto {
+    --highlight-color: var(--matkahuolto-main-color);
+    --muted-highlight-color: var(--matkahuolto-second-color);
+    --white-color: #fff;
+    --selected-background: var(--highlight-color);
+    --open-modal-btn-background: var(--highlight-color);
+    --open-modal-btn-text-color: var(--white-color);
+    --overlay-background: rgba(0, 0, 0, 0.7);
+    --overlay-text-color: var(--white-color);
+    --geolocation-text-color: var(--highlight-color);
+    --search-input-background: var(--white-color);
+    --search-btn-background: var(--highlight-color);
+    --active-background: var(--highlight-color);
+    --active-text-color: var(--white-color);
+    --terminal-comment-text-color: var(--muted-highlight-color);
+    --modal-close-color: var(--highlight-color);
+    --tmjs-info-icon-color: var(--white-color);
+}
+
+/* Some PrestaShop themes wrap the carrier-extra slot with overflow:hidden
+   for a height transition, which clips the dropdown panel. The
+   `omniva-extra-open` class is toggled from JS as a fallback for browsers
+   without :has() support. transition-behavior:normal forces the discrete
+   overflow swap synchronously. */
+.delivery-option__extra:has(.omniva-tmjs.tmjs-dropdown-mode.tmjs-dropdown-open),
+.delivery-option__extra.omniva-extra-open {
+    overflow: visible !important;
+    transition-behavior: normal !important;
+}
+
+/* Map and dropdown container styles. */
+.mode-map .omniva-tmjs {
+    padding: 10px;
+    border: 1px solid var(--omniva-main-color);
+}
+.mode-map.theme-matkahuolto .tmjs-container.omniva-tmjs {
+    border-color: var(--matkahuolto-main-color);
+}
+.mode-map .tmjs-container.omniva-tmjs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mode-map .omniva-tmjs .tmjs-selected-terminal {
+    padding: unset;
+    font-size: 14px;
+}
+
+.omniva-tmjs .tmjs-close-modal-btn {
+    top: 13px;
+    right: 10px;
+}
+
+/* Two-line selected-terminal label in map mode. */
+.mode-map .omniva-tmjs .tmjs-selected-terminal .omniva-selected-name,
+.mode-map .omniva-tmjs .tmjs-selected-terminal .omniva-selected-address {
+    display: block;
+}
+.mode-map .omniva-tmjs .tmjs-selected-terminal .omniva-selected-address {
+    color: var(--highlight-color);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 2px;
+}
+.mode-map .omniva-tmjs .tmjs-open-modal-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: unset;
+    text-align: center;
+}
+.mode-map .omniva-tmjs .tmjs-open-modal-btn:hover {
+    background-color: var(--muted-highlight-color);
+}
+.omniva-tmjs .tmjs-dropdown-info {
+    color: var(--white-color, #fff);
+}
+
+/* List item layout: name on row 1, street + distance on row 2. */
+.omniva-tmjs .omniva-terminal-name-text {
+    flex-basis: 100%;
+    order: 1;
+    width: 100%;
+}
+.omniva-tmjs .omniva-terminal-street {
+    color: var(--highlight-color);
+    flex: 1 1 auto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 2px;
+    order: 2;
+    text-align: left;
+}
+.omniva-tmjs .tmjs-terminal-name .tmjs-terminal-distance {
+    margin-top: 2px;
+    order: 3;
+}
+
+/* Active list item: undo TMJS centering / full-width distance so the
+   active row keeps the name+distance / street two-line layout. */
+.omniva-tmjs .tmjs-terminal.tmjs-active {
+    text-align: left;
+}
+.omniva-tmjs .tmjs-terminal.tmjs-active .tmjs-terminal-distance {
+    width: auto;
+}
+.omniva-tmjs .tmjs-terminal.tmjs-active .omniva-terminal-street {
+    color: var(--active-text-color, #fff);
+    opacity: 0.85;
+}
+
+/* Compact terminal-list spacing (dropdown + modal sidebar share these). */
+.omniva-tmjs .tmjs-terminal-list {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.omniva-tmjs .tmjs-terminal-list > li.tmjs-city {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Force the .tmjs-terminal-name flex container to span full row width
+   so the street span reliably wraps to a new line. */
+.omniva-tmjs .tmjs-terminal .tmjs-terminal-name {
+    width: 100%;
+}
+
+/* Terminal comment styling. */
+.omniva-tmjs .tmjs-terminal-comment {
+    color: #fff;
+    font-style: italic;
+}
+
+/* Buttons hover. */
+.omniva-tmjs .tmjs-search-btn:hover {
+    background-color: var(--muted-highlight-color);
+}
+.omniva-tmjs a.tmjs-select-btn,
+.omniva-tmjs a:focus.tmjs-select-btn,
+.omniva-tmjs a:hover.tmjs-select-btn {
+    transition: all .15s;
+}
+.omniva-tmjs a.tmjs-select-btn:hover,
+.omniva-tmjs a:focus.tmjs-select-btn:hover,
+.omniva-tmjs a:hover.tmjs-select-btn:hover {
+    background-color: var(--muted-highlight-color);
+    color: var(--white-color);
+}
+.omniva-tmjs a.tmjs-geolocation-btn:hover,
+.omniva-tmjs a:hover.tmjs-geolocation-btn:hover,
+.omniva-tmjs a:focus.tmjs-geolocation-btn:hover {
+    color: var(--muted-highlight-color);
+}
+.omniva-tmjs .tmjs-close-modal-btn:hover::after,
+.omniva-tmjs .tmjs-close-modal-btn:hover::before {
+    background-color: var(--muted-highlight-color);
+}
+
+/* Popup tip tweaks. */
+.omniva-tmjs .leaflet-popup-content-wrapper {
+    padding: 5px;
+    border-radius: 5px;
+}
+.omniva-tmjs .leaflet-popup-content {
+    padding-right: 11px;
+}
+.omniva-tmjs .leaflet-popup-content .point-id {
+    color: var(--highlight-color);
+    display: inline-block;
+}
+.omniva-tmjs .leaflet-container a.leaflet-popup-close-button {
+    padding: 0;
+    height: 18px;
+}
+.omniva-tmjs .leaflet-popup-tip-container {
+    margin-left: -20px;
+}
+.omniva-tmjs .leaflet-popup-tip {
+    padding: 1px;
+    margin: -10px auto 0;
+}
+
+.omniva-tmjs .tmjs-terminal-finder > h2 {
+    margin-bottom: 15px;
+}
+.omniva-tmjs .tmjs-terminal-finder > h3 {
+    display: none;
+}

@@ -23,24 +23,31 @@
     var omnivalt_postcode = '{$omniva_postcode}';
     var omnivalt_autoselect = {$omniva_autoselect};
 </script>
-<div id="omnivalt_parcel_terminal_carrier_details" class="select-omnivalt theme-{$select_block_theme}" style="margin-top: 10px;">
+<div id="omnivalt_parcel_terminal_carrier_details" class="select-omnivalt theme-{$select_block_theme} mode-{if $omniva_map}map{else}dropdown{/if}" style="margin-top:3px;">
     <div class="omniva-terminal-loading alert alert-info">
-        {l s='Terminal selection is loading. Please wait...' d='Modules.Omnivaltshipping.Shop'}
+        {l s='Parcel machine selection is loading. Please wait...' d='Modules.Omnivaltshipping.Shop'}
     </div>
-    <select class="" name="omnivalt_parcel_terminal" style = "width:100%;">{$parcel_terminals nofilter}</select>
 
-    <style>
-        {literal}
-            #omnivalt_parcel_terminal_carrier_details{ margin-bottom: 5px }
-        {/literal}
-    </style>
-{if $omniva_map != false } 
-  <button type="button" id="show-omniva-map" class="btn btn-basic btn-sm omniva-btn" style = "display: none;">{l s='Show parcel terminals map' d='Modules.Omnivaltshipping.Shop'} <img src = "{$module_url}views/img/{$marker_img}" title = "{l s='Show parcel terminals map' d='Modules.Omnivaltshipping.Shop'}"/></button>
-{/if}
+    {* Hidden <select> – kept for the existing AJAX save / validation
+       handlers in omniva.js. The TerminalMapping library updates it
+       through a synthetic change event when the buyer picks a machine. *}
+    <select name="omnivalt_parcel_terminal" style="display:none;">{$parcel_terminals nofilter}</select>
+
+    {* TerminalMapping JS library mounts its UI inside this container.
+       data-omniva-tmjs-mode controls whether a map modal or an inline
+       dropdown is rendered. *}
+    <div
+        id="omniva_pm_map_{$carrier_id|intval}"
+        class="omniva-tmjs-container"
+        data-omniva-tmjs
+        data-omniva-tmjs-mode="{if $omniva_map}map{else}dropdown{/if}"
+        data-omniva-tmjs-country="{$omniva_current_country}"
+        data-omniva-tmjs-postcode="{$omniva_postcode}"
+        data-omniva-tmjs-city="{$omniva_city|escape:'html':'UTF-8'}"
+        data-omniva-tmjs-address="{$omniva_address|escape:'html':'UTF-8'}"
+    ></div>
+
     <div class="omniva-terminal-error alert alert-danger" style="display: none;">
-        {l s='Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.' d='Modules.Omnivaltshipping.Shop'}
+        {l s='Parcel machine selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred parcel machine in the order comments or contact the store administrator.' d='Modules.Omnivaltshipping.Shop'}
     </div>
 </div>
-{if $omniva_map != false }
-{include file="module:omnivaltshipping/views/templates/hook/modalMap.tpl"}
-{/if}
