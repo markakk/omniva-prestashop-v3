@@ -4,8 +4,3 @@
     --matkahuolto-main-color: #001e60;
     --matkahuolto-second-color: #c89c88;
 }
-
-.select2-container {
-    text-indent: 0px !important;
-    max-width: 100%;
-}
