@@ -19,9 +19,6 @@
 *}
 <script>
     var omnivalt_terminals = {$terminals_list|@json_encode nofilter};
-    var omnivalt_current_country = '{$omniva_current_country}';
-    var omnivalt_postcode = '{$omniva_postcode}';
-    var omnivalt_autoselect = {$omniva_autoselect};
 </script>
 <div id="omnivalt_parcel_terminal_carrier_details" class="select-omnivalt theme-{$select_block_theme} mode-{if $omniva_map}map{else}dropdown{/if}" style="margin-top:3px;">
     <div class="omniva-terminal-loading alert alert-info">

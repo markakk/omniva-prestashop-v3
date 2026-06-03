@@ -601,7 +601,6 @@ class OmnivaltShipping extends CarrierModule
             return $this->display(__FILE__, 'displayCarrierExtraContentError.tpl');
         }
 
-        $marker_img = ($iso_code === 'FI') ? 'sasi_mh.svg' : 'sasi.png';
         $showMap = Configuration::get('omnivalt_map');
 
         $postcode = '';
@@ -621,7 +620,6 @@ class OmnivaltShipping extends CarrierModule
             'carrier_id' => $carrier_id,
             'parcel_terminals' => $this->getTerminalsOptions($terminals, $selected),
             'terminals_list' => $this->getTerminalForMap($terminals, $iso_code),
-            'marker_img' => $marker_img,
             'select_block_theme' => ($iso_code === 'FI') ? 'matkahuolto' : 'omniva',
             'omniva_map' => $showMap,
             'omniva_current_country' => $iso_code,
@@ -792,7 +790,7 @@ class OmnivaltShipping extends CarrierModule
         if (!empty($terminal_address)) {
             $params['templateVars']['{omniva_terminal_name}'] = $terminal_address;
             $params['templateVars']['{omniva_terminal_text}'] = '<span style="font-weight: bold;">'
-                . $this->trans('Omniva parcel terminal', [], 'Modules.Omnivaltshipping.Shop') . ':</span> ' . $terminal_address;
+                . $this->trans('Omniva parcel machine', [], 'Modules.Omnivaltshipping.Shop') . ':</span> ' . $terminal_address;
         }
     }
 
@@ -887,9 +885,9 @@ class OmnivaltShipping extends CarrierModule
         if (Tools::getValue('forceUpdateTerminals')) {
             $locations = new OmnivaLocations();
             if ($locations->update()) {
-                $output .= $this->displayConfirmation($this->trans('Terminals updated', [], 'Modules.Omnivaltshipping.Admin'));
+                $output .= $this->displayConfirmation($this->trans('Parcel machines updated', [], 'Modules.Omnivaltshipping.Admin'));
             } else {
-                $output .= $this->displayError($this->trans('Failed to update terminals', [], 'Modules.Omnivaltshipping.Admin') . ': ' . $locations->getLastError());
+                $output .= $this->displayError($this->trans('Failed to update parcel machines', [], 'Modules.Omnivaltshipping.Admin') . ': ' . $locations->getLastError());
             }
         }
 
@@ -1465,7 +1463,7 @@ class OmnivaltShipping extends CarrierModule
             'omnivalt_send_return' => $this->trans('Send return code', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_manifest_lang' => $this->trans('Manifest language', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_label_comment_type' => $this->trans('Label comment', [], 'Modules.Omnivaltshipping.Admin'),
-            'omnivalt_autoselect' => $this->trans('Autoselect terminal', [], 'Modules.Omnivaltshipping.Admin'),
+            'omnivalt_autoselect' => $this->trans('Autoselect parcel machine', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_default_receiver_countrycode' => $this->trans('Default country of delivery', [], 'Modules.Omnivaltshipping.Admin'),
             'omnivalt_phone_check' => $this->trans('Phone check', [], 'Modules.Omnivaltshipping.Admin'),
         ];
@@ -1638,7 +1636,7 @@ class OmnivaltShipping extends CarrierModule
                 ['type' => 'select', 'label' => $settings_fields['omnivalt_send_off'], 'name' => 'omnivalt_send_off', 'required' => true,
                     'desc' => $this->trans('Please select send off from store type', [], 'Modules.Omnivaltshipping.Admin'),
                     'options' => ['query' => [
-                        ['id_option' => 'pt', 'name' => $this->trans('Parcel terminal', [], 'Modules.Omnivaltshipping.Admin')],
+                        ['id_option' => 'pt', 'name' => $this->trans('Parcel machine', [], 'Modules.Omnivaltshipping.Admin')],
                         ['id_option' => 'c', 'name' => $this->trans('Courier', [], 'Modules.Omnivaltshipping.Admin')],
                         ['id_option' => 'po', 'name' => $this->trans('Post Office', [], 'Modules.Omnivaltshipping.Admin')],
                         ['id_option' => 'lc', 'name' => $this->trans('Logistics Center', [], 'Modules.Omnivaltshipping.Admin')],
@@ -1652,7 +1650,7 @@ class OmnivaltShipping extends CarrierModule
                 'id' => 'omniva-update-terminals',
                 'name' => 'updateTerminals',
                 'icon' => 'process-icon-refresh',
-                'title' => $this->trans('Updated Terminals:', [], 'Modules.Omnivaltshipping.Admin') . ' ' . $last_update_formated,
+                'title' => $this->trans('Updated parcel machines:', [], 'Modules.Omnivaltshipping.Admin') . ' ' . $last_update_formated,
             ]],
         ];
 

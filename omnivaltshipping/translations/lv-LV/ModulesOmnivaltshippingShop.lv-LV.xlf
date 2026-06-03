@@ -38,18 +38,9 @@
         <source>Show more</source>
         <target>Parādīt vairāk</target>
       </trans-unit>
-      <trans-unit id="ec9f1fac0b8a074f11b706dc26f426f4">
-        <source>Omniva parcel terminals</source>
-        <target>Omniva pakomāti</target>
-      </trans-unit>
-      <trans-unit id="09bb251f5ba4dbb9a47d49d2a0354b56">
-        <source>Matkahuolto parcel terminals</source>
-        <target>Matkahuolto pakomāti</target>
-      </trans-unit>
-      <trans-unit id="835c91830f300e9a401abdb709b3d572">
-        <source>Omniva parcel terminal</source>
-        <target>Omniva pakomāts</target>
-      </trans-unit>
+      <trans-unit id="a5e3ebcac16660016e16d9fe2ea28a11"><source>Omniva parcel machines</source><target>Omniva pakomāti</target></trans-unit>
+      <trans-unit id="49bd5955ede7a7776a77661dafca3644"><source>Matkahuolto parcel machines</source><target>Matkahuolto pakomāti</target></trans-unit>
+      <trans-unit id="896655373d39fc90ad9482192bf754e8"><source>Omniva parcel machine</source><target>Omniva pakomāts</target></trans-unit>
       <trans-unit id="1498ff9c57f5642998e46905b61858ce">
         <source>C.O.D. payment is not available for selected shipping method.</source>
         <target>C.O.D. maksājums nav pieejams ar izvēlēto piegādes veidu.</target>
@@ -62,14 +53,8 @@
         <source>C.O.D. payment is not available for selected shipping method</source>
         <target>C.O.D. maksājums nav pieejams izvēlētajai piegādes metodei</target>
       </trans-unit>
-      <trans-unit id="dbbac667dcfd0baf2b1548761129c45b">
-        <source>Terminal selection is loading. Please wait...</source>
-        <target>Terminal selection is loading. Please wait...</target>
-      </trans-unit>
-      <trans-unit id="40b84bd85d3ae2d9db67a50feb611799">
-        <source>Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.</source>
-        <target>Terminal selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred terminal in the order comments or contact the store administrator.</target>
-      </trans-unit>
+      <trans-unit id="48126a9b8c1e0fa2f4b1e1844404decc"><source>Parcel machine selection is loading. Please wait...</source><target>Pakomāta izvēle ielādējas. Lūdzu, uzgaidiet...</target></trans-unit>
+      <trans-unit id="4f3ea4a90657c45da6d5c8cf95e1bf18"><source>Parcel machine selection is currently unavailable. You can still place an order with this shipping method — please specify your preferred parcel machine in the order comments or contact the store administrator.</source><target>Pakomāta izvēle pašlaik nav pieejama. Pasūtījumu joprojām varat veikt ar šo piegādes veidu — pasūtījuma komentāros norādiet vēlamo pakomātu vai sazinieties ar veikala administratoru.</target></trans-unit>
       <trans-unit id="1be7f4094822039b4634c93c23dd7efb">
         <source>Event ID</source>
         <target>Event ID</target>
@@ -82,33 +67,20 @@
         <source>Date</source>
         <target>Datums</target>
       </trans-unit>
-      <trans-unit id="e6a620c6641e864b8c9775fe86a9ea89">
-        <source>Your order will be delivered to the parcel terminal</source>
-        <target>Your order will be delivered to the parcel terminal</target>
-      </trans-unit>
+      <trans-unit id="35d9d7ae58e6dcfa9c563206b6969057"><source>Your order will be delivered to the parcel machine</source><target>Jūsu pasūtījums tiks piegādāts uz pakomātu</target></trans-unit>
       <trans-unit id="73e0c6ff256e6be1b9ac2236bdbd697a">
         <source>Tracking information</source>
         <target>Izsekošanas informācija</target>
       </trans-unit>
-      <trans-unit id="60ebcdfdc20a2b561cf657528e817d41">
-        <source>Your order will be delivered to Omniva parcel terminal</source>
-        <target>Your order will be delivered to Omniva parcel terminal</target>
-      </trans-unit>
+      <trans-unit id="0a397bfbe6eac5f901b4783a053598d9"><source>Your order will be delivered to Omniva parcel machine</source><target>Jūsu pasūtījums tiks piegādāts uz Omniva pakomātu</target></trans-unit>
       <trans-unit id="ba7db2627418d3f2e83488ddca125cd2">
         <source>Show parcel terminals map</source>
         <target>Apskatīt novietojumu</target>
       </trans-unit>
-      <trans-unit id="bbd99246558810170f2bbba7b75f517c">
-        <source>Parcel terminals addresses</source>
-        <target>Pakomātu adreses</target>
-      </trans-unit>
+      <trans-unit id="ece7f2d1795ff32426a116e771ea27cd"><source>Parcel machines addresses</source><target>Pakomātu adreses</target></trans-unit>
       <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
         <source>Back to list</source>
         <target>Atpakaļ pie saraksta</target>
-      </trans-unit>
-      <trans-unit id="bdbe7b8df388fa4d9aebb12e24868551">
-        <source>Select parcel terminal</source>
-        <target>Izvēlieties pakomāts</target>
       </trans-unit>
       <trans-unit id="83c00adbcdd46399d1b15030cfa3bfa3">
         <source>Parcel machine map</source>

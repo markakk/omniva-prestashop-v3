@@ -9,10 +9,6 @@
  * Each parcel-machine container in the DOM is identified by a unique
  * containerId (typically "omniva_pm_map_<carrier_id>") and has its own
  * TerminalMapping instance kept in OmnivaTerminalMap.instances.
- *
- * NOTE on terminology: throughout the UI strings we say "parcel machine"
- *                      (Omniva's official wording) instead of
- *                      "parcel terminal".
  */
 (function (global) {
     'use strict';
@@ -100,9 +96,7 @@
     }
 
     /**
-     * The Omniva tile server is used for every country (including FI /
-     * Matkahuolto). The visual difference between Omniva and Matkahuolto
-     * is achieved purely through the theme CSS class and the marker icon.
+     * The Omniva tile server and credit
      */
     var TILE_SERVER_URL = 'https://maps.omnivasiunta.lt/tile/{z}/{x}/{y}.png';
     var TILE_ATTRIBUTION =
@@ -110,12 +104,8 @@
         ' | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
 
     function getThemeRule(country) {
-        // The library joins this string straight into className via
-        // `classList.join(' ')`, so we can smuggle additional classes in
-        // here. `omniva-tmjs` ends up on the body-level modal, the
-        // map/dropdown containers and the loading overlay alike — used
-        // as a single shared CSS hook so module styles don't have to
-        // repeat the selector for each context.
+        // The library joins this string straight into className via `classList.join(' ')`,
+        // so we can smuggle additional classes in here.
         var theme = String(country).toUpperCase() === 'FI'
             ? 'omnivalt-theme-matkahuolto'
             : 'omnivalt-theme-omniva';
@@ -331,11 +321,6 @@
                 // line. When the address is missing only the name is
                 // rendered and the library appends the distance span on
                 // the same line, which is fine.
-                //
-                // The wrapping is done with CSS (see omniva-front-map.css) by
-                // turning the name span into a 100%-wide flex item so
-                // street + distance flow onto the next row of the
-                // `.tmjs-terminal-name` flex container.
                 //
                 // The trigger label (when a terminal is selected) uses
                 // the library's own two-line layout (primary = name,

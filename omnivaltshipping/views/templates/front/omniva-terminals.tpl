@@ -1,4 +1,4 @@
-<option value="">{l s='Select parcel terminal' d='Modules.Omnivaltshipping.Shop'}</option>
+<option value="">{l s='Select parcel machine' d='Modules.Omnivaltshipping.Shop'}</option>
 {if isset($grouped_options) && $grouped_options}
 {foreach $grouped_options as $city => $locs}
     {foreach $locs as $key => $loc}

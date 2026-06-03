@@ -7,7 +7,7 @@ if (!defined('_PS_VERSION_')) {
 class OmnivaCarrier
 {
     private static array $methods = [
-        'omnivalt_pt' => 'Parcel terminal',
+        'omnivalt_pt' => 'Parcel machine',
         'omnivalt_c' => 'Courier',
         'omnivalt_int_premium' => 'International (Premium)',
         'omnivalt_int_standard' => 'International (Standard)',

@@ -46,10 +46,7 @@
         <source>Successfully saved</source>
         <target>Edukalt salvestatud</target>
       </trans-unit>
-      <trans-unit id="8181876fc633f9b7903a75936b6255fb">
-        <source>Terminals updated</source>
-        <target>Terminalid värskendatud</target>
-      </trans-unit>
+      <trans-unit id="6daf6e35c1b8a35e5c35c23ddf0f6869"><source>Parcel machines updated</source><target>Pakiautomaadid värskendatud</target></trans-unit>
       <trans-unit id="97cbf7fb787c8da0bda6fffe67f21240">
         <source>Omniva Admin Ajax</source>
         <target>Omniva Admin Ajax</target>
@@ -158,10 +155,7 @@
         <source>Label comment</source>
         <target>Sildi kommentaar</target>
       </trans-unit>
-      <trans-unit id="fda97847c73434ca4a011fea5d27bca1">
-        <source>Autoselect terminal</source>
-        <target>Automaatne terminali valik</target>
-      </trans-unit>
+      <trans-unit id="3abaca5ead38a66d288078878a120b4f"><source>Autoselect parcel machine</source><target>Automaatne pakiautomaadi valik</target></trans-unit>
       <trans-unit id="b9cdf88912e59fb44ff9e677c8f09efe">
         <source>Default country of delivery</source>
         <target>Vaikimisi tarnemaa</target>
@@ -214,10 +208,7 @@
         <source>Please select send off from store type</source>
         <target>Palun valige post-tüüpi saatmine välja</target>
       </trans-unit>
-      <trans-unit id="af5a5195fe01aae1edf7c0770e86bc03">
-        <source>Parcel terminal</source>
-        <target>Pakiterminal</target>
-      </trans-unit>
+      <trans-unit id="7243ab3dffcff7c847023cc912702299"><source>Parcel machine</source><target>Pakiautomaat</target></trans-unit>
       <trans-unit id="5055d1a4444c630d6839f48ab48aef91">
         <source>Courier</source>
         <target>Kuller</target>
@@ -278,10 +269,7 @@
         <source>Lithuanian</source>
         <target>Leedu</target>
       </trans-unit>
-      <trans-unit id="3d90ad8f9eef0e43af3a5a42dc8d0a42">
-        <source>Updated Terminals:</source>
-        <target>Värskendatud terminalid:</target>
-      </trans-unit>
+      <trans-unit id="ef785efb18ea5f43395f09a8e5358804"><source>Updated parcel machines:</source><target>Pakiautomaadid värskendatud:</target></trans-unit>
       <trans-unit id="1d6af794b2599c1407a83029a09d1ecf">
         <source>Carriers</source>
         <target>Vedajad</target>
@@ -442,10 +430,7 @@
         <source>Failed to register tabs.</source>
         <target>Vahekaartide registreerimine ebaõnnestus.</target>
       </trans-unit>
-      <trans-unit id="c59461e5ebabed4c2ad5d36f5bea9813">
-        <source>Failed to update terminals</source>
-        <target>Terminalide uuendamine ebaõnnestus</target>
-      </trans-unit>
+      <trans-unit id="9b5cfb40fd1a79420f714e348621ece3"><source>Failed to update parcel machines</source><target>Pakiautomaatide uuendamine ebaõnnestus</target></trans-unit>
       <trans-unit id="974c8c339131a9c94b41e0d40ffce8d8">
         <source>Omniva: Print labels</source>
         <target>Omniva: Prindi sildid</target>

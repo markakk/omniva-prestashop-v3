@@ -545,21 +545,8 @@ var omnivaltDelivery = {
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         console.log('Failed terminal save');
-                        if (textStatus !== 'abort'){
-                            if (!!$.prototype.fancybox)
-                                $.fancybox.open([
-                                        {
-                                            type: 'inline',
-                                            autoScale: true,
-                                            minHeight: 30,
-                                            content: '<p class="fancybox-error">' + omnivalt_text.select_terminal_error + '</p>'
-                                        }],
-                                    {
-                                        padding: 0
-                                    }
-                                );
-                            else
-                                alert(omnivalt_text.select_terminal_error);
+                        if (textStatus !== 'abort') {
+                            alert(omnivalt_text.select_terminal_error);
                         }
                     }
                 });
@@ -759,7 +746,7 @@ function launch_omniva(retry = 0) {
     $('.omniva-terminal-loading').hide();
     window.OmnivaTerminalMap.autoBoot();
     omnivaltDelivery.init();
-    $('.delivery-options .delivery-option input[type="radio"], input.delivery_option_radio')
+    $('.delivery-options .delivery-option input[type="radio"]')
         .off('click.OmnivaInit')
         .on('click.OmnivaInit', function() {
             omnivaltDelivery.init();

@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-row omniva-terminal-block">
                         <div class="form-group col-md-12">
-                            <label for="omniva-parcel-terminal">{l s='Parcel terminal' d='Modules.Omnivaltshipping.Admin'}:</label>
+                            <label for="omniva-parcel-terminal">{l s='Parcel machine' d='Modules.Omnivaltshipping.Admin'}:</label>
                             <select id="omniva-parcel-terminal" name="parcel_terminal" class="form-control"
                                 data-toggle="select2" data-minimumresultsforsearch="3" aria-hidden="true">
                                 {$parcel_terminals}
