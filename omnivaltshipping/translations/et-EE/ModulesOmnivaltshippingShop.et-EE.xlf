@@ -146,9 +146,69 @@
         <source>Select</source>
         <target>Vali</target>
       </trans-unit>
+      <trans-unit id="f4ec5f57bd4d31b803312d873be40da9">
+        <source>Change</source>
+        <target>Muuda</target>
+      </trans-unit>
       <trans-unit id="c2b103ac0515b397c44b60e232d9a1fc">
         <source>Enter address or postcode</source>
         <target>Sisestage aadress või sihtnumber</target>
+      </trans-unit>
+      <trans-unit id="33c068cdeaf9f0cd2f283fb4674511fe">
+        <source>Free on iOS &amp; Android.</source>
+        <target>Tasuta iOS-is ja Androidis.</target>
+      </trans-unit>
+      <trans-unit id="67e0b77aa7108e905070cb0afac37bbc">
+        <source>Point your phone camera at the code.</source>
+        <target>Suunake telefoni kaamera koodile.</target>
+      </trans-unit>
+      <trans-unit id="c68e0a16967ada27f026bc69a51d3e19">
+        <source>Scan to install</source>
+        <target>Skannige paigaldamiseks</target>
+      </trans-unit>
+      <trans-unit id="f92965e2c8a7afb3c1b9a5c09a263636">
+        <source>Done</source>
+        <target>Valmis</target>
+      </trans-unit>
+      <trans-unit id="1157148e13a3a8355a18ba02d4db0ddf">
+        <source>Show app QR code</source>
+        <target>Näita rakenduse QR-koodi</target>
+      </trans-unit>
+      <trans-unit id="11c96c65db6af6bb0a35a2204ff0a2b9">
+        <source>Track your parcel and get the door code in the Omniva app.</source>
+        <target>Jälgige oma pakki ja saage ukse kood Omniva rakenduses.</target>
+      </trans-unit>
+      <trans-unit id="f829eec5f2861194bafbe942a5a2a25a">
+        <source>Confirm parcel machine</source>
+        <target>Kinnita pakiautomaat</target>
+      </trans-unit>
+      <trans-unit id="6862561d83707e1ec975d083a13a5687">
+        <source>Parcel machines</source>
+        <target>Pakiautomaadid</target>
+      </trans-unit>
+      <trans-unit id="765f129adf1b7f80944a8b40bbec0fd6">
+        <source>Choose a parcel machine</source>
+        <target>Valige pakiautomaat</target>
+      </trans-unit>
+      <trans-unit id="293811eb9689bf7cc083270c724e3be1">
+        <source>Enter an address, if you want to find parcel machines</source>
+        <target>Sisestage aadress, kui soovite leida pakiautomaate</target>
+      </trans-unit>
+      <trans-unit id="1fd3e800d0fe43c4090fddaa3c1278b3">
+        <source>Please select a parcel machine</source>
+        <target>Palun valige pakiautomaat</target>
+      </trans-unit>
+      <trans-unit id="e3ff649d2ad58aafa4adee523917e380">
+        <source>Search address</source>
+        <target>Otsi aadressi</target>
+      </trans-unit>
+      <trans-unit id="edcab0c472ca7ca173cf4738a22704b6">
+        <source>Locating</source>
+        <target>Asukoha määramine</target>
+      </trans-unit>
+      <trans-unit id="873d5891044af25eef50d1220fa86ae7">
+        <source>Parcel machines sorted by distance</source>
+        <target>Pakiautomaadid sorteeritud kauguse järgi</target>
       </trans-unit>
     </body>
   </file>

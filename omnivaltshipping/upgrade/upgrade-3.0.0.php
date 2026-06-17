@@ -117,7 +117,7 @@ function _omniva_upgrade_cleanup_old_files($module)
 
 function _omniva_upgrade_restrict_cod_international($module)
 {
-    $cod_modules = OmnivaltShipping::$_codModules;
+    $cod_modules = OmnivaltShipping::COD_MODULES;
     $cod_module_ids = [];
     foreach ($cod_modules as $module_name) {
         $module_id = (int) Module::getModuleIdByName($module_name);

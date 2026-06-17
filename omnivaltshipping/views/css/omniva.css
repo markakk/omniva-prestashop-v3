@@ -1,6 +1,40 @@
-:root {
-    --omniva-main-color: #ff6600;
-    --omniva-second-color: #000000;
-    --matkahuolto-main-color: #001e60;
-    --matkahuolto-second-color: #c89c88;
+/*
+ * Theme palette — the single source of truth for the module's front-end colors.
+ * Each .omnivalt-theme-* block defines one theme as semantic tokens that every
+ * component reads. To recolor a theme, edit its block; to add a theme, copy a
+ * block, rename the class + colors, then output that class as the component
+ * theme ($select_block_theme in omnivaltshipping.php, getThemeRule() in
+ * omniva-front-map.js).
+ *
+ * Tokens:
+ *   --omnivalt-accent / -text          primary button bg / text
+ *   --omnivalt-accent-hover / -text    primary button hover bg / text
+ *   --omnivalt-pop                     decorative highlight (icon/close hovers)
+ *   --omnivalt-marker / -cluster       map pin / cluster fill
+ */
+.omnivalt-theme-omniva {
+    --omnivalt-accent: #FFBC01;
+    --omnivalt-accent-text: #0D0D0D;
+    --omnivalt-accent-hover: #0D0D0D;
+    --omnivalt-accent-hover-text: #FFFFFF;
+    --omnivalt-pop: #FFBC01;
+    --omnivalt-marker: rgba(255, 102, 0, 0.5);
+    --omnivalt-marker-cluster: rgba(255, 102, 0, 0.4);
+    --omnivalt-selected-bg: #007A451A;
+    --omnivalt-selected-border: #007A45;
+    --omnivalt-dropdown-info-bg: #007A451A;
+    --omnivalt-dropdown-info-text: #0D0D0D;
+}
+.omnivalt-theme-matkahuolto {
+    --omnivalt-accent: #001E60;
+    --omnivalt-accent-text: #FFFFFF;
+    --omnivalt-accent-hover: #C89C88;
+    --omnivalt-accent-hover-text: #FFFFFF;
+    --omnivalt-pop: #C89C88;
+    --omnivalt-marker: rgba(0, 30, 96, 0.5);
+    --omnivalt-marker-cluster: rgba(0, 30, 96, 0.4);
+    --omnivalt-selected-bg: #007A451A;
+    --omnivalt-selected-border: #007A45;
+    --omnivalt-dropdown-info-bg: #007A451A;
+    --omnivalt-dropdown-info-text: #0D0D0D;
 }

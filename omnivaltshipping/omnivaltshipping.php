@@ -31,39 +31,29 @@ class OmnivaltShipping extends CarrierModule
     const CONTROLLER_OMNIVA_AJAX = 'AdminOmnivaAjax';
     const CONTROLLER_OMNIVA_ORDERS = 'AdminOmnivaOrders';
 
-    const UPDATE_URL = 'https://api.github.com/repos/mijora/omniva-prestashop/releases/latest';
-    const DOWNLOAD_URL = 'https://github.com/mijora/omniva-prestashop/releases/latest/download/omnivaltshipping.zip';
+    const COD_MODULES = ['ps_cashondelivery', 'venipakcod', 'codpro'];
 
-    const SHIPPING_SETS = [
-        'baltic' => [
-            'pt pt' => 'PA',
-            'pt c' => 'PK',
-            'c pt' => 'PU',
-            'c c' => 'QH',
-            'courier_call' => 'QH',
-        ],
-        'estonia' => [
-            'pt pt' => 'PA',
-            'pt po' => 'PO',
-            'pt c' => 'PK',
-            'c pt' => 'PU',
-            'c c' => 'CI',
-            'c cp' => 'LX',
-            'po cp' => 'LH',
-            'po pt' => 'PV',
-            'po po' => 'CD',
-            'po c' => 'CE',
-            'lc pt' => 'PP',
-            'courier_call' => 'CI',
-        ],
-        'finland' => [
-            'c pc' => 'QB',
-            'c po' => 'CD',
-            'c cp' => 'CE',
-            'c pt' => 'CD',
-            'pt pt' => 'CD',
-            'courier_call' => 'CE',
-        ],
+    const UPDATE_URL = 'https://api.github.com/repos/mijora/omniva-prestashop-v3/releases/latest';
+    const DOWNLOAD_URL = 'https://github.com/mijora/omniva-prestashop-v3/releases/latest/download/omnivaltshipping.zip';
+
+    /**
+     * "Install the app" promo configuration, keyed by storefront language
+     * and/or delivery country. Each entry holds the QR-code image (file name
+     * in views/img/qr-codes/, shown on desktop) and the landing URL (opened in
+     * a new tab on mobile devices).
+     *
+     * The key is resolved most-specific first (see resolveAppPromoEntry()):
+     *   1. "<language>-<country>"  (e.g. "ee-fi")
+     *   2. "<language>"            (e.g. "ee")
+     *   3. "<country>"             (e.g. "lv")
+     *   4. "default"
+     * To support a new language/country, add one entry here.
+     */
+    const APP_PROMO = [
+        'default' => ['image' => 'omniva-ee-home-ee.png', 'url' => 'https://www.omniva.ee'],
+        // 'ee'    => ['image' => 'omniva-ee-home-ee.png',     'url' => 'https://www.omniva.ee'],
+        // 'ee-fi' => ['image' => 'matkahoulto-ee-home-fi.png', 'url' => 'https://www.matkahuolto.fi'],
+        // 'lt-lv' => ['image' => 'omniva-api-lv-track-lt.png', 'url' => 'https://www.omniva.lt'],
     ];
 
     protected array $_hooks = [
@@ -81,8 +71,6 @@ class OmnivaltShipping extends CarrierModule
         'actionEmailSendBefore',
         'displayCarrierExtraContent',
     ];
-
-    public static array $_codModules = ['ps_cashondelivery', 'venipakcod', 'codpro'];
 
     public $id_carrier;
     private static array $_omniva_cache = [];
@@ -459,7 +447,7 @@ class OmnivaltShipping extends CarrierModule
                 'show_map' => (bool) Configuration::get('omnivalt_map'),
                 'cod_restriction' => [
                     'international_carrier_ids' => $international_carrier_ids,
-                    'cod_modules' => self::$_codModules,
+                    'cod_modules' => self::COD_MODULES,
                 ],
                 'phone_check' => [
                     'enabled' => (bool) Configuration::get('omnivalt_phone_check'),
@@ -469,7 +457,7 @@ class OmnivaltShipping extends CarrierModule
             'omnivalt_text' => [
                 'select_terminal' => $this->trans('Select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
                 'select_terminal_desc' => $this->trans('Please select a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
-                'select_terminal_error' => $this->trans('Please select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                'select_terminal_error' => $this->trans('Please select a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
                 'search_placeholder' => $this->trans('Enter postcode', [], 'Modules.Omnivaltshipping.Shop'),
                 'search_desc' => $this->trans('Enter an address, if you want to find parcel machines', [], 'Modules.Omnivaltshipping.Shop'),
                 'not_found' => $this->trans('Place not found', [], 'Modules.Omnivaltshipping.Shop'),
@@ -486,22 +474,27 @@ class OmnivaltShipping extends CarrierModule
                 // (views/lib/terminal-mapping/). Always use "parcel machine"
                 // here – that's Omniva's official wording.
                 'tmjs' => [
-                    'modal_header' => $this->trans('Parcel machine map', [], 'Modules.Omnivaltshipping.Shop'),
-                    'terminal_list_header' => $this->trans('Parcel machine list', [], 'Modules.Omnivaltshipping.Shop'),
+                    'modal_header' => $this->trans('Choose a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                    'terminal_list_header' => $this->trans('Parcel machines', [], 'Modules.Omnivaltshipping.Shop'),
+                    'terminal_list_header_sorted' => $this->trans('Parcel machines sorted by distance', [], 'Modules.Omnivaltshipping.Shop'),
                     'seach_header' => $this->trans('Search around', [], 'Modules.Omnivaltshipping.Shop'),
                     'search_btn' => $this->trans('Find', [], 'Modules.Omnivaltshipping.Shop'),
                     'modal_open_btn' => $this->trans('Select parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
                     'geolocation_btn' => $this->trans('Use my location', [], 'Modules.Omnivaltshipping.Shop'),
+                    'locating_btn' => $this->trans('Locating', [], 'Modules.Omnivaltshipping.Shop'),
                     'your_position' => $this->trans('Distance calculated from this point', [], 'Modules.Omnivaltshipping.Shop'),
                     'nothing_found' => $this->trans('Nothing found', [], 'Modules.Omnivaltshipping.Shop'),
                     'no_cities_found' => $this->trans('No cities found for your search term', [], 'Modules.Omnivaltshipping.Shop'),
                     'geolocation_not_supported' => $this->trans('Geolocation is not supported', [], 'Modules.Omnivaltshipping.Shop'),
-                    'select_pickup_point' => $this->trans('Select a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                    'select_pickup_point' => $this->trans('Choose a parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
                     'dropdown_placeholder' => $this->trans('Choose a parcel machine...', [], 'Modules.Omnivaltshipping.Shop'),
                     'dropdown_search_placeholder' => $this->trans('Type to filter or search address by pressing Enter', [], 'Modules.Omnivaltshipping.Shop'),
+                    'search_placeholder' => $this->trans('Search address', [], 'Modules.Omnivaltshipping.Shop'),
                     'find_nearest_btn' => $this->trans('Find nearest', [], 'Modules.Omnivaltshipping.Shop'),
                     'no_terminals_match' => $this->trans('No parcel machines match your filter', [], 'Modules.Omnivaltshipping.Shop'),
                     'select_btn' => $this->trans('Select', [], 'Modules.Omnivaltshipping.Shop'),
+                    'confirm_btn' => $this->trans('Confirm parcel machine', [], 'Modules.Omnivaltshipping.Shop'),
+                    'change_btn' => $this->trans('Change', [], 'Modules.Omnivaltshipping.Shop'),
                 ],
             ],
         ]);
@@ -540,6 +533,15 @@ class OmnivaltShipping extends CarrierModule
             $this->_path . 'views/lib/terminal-mapping/terminal-mapping.css'
         );
 
+        // Generic popup/modal helper (used by the glue layer for the app
+        // QR-code modal; reusable for future popups). Must load before the
+        // glue layer so window.OmnivaPopup is available when it runs.
+        $this->context->controller->registerJavascript(
+            'omnivalt-front-popup',
+            'modules/' . $this->name . '/views/js/omniva-front-popup.js',
+            ['priority' => 193]
+        );
+
         // Glue layer between the library and the module's checkout flow.
         $this->context->controller->registerJavascript(
             'omnivalt-front-map',
@@ -553,6 +555,9 @@ class OmnivaltShipping extends CarrierModule
         );
         $this->context->controller->addCSS($this->_path . 'views/css/omniva.css');
         $this->context->controller->addCSS($this->_path . 'views/css/omniva-front-map.css');
+        // Generic front-end styles (e.g. the QR-code popup used by the
+        // carrier-extra promo block).
+        $this->context->controller->addCSS($this->_path . 'views/css/omniva-front.css');
     }
 
     public function hookActionAdminControllerSetMedia(): void
@@ -631,6 +636,8 @@ class OmnivaltShipping extends CarrierModule
             'omniva_city' => $city,
             'omniva_address' => $street,
             'omniva_autoselect' => (int) Configuration::get('omnivalt_autoselect'),
+            'app_qr_image' => $this->getAppQrImageUrl($iso_code),
+            'app_external_url' => $this->getAppStoreUrl($iso_code),
         ]);
 
         return $this->display(__FILE__, 'displayCarrierExtraContent.tpl');
@@ -828,12 +835,12 @@ class OmnivaltShipping extends CarrierModule
             $cartTerminal = new OmnivaCartTerminal((int) $order->id_cart);
             if (!Validate::isLoadedObject($cartTerminal) || empty($cartTerminal->id_terminal)) {
                 throw new \PrestaShopException(
-                    $this->trans('Please select parcel machine', [], 'Modules.Omnivaltshipping.Shop')
+                    $this->trans('Please select a parcel machine', [], 'Modules.Omnivaltshipping.Shop')
                 );
             }
         }
 
-        if (in_array($order->module, self::$_codModules)
+        if (in_array($order->module, self::COD_MODULES)
             && $method_key && OmnivaApiInternational::isInternationalMethod($method_key)
         ) {
             throw new \PrestaShopException(
@@ -859,7 +866,7 @@ class OmnivaltShipping extends CarrierModule
         $omnivaOrder->id = $order->id;
         $omnivaOrder->packs = 1;
         $omnivaOrder->weight = $order->getTotalWeight() ?: 1;
-        $omnivaOrder->cod = in_array($order->module, self::$_codModules) ? 1 : 0;
+        $omnivaOrder->cod = in_array($order->module, self::COD_MODULES) ? 1 : 0;
         $omnivaOrder->cod_amount = $order->total_paid_tax_incl;
         $omnivaOrder->add();
 
@@ -884,7 +891,7 @@ class OmnivaltShipping extends CarrierModule
         }
 
         $omnivaOrder->weight = $order->getTotalWeight() ?: 1;
-        $omnivaOrder->cod = in_array($order->module, self::$_codModules) ? 1 : 0;
+        $omnivaOrder->cod = in_array($order->module, self::COD_MODULES) ? 1 : 0;
         $omnivaOrder->cod_amount = $order->total_paid_tax_incl;
         $omnivaOrder->update();
     }
@@ -1215,7 +1222,7 @@ class OmnivaltShipping extends CarrierModule
     private function restrictCodForInternationalCarriers(): void
     {
         $cod_module_ids = [];
-        foreach (self::$_codModules as $module_name) {
+        foreach (self::COD_MODULES as $module_name) {
             $module_id = (int) Module::getModuleIdByName($module_name);
             if ($module_id) {
                 $cod_module_ids[] = $module_id;
@@ -1313,6 +1320,70 @@ class OmnivaltShipping extends CarrierModule
         ]);
 
         return $this->context->smarty->fetch(_PS_MODULE_DIR_ . $this->name . '/views/templates/front/omniva-terminals.tpl');
+    }
+
+    /**
+     * Resolve the APP_PROMO entry for the given delivery country, choosing it
+     * by storefront language and/or delivery country (most-specific first).
+     * Returns the matched entry array (['image' => ..., 'url' => ...]) or null.
+     */
+    private function resolveAppPromoEntry(string $country): ?array
+    {
+        $lang = Tools::strtolower($this->context->language->iso_code);
+        $ctry = Tools::strtolower($country);
+
+        $candidates = [];
+        if ($lang !== '' && $ctry !== '') {
+            $candidates[] = $lang . '-' . $ctry;
+        }
+        if ($lang !== '') {
+            $candidates[] = $lang;
+        }
+        if ($ctry !== '') {
+            $candidates[] = $ctry;
+        }
+        $candidates[] = 'default';
+
+        foreach ($candidates as $key) {
+            if (isset(self::APP_PROMO[$key])) {
+                return self::APP_PROMO[$key];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Resolve the "install the app" QR-code image URL for the given delivery
+     * country. The image (shown on desktop) comes from the APP_PROMO mapping;
+     * see resolveAppPromoEntry() for how the key is chosen. Returns '' when
+     * nothing maps.
+     */
+    private function getAppQrImageUrl(string $country): string
+    {
+        $entry = $this->resolveAppPromoEntry($country);
+        $file = $entry['image'] ?? '';
+
+        if ($file === '') {
+            return '';
+        }
+
+        return Tools::getHttpHost(true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/views/img/qr-codes/' . $file;
+    }
+
+    /**
+     * Resolve the "install the app" landing URL for the given delivery
+     * country. On mobile devices the QR-code popup is useless (the buyer is
+     * already on their phone), so the promo button opens this URL in a new
+     * tab instead. The URL comes from the APP_PROMO mapping; see
+     * resolveAppPromoEntry() for how the key is chosen. Returns '' when
+     * nothing maps.
+     */
+    private function getAppStoreUrl(string $country): string
+    {
+        $entry = $this->resolveAppPromoEntry($country);
+
+        return $entry['url'] ?? '';
     }
 
     private function getTerminalForMap(array $terminals_list, string $country = 'LT'): array
