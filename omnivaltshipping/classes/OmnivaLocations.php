@@ -13,7 +13,22 @@ class OmnivaLocations
 
     public static function getFilePath(): string
     {
-        return dirname(__DIR__) . '/' . self::FILENAME;
+        return self::getStorageDir() . self::FILENAME;
+    }
+
+    private static function getStorageDir(): string
+    {
+        $dir = _PS_ROOT_DIR_ . '/var/modules/omnivaltshipping/';
+
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+
+        if (!is_dir($dir) || !is_writable($dir)) {
+            return dirname(__DIR__) . '/';
+        }
+
+        return $dir;
     }
 
     public function getLastError(): string

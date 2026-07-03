@@ -80,6 +80,7 @@ function _omniva_upgrade_cleanup_old_files($module)
     $filesToRemove = [
         'changelog.txt',
         'composer.lock',
+        'locations.json',
         'controllers/front/index.php',
         'sql/.htaccess',
         'translations/en.php',
@@ -110,7 +111,15 @@ function _omniva_upgrade_cleanup_old_files($module)
     foreach ($filesToRemove as $file) {
         $fullPath = $modulePath . $file;
         if (file_exists($fullPath)) {
-            @unlink($fullPath);
+            if (!@unlink($fullPath)) {
+                PrestaShopLogger::addLog(
+                    'Omniva module upgrade to 3.0.0: failed to delete old file (check folder permissions): ' . $fullPath,
+                    2,
+                    null,
+                    'Module',
+                    $module->id
+                );
+            }
         }
     }
 }
