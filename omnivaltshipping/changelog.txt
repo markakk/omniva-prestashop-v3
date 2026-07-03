@@ -1,11 +1,9 @@
-# Changelog
-
-## [3.0.0] - 2026-07-03
+= 3.0.0 =
 Initial release. This is a standalone module for PrestaShop 8.0+ (including PS 9), built based on the Omniva Shipping v2.3.5 module.
 
-### Features
+# Features
 - PrestaShop 8.0 and 9.x support
 - Symfony/XLIFF translation system
-- Modern hooks: `displayCarrierExtraContent`, `displayAdminOrderMain`, `actionEmailSendBefore`
+- Modern PrestaShop hooks for carrier content, order management and email sending
 - Automatic cleanup of obsolete files during upgrade
 - PHP 7.4+ codebase (typed properties, strict types)
