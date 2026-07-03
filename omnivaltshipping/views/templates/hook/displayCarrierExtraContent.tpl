@@ -79,7 +79,11 @@
                 <button type="button" class="omniva-qr-modal-close" aria-label="{l s='Done' d='Modules.Omnivaltshipping.Shop'}"></button>
                 <img class="omniva-qr-modal-image" src="{$app_qr_image}" alt="">
                 <h3 class="omniva-qr-modal-header">{l s='Scan to install' d='Modules.Omnivaltshipping.Shop'}</h3>
-                <p class="omniva-qr-modal-text">{l s='Point your phone camera at the code.<br/>Free on iOS & Android.' d='Modules.Omnivaltshipping.Shop'}</p>
+                <p class="omniva-qr-modal-text">
+                    {l s='Point your phone camera at the code.' d='Modules.Omnivaltshipping.Shop'}
+                    <br/>
+                    {l s='Free on iOS & Android.' d='Modules.Omnivaltshipping.Shop'}
+                </p>
                 <button type="button" class="omniva-qr-modal-done">{l s='Done' d='Modules.Omnivaltshipping.Shop'}</button>
             </div>
         </div>
