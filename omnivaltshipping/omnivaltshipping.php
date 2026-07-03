@@ -41,19 +41,11 @@ class OmnivaltShipping extends CarrierModule
      * and/or delivery country. Each entry holds the QR-code image (file name
      * in views/img/qr-codes/, shown on desktop) and the landing URL (opened in
      * a new tab on mobile devices).
-     *
-     * The key is resolved most-specific first (see resolveAppPromoEntry()):
-     *   1. "<language>-<country>"  (e.g. "ee-fi")
-     *   2. "<language>"            (e.g. "ee")
-     *   3. "<country>"             (e.g. "lv")
-     *   4. "default"
-     * To support a new language/country, add one entry here.
      */
     const APP_PROMO = [
-        'default' => ['image' => 'omniva-ee-home-ee.png', 'url' => 'https://www.omniva.ee'],
+        'default' => ['image' => 'omniva-ee-app.png', 'url' => 'https://app.omniva.ee'],
         // 'ee'    => ['image' => 'omniva-ee-home-ee.png',     'url' => 'https://www.omniva.ee'],
         // 'ee-fi' => ['image' => 'matkahoulto-ee-home-fi.png', 'url' => 'https://www.matkahuolto.fi'],
-        // 'lt-lv' => ['image' => 'omniva-api-lv-track-lt.png', 'url' => 'https://www.omniva.lt'],
     ];
 
     protected array $_hooks = [
