@@ -71,7 +71,7 @@ class OmnivaltShipping extends CarrierModule
     {
         $this->name = 'omnivaltshipping';
         $this->tab = 'shipping_logistics';
-        $this->version = '3.0.0';
+        $this->version = '3.0.1';
         $this->author = 'Mijora';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => _PS_VERSION_];
@@ -85,7 +85,7 @@ class OmnivaltShipping extends CarrierModule
         $this->description = $this->trans('Shipping module for Omniva carrier', [], 'Modules.Omnivaltshipping.Admin');
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Omnivaltshipping.Admin');
 
-        if (!$this->isRegisteredInHook('displayHeader')) {
+        if (!$this->id) {
             // Module not yet installed, skip runtime logic
             return;
         }
