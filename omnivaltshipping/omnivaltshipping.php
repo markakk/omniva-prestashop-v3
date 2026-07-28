@@ -85,7 +85,7 @@ class OmnivaltShipping extends CarrierModule
         $this->description = $this->trans('Shipping module for Omniva carrier', [], 'Modules.Omnivaltshipping.Admin');
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Omnivaltshipping.Admin');
 
-        if (!$this->isRegisteredInHook('displayHeader')) {
+        if (!$this->id) {
             // Module not yet installed, skip runtime logic
             return;
         }
