@@ -34,7 +34,7 @@ function upgrade_module_3_0_1($module)
         }
     }
 
-    // Log errors if any
+    // Add error logging for any issues encountered during the upgrade process
     if (!empty($errors)) {
         PrestaShopLogger::addLog(
             'Omniva module upgrade to 3.0.1 completed with errors: ' . implode('; ', $errors),
@@ -43,8 +43,6 @@ function upgrade_module_3_0_1($module)
             'Module',
             $module->id
         );
-
-        return false;
     }
 
     return true;
